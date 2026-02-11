@@ -1,18 +1,153 @@
 (() => {
-  // ===== Header scroll =====
+  const drawer = document.getElementById("lpDrawer");
+  const menuBtn = document.getElementById("lpMenuBtn");
+
+  if (drawer && menuBtn) {
+    const panel = drawer.querySelector(".lp-drawer__panel");
+    const icon = menuBtn.querySelector("i");
 
 
-  // ===== GSAP graphics =====
+    // ✅ رجعنا التعريفات الناقصة
+    const focusableSel = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const getFocusable = () => (panel ? Array.from(panel.querySelectorAll(focusableSel)) : []);
+    const isOpen = () => drawer.classList.contains("is-open");
+
+    let lastActiveEl = null;
+    let iconSwapTimer = 0;
+
+
+    // ✅ نفس الزر يفتح/يغلق بدون تغيير الأيقونة إلى X
+// ✅ نفس الزر يفتح/يغلق + تبديل الأيقونة بسلاسة
+const setBtnState = (open, animateIcon = true) => {
+  menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  menuBtn.setAttribute("aria-label", open ? "إغلاق القائمة" : "فتح القائمة");
+  menuBtn.dataset.state = open ? "open" : "closed";
+
+  if (!icon) return;
+
+  // ✅ أول تحميل: لا نعمل أنيميشن (حتى ما تومض الأيقونة)
+  if (!animateIcon) {
+    menuBtn.removeAttribute("data-icon-anim");
+    icon.classList.remove("fa-bars", "fa-xmark");
+    icon.classList.add(open ? "fa-xmark" : "fa-bars");
+    return;
+  }
+
+  // ✅ أنيميشن: اطلع (fade/scale) -> بدّل -> ادخل (fade/scale)
+  clearTimeout(iconSwapTimer);
+
+  menuBtn.dataset.iconAnim = "out";
+
+  iconSwapTimer = window.setTimeout(() => {
+    icon.classList.remove("fa-bars", "fa-xmark");
+    icon.classList.add(open ? "fa-xmark" : "fa-bars");
+
+    menuBtn.dataset.iconAnim = "in";
+
+    iconSwapTimer = window.setTimeout(() => {
+      menuBtn.removeAttribute("data-icon-anim");
+    }, 180);
+  }, 120);
+};
+
+
+
+    const openDrawer = () => {
+      if (isOpen()) return;
+
+      lastActiveEl = document.activeElement;
+
+      drawer.classList.add("is-open");
+      drawer.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lp-drawer-open");
+      setBtnState(true);
+
+      requestAnimationFrame(() => {
+        const f = getFocusable();
+        const target = f[0] || panel;
+        if (target && typeof target.focus === "function") target.focus();
+      });
+    };
+
+    const closeDrawer = () => {
+      if (!isOpen()) return;
+
+      drawer.classList.remove("is-open");
+      drawer.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lp-drawer-open");
+      setBtnState(false, false);
+
+
+      if (lastActiveEl && typeof lastActiveEl.focus === "function") {
+        lastActiveEl.focus();
+      }
+    };
+
+    setBtnState(false, false);
+
+
+    // ✅ نفس زر الهيدر يفتح/يغلق
+    menuBtn.addEventListener("click", () => {
+      if (isOpen()) closeDrawer();
+      else openDrawer();
+    });
+
+    // ✅ الإغلاق بالضغط على الخلفية (backdrop)
+    drawer.addEventListener("click", (e) => {
+      const t = e.target;
+      if (!t) return;
+
+      const closeEl = t.closest ? t.closest("[data-lp-drawer-close]") : null;
+      if (closeEl) closeDrawer();
+    });
+
+    // ✅ ESC يغلق
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen()) {
+        e.preventDefault();
+        closeDrawer();
+      }
+    });
+
+    // ✅ الضغط على روابط # داخل القائمة يغلق
+    if (panel) {
+      panel.addEventListener("click", (e) => {
+        const a = e.target && e.target.closest ? e.target.closest("a") : null;
+        if (!a) return;
+        const href = a.getAttribute("href") || "";
+        if (href.startsWith("#")) closeDrawer();
+      });
+    }
+
+    // ✅ trap focus
+    drawer.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab" || !isOpen()) return;
+
+      const f = getFocusable();
+      if (f.length === 0) return;
+
+      const first = f[0];
+      const last = f[f.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
   if (window.gsap) {
-    // ✅ خطوط: مقطع يمشي + يختفي
     const setupTravelDash = (el, segRatio = 0.35) => {
       if (!el || typeof el.getTotalLength !== "function") return null;
 
       const len = el.getTotalLength();
       el.dataset.len = String(len);
 
-      const seg = Math.max(10, len * segRatio);   // طول الجزء الظاهر
-      el.style.strokeDasharray = `${seg} ${len}`; // جزء ظاهر + جزء مخفي
+      const seg = Math.max(10, len * segRatio);
+      el.style.strokeDasharray = `${seg} ${len}`;
       el.style.strokeDashoffset = "0";
       el.style.opacity = "0";
 
@@ -20,21 +155,12 @@
     };
 
     const getTravelFactor = (el) => {
-      // ✅ تدرّج المسافة: السميك يمشي أقل
       if (el.classList.contains("lp-line--w10")) return 0.55;
-      if (el.classList.contains("lp-line--w4"))  return 0.72;
+      if (el.classList.contains("lp-line--w4")) return 0.72;
       return 0.88;
     };
 
-    /**
-     * dir:
-     *  -1 = مناسب للـ bottom
-     *  +1 = عكس الاتجاه (عشان الـ top يصير بنفس تأثير الـ bottom بصريًا)
-     */
-    const animateLineGroup = (
-      els,
-      { stagger = 0.22, duration = 1.2, segRatio = 0.32, dir = -1 } = {}
-    ) => {
+    const animateLineGroup = (els, { stagger = 0.22, duration = 1.2, segRatio = 0.32, dir = -1 } = {}) => {
       els.forEach((el, i) => {
         const pack = setupTravelDash(el, segRatio);
         if (!pack) return;
@@ -75,7 +201,6 @@
     animateLineGroup(topLines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: 1 });
   }
 
-  // ===== Sectors slider (dots + rtl normalize) =====
   let lpRtlType = null;
 
   function lpDetectRtlScrollType() {
@@ -128,7 +253,7 @@
 
     const slider = section.querySelector("[data-lp-sectors-slider]");
     const dotsWrap = section.querySelector("[data-lp-sectors-dots]");
-    const track = slider?.querySelector(".lp-sectors__track");
+    const track = slider && slider.querySelector(".lp-sectors__track");
     const cards = track ? Array.from(track.querySelectorAll(".lp-sectorCard")) : [];
 
     if (!slider || !dotsWrap || !track || cards.length === 0) return;
@@ -141,7 +266,6 @@
       dotsWrap.style.display = pageCount <= 1 ? "none" : "flex";
       if (pageCount <= 1) return;
 
-      // step between cards
       let step = cards[0].offsetWidth;
       if (cards.length > 1) {
         step = Math.abs(cards[1].offsetLeft - cards[0].offsetLeft) || step;

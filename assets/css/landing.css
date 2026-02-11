@@ -1,4 +1,3 @@
-/* ========== Fonts: Myriad Arabic (OTF) ========== */
 @font-face{
   font-family: "Myriad Arabic";
   src: url("../fonts/ArbFONTS-MyriadArabic-Regular.otf") format("opentype");
@@ -31,7 +30,6 @@
   font-display: swap;
 }
 
-/* ========== Fonts: GE SS TV (Bold only - current) ========== */
 @font-face{
   font-family: "GE SS TV";
   src: url("../fonts/ArbFONTS-GE-SS-TV-Bold.otf") format("opentype");
@@ -40,7 +38,6 @@
   font-display: swap;
 }
 
-/* (اختياري) نسخة بديلة لو حبّيتي تجربينها */
 @font-face{
   font-family: "GE SS TV Alt";
   src: url("../fonts/ArbFONTS-GE-SS-TV-Bold_0.otf") format("opentype");
@@ -52,41 +49,39 @@
 @font-face{
   font-family: "GE SS TV";
   src: url("../fonts/ArbFONTS-GE-SS-TV-Light_10.otf") format("opentype");
-  font-weight: 300; /* ✅ Light */
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 :root{
   --lp-font: "GE SS TV", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-
   --lp-accent: #00BFF2;
   --lp-stroke: #D9D9D9;
   --lp-btn-offset: 10px;
-
   --lp-header-h: 74px;
+  --lp-logo-top-gap: 12px; 
   --lp-container: 1200px;
-
   --lp-nav-font-size: 20px;
   --lp-cta-font-size: 16.5px;
-
   --lp-text: #ffffff;
-
   --lp-subtitle-size: clamp(16px, 1.6vw, 20px);
-
   --lp-about-title: #2E3191;
-
   --lp-lines-edge-pad: 40px;
-
   --lp-logo-panel-bg: #ffffff;
   --lp-logo-panel-round: 50px;
   --lp-logo-panel-pad-x: 16px;
   --lp-logo-panel-extra-h: 16px;
   --lp-page-pad: 24px;
-
-  /* ✅ Footer */
   --lp-footer-bg: #2E3191;
   --lp-footer-accent: #00BFF2;
+
+  --lp-menu-size: 66px;
+
+  /* ✅ قللنا المسافة بين الزر والستروك */
+  --lp-menu-offset: 6px;
+
+  --lp-menu-round: 34px;
 }
 
 *{ box-sizing: border-box; }
@@ -100,126 +95,257 @@ body{
   color: var(--lp-text);
 }
 
-/* ✅ مفيد مع الهيدر الثابت لما تضغط روابط الناف */
-.lp-section{
-  scroll-margin-top: 0; /* ✅ ما عاد نحتاج تعويض لأن الهيدر مش ثابت */
-}
+.lp-section{ scroll-margin-top: 0; }
 
-/* Header (مدمج مع الهيرو) */
+html[dir="rtl"]{ --lp-drawer-offscreen: 100%; --lp-menu-shift-x: var(--lp-menu-offset); }
+html[dir="ltr"]{ --lp-drawer-offscreen: -100%; --lp-menu-shift-x: calc(var(--lp-menu-offset) * -1); }
+
 .lp-header{
-  position: absolute; /* ✅ بدل fixed: الهيدر بيطلع مع الصفحة وما يظل بالسكرول */
+  position: absolute;
   top: 0;
   inset-inline: 0;
   height: var(--lp-header-h);
-  z-index: 50;
+
+  /* ✅ لازم يكون أعلى من .lp-drawer (2000) عشان زر القائمة يظهر فوق الدروار */
+  z-index: 2602;
 
   background: transparent;
-  transition: background .22s ease, backdrop-filter .22s ease, border-color .22s ease;
 }
 
 
-.lp-header.is-scrolled{
-  background: rgba(0,0,0,.45);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-/* Grid لضمان أن الروابط في وسط الهيدر */
 .lp-header__inner{
   max-width: var(--lp-container);
-  height: 100%;
+  /* height: 100%; */                 /* ✅ لا توسّط داخل 74px */
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  column-gap: 18px;
+  padding-top: var(--lp-logo-top-gap); /* ✅ مسافة ثابتة من فوق */
+  display: flex;
+  align-items: flex-start;             /* ✅ خليه يبدأ من الأعلى */
+  justify-content: flex-end;
 }
 
-/* ✅ خلفية بيضاء خلف الشعار فقط */
 .lp-header__logo{
   position: relative;
   z-index: 1;
-
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-
-  height: 100%;
+  /* height: 100%; */ /* ✅ لا تربطه بارتفاع الهيدر */
   text-decoration: none;
   padding: 0;
-  justify-self: start;
 }
+
 
 .lp-header__logo::before{
-  content: "";
-  position: absolute;
-  z-index: -1;
-
-  inset-inline: calc(var(--lp-logo-panel-pad-x) * -1);
-  top: 0;
-  bottom: calc(var(--lp-logo-panel-extra-h) * -1);
-
-  background: var(--lp-logo-panel-bg);
-  border-radius: 0 0 var(--lp-logo-panel-round) var(--lp-logo-panel-round);
+  content: none; /* ✅ يلغي إنشاء الحاوية الخلفية */
 }
 
+
 .lp-header__logo img{
-  height: 60px;
+  height: 120px;
   width: auto;
   display: block;
   position: relative;
   z-index: 1;
 }
 
-/* Nav */
-.lp-nav{
-  justify-self: center;
+.lp-menuBtn{
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+
+  width: calc(var(--lp-menu-size) + var(--lp-menu-offset));
+  height: calc(var(--lp-menu-size) + var(--lp-menu-offset));
+
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+
+  z-index: 2601;
+}
+
+.lp-menuBtn__stroke{
+  position: absolute;
+  inset-inline-start: var(--lp-menu-offset);
+  inset-block-start: var(--lp-menu-offset);
+
+  width: var(--lp-menu-size);
+  height: var(--lp-menu-size);
+
+  border: 1px solid var(--lp-stroke);
+
+  /* ✅ بدل bottom-left (عشان يضبط RTL/LTR) */
+  border-radius: 0;
+    border-end-end-radius: var(--lp-menu-round);
+
+  transform: translate(0, 0);
+  transition: transform .22s ease;
+
+  z-index: 1;
+}
+
+.lp-menuBtn__layer{
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+
+  width: var(--lp-menu-size);
+  height: var(--lp-menu-size);
+
+  background: var(--lp-accent);
+
+  /* ✅ بدل bottom-left (عشان يضبط RTL/LTR) */
+  border-radius: 0;
+    border-end-end-radius: var(--lp-menu-round);
+
+
+  z-index: 2;
+
   display: flex;
   align-items: center;
-  gap: 26px;
+  justify-content: center;
+
+  pointer-events: none;
 }
 
-.lp-nav__link{
+.lp-menuBtn__layer i{
   color: #fff;
-  text-decoration: none;
-
-  font-size: var(--lp-nav-font-size);
-  font-weight: 700;
+  font-size: 24px;
   line-height: 1;
 
-  padding: 8px 10px;
-  opacity: .92;
-  transition: opacity .18s ease;
+  /* ✅ سلاسة تبديل الأيقونة */
+  transition: transform .18s ease, opacity .18s ease;
+  transform-origin: 50% 50%;
+}
+/* ✅ مراحل أنيميشن تبديل الأيقونة */
+.lp-menuBtn[data-icon-anim="out"] .lp-menuBtn__layer i{
+  opacity: 0;
+  transform: scale(.85) rotate(-10deg);
 }
 
-.lp-nav__link:hover{ opacity: 1; }
-
-.lp-nav__link[aria-current="page"]{
-  font-weight: 700;
+.lp-menuBtn[data-icon-anim="in"] .lp-menuBtn__layer i{
   opacity: 1;
-  position: relative;
+  transform: scale(1) rotate(0deg);
 }
 
-.lp-nav__link[aria-current="page"]::after{
-  content: "";
+
+.lp-menuBtn:hover .lp-menuBtn__stroke,
+.lp-menuBtn:focus-visible .lp-menuBtn__stroke{
+  transform: translate(0, 0);
+}
+
+
+/* ✅ لما تكون القائمة مفتوحة خله “مضغوط” دائماً */
+
+
+.lp-menuBtn:focus-visible{ outline: none; }
+
+.lp-menuBtn:focus-visible .lp-menuBtn__layer{
+  box-shadow: 0 0 0 2px rgba(255,255,255,.35);
+}
+
+body.lp-drawer-open{ overflow: hidden; }
+
+.lp-drawer{
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+
+  /* ✅ نعومة أكثر */
+  transition: opacity .32s cubic-bezier(.22, 1, .36, 1);
+}
+
+.lp-drawer.is-open{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lp-drawer__backdrop{
   position: absolute;
-  inset-inline: 10px;
-  bottom: -10px;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--lp-accent);
-  opacity: .95;
+  inset: 0;
+  background: rgba(0,0,0,.45);
 }
 
-.lp-nav__link:focus-visible{
-  outline: 2px solid rgba(255,255,255,.35);
-  outline-offset: 4px;
-  border-radius: 10px;
+.lp-drawer__panel{
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+  width: min(360px, 86vw);
+  background: #fff;
+  color: #111;
+
+  /* ✅ GPU + نعومة */
+  transform: translate3d(var(--lp-drawer-offscreen), 0, 0);
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
+
+  box-shadow: 0 18px 60px rgba(0,0,0,.22);
+  padding: 18px 18px 22px;
+  outline: none;
 }
 
-/* CTA button (stroke + fill) */
+
+.lp-drawer.is-open .lp-drawer__panel{ transform: translate3d(0, 0, 0); }
+
+
+/* ✅ FIX: ترتيب العنوان والإغلاق بشكل صحيح */
+.lp-drawer__head{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* بدل space-between */
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  margin-bottom: 14px;
+}
+
+
+.lp-drawer__title{
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--lp-about-title);
+}
+
+
+.lp-drawer__nav{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lp-drawer__link{
+  text-decoration: none;
+  color: var(--lp-about-title);
+  font-weight: 800;
+  font-size: 18px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.lp-drawer__link:hover{
+  background: rgba(0,191,242,.10);
+  transform: translateX(-2px);
+}
+
+.lp-drawer__cta{
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px){
+  :root{
+    --lp-logo-panel-pad-x: 12px;
+    --lp-logo-panel-extra-h: 12px;
+  }
+}
+
 .lp-cta{
   width: 134px;
   height: 40px;
@@ -229,7 +355,6 @@ body{
   user-select: none;
 }
 
-/* stroke ثابت */
 .lp-cta__stroke{
   width: 128px;
   height: 34px;
@@ -241,26 +366,20 @@ body{
   z-index: 1;
 }
 
-/* الكارد الأزرق + النص بداخله ويتحركون معاً */
 .lp-cta__layer{
   width: 128px;
   height: 34px;
   position: absolute;
   inset-inline-start: 0;
   inset-block-start: 0;
-
   background: var(--lp-accent);
   border-top-left-radius: 20px;
-
   transform: translate(6px, 6px);
   transition: transform .22s ease;
-
   z-index: 2;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   pointer-events: none;
 }
 
@@ -284,33 +403,23 @@ body{
   border-radius: 999px;
 }
 
-/* Hero */
 .lp-hero{
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-
   background-image: url("../images/hero.jpeg");
   background-size: cover;
   background-position: center;
 }
 
-/* طبقة شفافة سوداء - من فوق أغمق */
 .lp-hero__overlay{
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,.80) 0%,
-      rgba(0,0,0,.55) 45%,
-      rgba(0,0,0,.30) 100%
-    );
+  background: linear-gradient(to bottom, rgba(0,0,0,.80) 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.30) 100%);
   pointer-events: none;
 }
 
-/* ✅ طبقة رسومات GSAP (خطوط فقط) */
 .lp-hero__graphics{
   position: absolute;
   inset: 0;
@@ -319,7 +428,6 @@ body{
   color: var(--lp-accent);
 }
 
-/* مجموعات الخطوط */
 .lp-lines{
   position: absolute;
   width: min(760px, calc(92vw - (var(--lp-lines-edge-pad) * 2)));
@@ -327,21 +435,18 @@ body{
   opacity: .95;
 }
 
-/* جهة البداية (RTL) = يمين */
 .lp-lines--topStart{
   top: calc(var(--lp-header-h) + 26px);
   inset-inline-start: var(--lp-lines-edge-pad);
   transform: translateX(0);
 }
 
-/* الجهة السفلى المقابلة = يسار */
 .lp-lines--bottomEnd{
   bottom: 26px;
   inset-inline-end: var(--lp-lines-edge-pad);
   transform: translateX(0);
 }
 
-/* خطوط SVG */
 .lp-lines .lp-line{
   stroke: currentColor;
   stroke-linecap: round;
@@ -349,34 +454,27 @@ body{
   will-change: stroke-dashoffset, opacity;
 }
 
-/* سماكات مختلفة */
 .lp-lines .lp-line--w10{ stroke-width: 6; }
 .lp-lines .lp-line--w4 { stroke-width: 4; }
 .lp-lines .lp-line--w1 { stroke-width: 1; }
 
-/* ✅ محتوى الهيرو */
 .lp-hero__content{
   position: relative;
   z-index: 3;
-
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-
   padding-top: calc(var(--lp-header-h) + 48px);
   padding-bottom: 80px;
-
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 14px;
-
   align-items: flex-start;
   text-align: start;
 }
 
-/* ✅ العنوان */
 .lp-hero__title{
   margin: 0;
   color: #fff;
@@ -397,9 +495,6 @@ body{
   font-weight: 700;
 }
 
-/* ==============================
-   About / من نحن (بدون صورة)
-   ============================== */
 .lp-about{
   background: #ffffff;
   color: #111;
@@ -418,7 +513,6 @@ body{
   align-items: flex-start;
 }
 
-/* مكان الصورة سابقًا */
 .lp-about__intro{
   flex: 0 0 clamp(340px, 34vw, 520px);
 }
@@ -426,11 +520,11 @@ body{
 .lp-about__headline{
   margin: 0;
   color: var(--lp-about-title);
-
   font-size: clamp(36px, 4.8vw, 70px);
   line-height: 1.08;
   font-weight: 700;
 }
+
 .lp-about__headline--us{ color: var(--lp-accent); }
 
 .lp-about__actions{
@@ -441,7 +535,6 @@ body{
   flex-wrap: wrap;
 }
 
-/* ✅ زر تشغيل فيديو (دائرة + توهج ينبض) */
 .lp-about__play{
   width: 56px;
   height: 56px;
@@ -451,39 +544,31 @@ body{
   user-select: none;
 }
 
-/* stroke دائري ثابت */
 .lp-about__playStroke{
   width: 50px;
   height: 50px;
   position: absolute;
   inset-inline-start: 0;
   inset-block-start: 0;
-
   border: 1px solid var(--lp-stroke);
   border-radius: 999px;
   z-index: 1;
 }
 
-/* layer دائري + الأيقونة داخله ويتحركوا معًا */
 .lp-about__playLayer{
   width: 50px;
   height: 50px;
   position: absolute;
   inset-inline-start: 0;
   inset-block-start: 0;
-
   background: var(--lp-about-title);
   border-radius: 999px;
-
   transform: translate(6px, 6px);
   transition: transform .22s ease;
-
   z-index: 2;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   pointer-events: none;
 }
 
@@ -503,12 +588,6 @@ body{
   border-radius: 999px;
 }
 
-.lp-about__play i{
-  color: var(--lp-accent);
-  font-size: 18px;
-}
-
-/* ✅ زر "اطلاع اكثر" */
 .lp-cta.lp-cta--more{
   width: 160px;
   height: 52px;
@@ -524,11 +603,9 @@ body{
   width: 172px;
   height: 44px;
   border-top-left-radius: 24px;
-
   background: var(--lp-about-title);
 }
 
-/* الجهة المقابلة للمحتوى */
 .lp-about__body{
   flex: 1 1 auto;
   min-width: 0;
@@ -551,48 +628,36 @@ body{
   color: rgba(0,0,0,.72);
   font-size: var(--lp-subtitle-size);
   line-height: 1.5;
-
   font-family: "GE SS TV", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 200;
-
   max-width: none;
 }
 
-/* Responsive */
 @media (max-width: 900px){
   .lp-nav{ display: none; }
   .lp-header__inner{ grid-template-columns: auto auto; }
-
   .lp-lines{
     width: min(640px, calc(96vw - (var(--lp-lines-edge-pad) * 2)));
     opacity: .9;
   }
-
   .lp-lines--topStart{
     top: calc(var(--lp-header-h) + 18px);
   }
-
   .lp-hero__subtitle{
     max-width: 70ch;
   }
-
   :root{
     --lp-logo-panel-pad-x: 12px;
     --lp-logo-panel-extra-h: 12px;
   }
-
   .lp-about__grid{
     flex-direction: column;
   }
-
   .lp-about__intro{
     flex: 0 0 auto;
   }
 }
 
-/* ==============================
-   ISO Certificate Section (v5)
-   ============================== */
 .lp-iso{
   background: #ffffff;
   color: #111;
@@ -602,10 +667,8 @@ body{
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-
   padding-top: 0;
   margin-top: -22px;
-
   padding-bottom: clamp(32px, 4.4vw, 70px);
 }
 
@@ -626,13 +689,10 @@ body{
 .lp-isoCard__layer{
   position: relative;
   z-index: 2;
-
   background: #2E3191;
   border-radius: 22px;
-
   transform: translate(-8px, 8px);
   transition: transform .22s ease;
-
   padding-block: 22px;
   padding-inline: clamp(28px, 3.2vw, 46px);
 }
@@ -642,7 +702,6 @@ body{
   grid-template-columns: auto 1fr auto;
   align-items: center;
   column-gap: 16px;
-
   direction: rtl;
 }
 
@@ -651,7 +710,6 @@ body{
   display: flex;
   align-items: center;
   gap: 12px;
-
   direction: ltr;
   unicode-bidi: isolate;
 }
@@ -667,12 +725,9 @@ body{
 .lp-isoCard__iso{
   display: inline-block;
   white-space: nowrap;
-
   direction: ltr;
   unicode-bidi: isolate;
-
   font-family: "Myriad Arabic", var(--lp-font), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-
   color: #fff;
   font-weight: 700;
   line-height: 1;
@@ -683,13 +738,11 @@ body{
 .lp-isoCard__text{
   justify-self: center;
   text-align: center;
-
   margin: 0;
   color: rgba(255,255,255,.92);
   font-size: clamp(14px, 1.45vw, 18px);
   line-height: 1.55;
   font-weight: 300;
-
   max-width: 78ch;
   min-width: 0;
 }
@@ -701,7 +754,6 @@ body{
 
 .lp-cta.lp-cta--iso{
   justify-self: end;
-
   width: 162px;
   height: 46px;
   flex: 0 0 auto;
@@ -719,7 +771,6 @@ body{
   height: 38px;
   background: #ffffff;
   border-top-left-radius: 22px;
-
   transform: translate(-6px, 6px);
 }
 
@@ -741,21 +792,16 @@ body{
 
 @media (max-width: 700px){
   .lp-iso__inner{ margin-top: -14px; }
-
   .lp-isoCard__row{
     grid-template-columns: 1fr;
     row-gap: 12px;
     justify-items: center;
   }
-
   .lp-isoCard__main{ justify-self: center; }
   .lp-cta.lp-cta--iso{ justify-self: center; }
   .lp-isoCard__text{ max-width: 38ch; }
 }
 
-/* ==============================
-   News (قسم بسيط بدل الفراغ)
-   ============================== */
 .lp-news{
   background: #ffffff;
   color: #111;
@@ -788,9 +834,6 @@ body{
   font-weight: 300;
 }
 
-/* ==============================
-   Sectors Section (v4)
-   ============================== */
 .lp-sectors{
   background: #ffffff;
   color: #111;
@@ -800,7 +843,6 @@ body{
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-
   padding-top: clamp(72px, 7.2vw, 120px);
   padding-bottom: clamp(46px, 6vw, 92px);
 }
@@ -813,7 +855,6 @@ body{
 .lp-sectors__title{
   margin: 0;
   color: var(--lp-about-title);
-
   font-size: clamp(26px, 3.2vw, 48px);
   line-height: 1.15;
   font-weight: 700;
@@ -823,19 +864,16 @@ body{
   color: var(--lp-accent);
 }
 
-/* ===== Slider (like services) ===== */
 .lp-sectors__sliderWrap{ margin-top: 14px; }
 
 .lp-sectors__slider{
   --per-view: 3;
   --gap: 14px;
   --card-h: clamp(170px, 18vw, 245px);
-
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-
   scrollbar-width: none;
   border-radius: 22px;
 }
@@ -851,13 +889,10 @@ body{
 .lp-sectorCard{
   flex: 0 0 calc((100% - (var(--gap) * (var(--per-view) - 1))) / var(--per-view));
   height: var(--card-h);
-
   position: relative;
   overflow: hidden;
-
   border-radius: 22px;
   scroll-snap-align: start;
-
   background: rgba(0,0,0,.06);
 }
 
@@ -872,13 +907,7 @@ body{
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,191,242,.70) 0%,
-    rgba(0,191,242,.40) 28%,
-    rgba(0,191,242,.1) 52%,
-    rgba(0,191,242,0) 100%
-  );
+  background: linear-gradient(to top, rgba(0,191,242,.70) 0%, rgba(0,191,242,.40) 28%, rgba(0,191,242,.1) 52%, rgba(0,191,242,0) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -888,18 +917,14 @@ body{
   inset-inline: 14px;
   bottom: 12px;
   z-index: 2;
-
   color: #ffffff;
   font-weight: 900;
   font-size: clamp(14px, 1.2vw, 18px);
   line-height: 1.2;
-
   text-shadow: 0 2px 14px rgba(0,0,0,.18);
-
   padding-inline-end: 54px;
 }
 
-/* ===== Icon Button ===== */
 .lp-iconBtn{
   width: 38px;
   height: 38px;
@@ -915,7 +940,6 @@ body{
   position: absolute;
   inset-inline-start: 0;
   inset-block-start: 0;
-
   border: 1px solid rgba(255,255,255,.88);
   border-radius: 14px 0 0 0;
   z-index: 1;
@@ -927,22 +951,16 @@ body{
   position: absolute;
   inset-inline-start: 0;
   inset-block-start: 0;
-
   background: rgba(255,255,255,.14);
   border-radius: 14px 0 0 0;
-
   transform: translate(6px, 6px);
   transition: transform .22s ease;
-
   z-index: 2;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-
   pointer-events: auto;
 }
 
@@ -969,7 +987,6 @@ body{
   z-index: 2;
 }
 
-/* ===== Dots ===== */
 .lp-sectors__dots{
   margin-top: 10px;
   display: flex;
@@ -1009,12 +1026,6 @@ body{
   }
 }
 
-/* ==============================
-   Footer (حسب طلبك)
-   - bg: #2E3191
-   - icons: #00BFF2 (بدون حاويات)
-   - social cards: #00BFF2 + stroke أبيض + نفس فكرة stroke/layer
-   ============================== */
 .lp-footer{
   background: var(--lp-footer-bg);
   color: #fff;
@@ -1042,7 +1053,6 @@ body{
   color: #fff;
 }
 
-/* Quick links */
 .lp-footer__links{
   display: flex;
   flex-direction: column;
@@ -1061,10 +1071,9 @@ body{
 .lp-footer__link:hover{
   opacity: 1;
   transform: translateX(-2px);
-  color: var(--lp-footer-accent); 
+  color: var(--lp-footer-accent);
 }
 
-/* Contact */
 .lp-footer__contact{
   display: flex;
   flex-direction: column;
@@ -1109,8 +1118,6 @@ body{
   text-decoration-color: rgba(255,255,255,.55);
 }
 
-/* Social */
-/* Social (3 مربعات جنب بعض) */
 .lp-footer__social{
   display: flex;
   flex-direction: row;
@@ -1119,7 +1126,6 @@ body{
   align-items: center;
 }
 
-/* مربع أيقونة بنفس فكرة stroke + layer */
 .lp-socialIcon{
   width: 56px;
   height: 56px;
@@ -1136,7 +1142,7 @@ body{
   width: 44px;
   height: 44px;
   border: 1px solid rgba(255,255,255,.95);
-  border-radius: 14px 0 0 0; 
+  border-radius: 14px 0 0 0;
   z-index: 1;
 }
 
@@ -1146,19 +1152,14 @@ body{
   inset-block-start: 0;
   width: 44px;
   height: 44px;
-
-  background: var(--lp-footer-accent); /* #00BFF2 */
-  border-radius: 14px 0 0 0; 
-
+  background: var(--lp-footer-accent);
+  border-radius: 14px 0 0 0;
   transform: translate(6px, 6px);
   transition: transform .22s ease;
-
   z-index: 2;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   pointer-events: none;
 }
 
@@ -1179,8 +1180,6 @@ body{
   border-radius: 16px;
 }
 
-
-/* Bottom bar */
 .lp-footer__bottom{
   margin-top: clamp(22px, 3vw, 32px);
   padding-block: 16px;
@@ -1191,12 +1190,10 @@ body{
   text-align: center;
 }
 
-/* Responsive footer */
 @media (max-width: 980px){
   .lp-footer__grid{
     grid-template-columns: 1fr;
   }
-
   .lp-socialCard{
     width: 100%;
     max-width: 320px;

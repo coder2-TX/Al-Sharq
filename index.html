@@ -12,32 +12,58 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header (Logo فقط + زر القائمة على طرف الشاشة) -->
   <header class="lp-header" id="lpHeader">
     <div class="lp-header__inner">
-
       <a class="lp-header__logo" href="#home" aria-label="العودة للرئيسية">
-        <img src="assets/images/logo.png" alt="Logo" />
+        <img src="assets/images/header/logo.png" alt="Logo" />
       </a>
+    </div>
 
-      <nav class="lp-nav" aria-label="التنقل الرئيسي">
-        <a class="lp-nav__link" href="#home" aria-current="page">الرئيسية</a>
-        <a class="lp-nav__link" href="#about">عن الشركة</a>
-        <a class="lp-nav__link" href="#news">الاخبار</a>
-        <a class="lp-nav__link" href="#sectors">القطاعات</a>
-        <a class="lp-nav__link" href="#contact">اتصل بنا</a>
+    <!-- ✅ زر القائمة (ملصوق بطرف الشاشة) -->
+    <button
+      class="lp-menuBtn"
+      id="lpMenuBtn"
+      type="button"
+      aria-label="فتح القائمة"
+      aria-controls="lpDrawer"
+      aria-expanded="false"
+    >
+      <span class="lp-menuBtn__stroke" aria-hidden="true"></span>
+      <span class="lp-menuBtn__layer" aria-hidden="true">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+
+  <!-- ✅ Drawer (قائمة جانبية بيضاء) -->
+  <div class="lp-drawer" id="lpDrawer" aria-hidden="true">
+    <div class="lp-drawer__backdrop" data-lp-drawer-close aria-hidden="true"></div>
+
+    <aside class="lp-drawer__panel" role="dialog" aria-modal="true" aria-label="القائمة" tabindex="-1">
+<div class="lp-drawer__head">
+  <div class="lp-drawer__title">القائمة</div>
+</div>
+
+
+      <nav class="lp-drawer__nav" aria-label="روابط الهيدر">
+        <a class="lp-drawer__link" href="#home">الرئيسية</a>
+        <a class="lp-drawer__link" href="#about">عن الشركة</a>
+        <a class="lp-drawer__link" href="#news">الاخبار</a>
+        <a class="lp-drawer__link" href="#sectors">القطاعات</a>
+        <a class="lp-drawer__link" href="#contact">اتصل بنا</a>
       </nav>
 
-      <!-- CTA Button (stroke + fill) -->
-      <a class="lp-cta" href="#contact" aria-label="زر تواصل معنا">
-        <span class="lp-cta__stroke" aria-hidden="true"></span>
-        <span class="lp-cta__layer" aria-hidden="true">
-          <span class="lp-cta__text">تواصل معنا</span>
-        </span>
-      </a>
-
-    </div>
-  </header>
+      <div class="lp-drawer__cta">
+        <a class="lp-cta" href="#contact" aria-label="زر تواصل معنا">
+          <span class="lp-cta__stroke" aria-hidden="true"></span>
+          <span class="lp-cta__layer" aria-hidden="true">
+            <span class="lp-cta__text">تواصل معنا</span>
+          </span>
+        </a>
+      </div>
+    </aside>
+  </div>
 
   <!-- Hero -->
   <main id="home">
@@ -46,14 +72,12 @@
 
       <!-- ✅ رسومات الخطوط (GSAP) -->
       <div class="lp-hero__graphics" aria-hidden="true">
-        <!-- جهة البداية (RTL = يمين): 3 خطوط متقاربة + سماكات 10/4/1 -->
         <svg class="lp-lines lp-lines--topStart" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
           <line class="lp-line lp-line--w10" x1="620" y1="44"  x2="200" y2="44"></line>
           <line class="lp-line lp-line--w4"  x1="620" y1="72"  x2="230" y2="72"></line>
           <line class="lp-line lp-line--w1"  x1="620" y1="100" x2="300" y2="100"></line>
         </svg>
 
-        <!-- الجهة السفلى المقابلة: 3 خطوط متقاربة + سماكات 10/4/1 -->
         <svg class="lp-lines lp-lines--bottomEnd" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
           <line class="lp-line lp-line--w10" x1="0" y1="100" x2="420" y2="100"></line>
           <line class="lp-line lp-line--w4"  x1="0" y1="72"  x2="410" y2="72"></line>
@@ -61,7 +85,6 @@
         </svg>
       </div>
 
-      <!-- ✅ محتوى الهيرو -->
       <div class="lp-hero__content">
         <h1 class="lp-hero__title">
           <span class="lp-hero__titleLine">شركة الشرق</span>
