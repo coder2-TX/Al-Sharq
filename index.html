@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Landing</title>
+
+  <link rel="stylesheet" href="assets/css/landing.css" />
+
+  <!-- ✅ Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="lp-header" id="lpHeader">
+    <div class="lp-header__inner">
+
+      <a class="lp-header__logo" href="#home" aria-label="العودة للرئيسية">
+        <img src="assets/images/logo.png" alt="Logo" />
+      </a>
+
+      <nav class="lp-nav" aria-label="التنقل الرئيسي">
+        <a class="lp-nav__link" href="#home" aria-current="page">الرئيسية</a>
+        <a class="lp-nav__link" href="#about">عن الشركة</a>
+        <a class="lp-nav__link" href="#news">الاخبار</a>
+        <a class="lp-nav__link" href="#sectors">القطاعات</a>
+        <a class="lp-nav__link" href="#contact">اتصل بنا</a>
+      </nav>
+
+      <!-- CTA Button (stroke + fill) -->
+      <a class="lp-cta" href="#contact" aria-label="زر تواصل معنا">
+        <span class="lp-cta__stroke" aria-hidden="true"></span>
+        <span class="lp-cta__layer" aria-hidden="true">
+          <span class="lp-cta__text">تواصل معنا</span>
+        </span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home">
+    <section class="lp-hero" aria-label="Hero">
+      <div class="lp-hero__overlay" aria-hidden="true"></div>
+
+      <!-- ✅ رسومات الخطوط (GSAP) -->
+      <div class="lp-hero__graphics" aria-hidden="true">
+        <!-- جهة البداية (RTL = يمين): 3 خطوط متقاربة + سماكات 10/4/1 -->
+        <svg class="lp-lines lp-lines--topStart" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
+          <line class="lp-line lp-line--w10" x1="620" y1="44"  x2="200" y2="44"></line>
+          <line class="lp-line lp-line--w4"  x1="620" y1="72"  x2="230" y2="72"></line>
+          <line class="lp-line lp-line--w1"  x1="620" y1="100" x2="300" y2="100"></line>
+        </svg>
+
+        <!-- الجهة السفلى المقابلة: 3 خطوط متقاربة + سماكات 10/4/1 -->
+        <svg class="lp-lines lp-lines--bottomEnd" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
+          <line class="lp-line lp-line--w10" x1="0" y1="100" x2="420" y2="100"></line>
+          <line class="lp-line lp-line--w4"  x1="0" y1="72"  x2="410" y2="72"></line>
+          <line class="lp-line lp-line--w1"  x1="0" y1="44"  x2="340" y2="44"></line>
+        </svg>
+      </div>
+
+      <!-- ✅ محتوى الهيرو -->
+      <div class="lp-hero__content">
+        <h1 class="lp-hero__title">
+          <span class="lp-hero__titleLine">شركة الشرق</span>
+          <span class="lp-hero__titleLine">للتجارة والتوكيلات</span>
+        </h1>
+
+        <p class="lp-hero__subtitle">
+          واحدة من أهم الشركات الرائدة في مجال الاستيراد والتسويق والتوزيع في الجمهورية اليمنية حيث تمثل شركة الشرق عددا كبيرا من الوكالات العالمية
+        </p>
+      </div>
+    </section>
+
+    <!-- ✅ About / من نحن (بدون صورة) -->
+    <section class="lp-section lp-about" id="about" aria-label="من نحن">
+      <div class="lp-about__inner">
+        <div class="lp-about__grid">
+
+          <div class="lp-about__intro">
+            <h2 class="lp-about__headline">
+              <span class="lp-about__headline--from">من</span>
+              <span class="lp-about__headline--us">نحن</span>
+            </h2>
+
+            <div class="lp-about__actions">
+              <a class="lp-cta lp-cta--more" href="#about-more" aria-label="اطلاع اكثر">
+                <span class="lp-cta__stroke" aria-hidden="true"></span>
+                <span class="lp-cta__layer" aria-hidden="true">
+                  <span class="lp-cta__text">اطلاع اكثر</span>
+                </span>
+              </a>
+
+              <a class="lp-about__play" href="#video" aria-label="تشغيل الفيديو">
+                <span class="lp-about__playStroke" aria-hidden="true"></span>
+                <span class="lp-about__playLayer" aria-hidden="true">
+                  <i class="fa-solid fa-play" aria-hidden="true"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="lp-about__body">
+            <p class="lp-about__lead">
+              شركة الشرق للتجارة والتوكيلات واحدة من الشركات الرائدة في مجال الاستيراد والتسويق والتوزيع في الجمهورية اليمنية.
+            </p>
+
+            <p class="lp-about__text">
+              نعمل على بناء شراكات طويلة المدى وتمثيل وكالات عالمية متعددة، مع الالتزام بالجودة وتوفير المنتجات وفق أعلى المعايير،
+              وبأسلوب يخدم السوق ويواكب احتياجات العملاء.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ ISO Certificate Section -->
+    <section class="lp-section lp-iso" aria-label="شهادة ISO-9001:2015">
+      <div class="lp-iso__inner">
+
+        <div class="lp-isoCard" role="group" aria-label="ISO-9001:2015">
+          <span class="lp-isoCard__stroke" aria-hidden="true"></span>
+
+          <div class="lp-isoCard__layer">
+            <div class="lp-isoCard__row">
+
+              <div class="lp-isoCard__main">
+                <img class="lp-isoCard__icon"
+                     src="assets/images/iso-9001.png"
+                     alt="شعار شهادة ISO-9001:2015" />
+                <span class="lp-isoCard__iso" dir="ltr" lang="en">ISO</span>
+              </div>
+
+              <p class="lp-isoCard__text">
+                شركة الشرق حاصلة على شهادة
+                <strong class="lp-enDigits lp-isoCard__cert" dir="ltr" lang="en">ISO-9001:2015</strong>
+                تأكيدًا لالتزامها بنظام إدارة الجودة وفق المعايير الدولية.
+              </p>
+
+              <a class="lp-cta lp-cta--iso" href="#contact" aria-label="تفاصيل شهادة ISO">
+                <span class="lp-cta__stroke" aria-hidden="true"></span>
+                <span class="lp-cta__layer" aria-hidden="true">
+                  <span class="lp-cta__text">تفاصيل</span>
+                </span>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ✅ Sectors -->
+    <section class="lp-section lp-sectors" id="sectors" aria-label="قطاعات شركة الشرق">
+      <div class="lp-sectors__inner">
+
+        <header class="lp-sectors__head">
+          <h2 class="lp-sectors__title">
+            قطاعات شركة <span class="lp-sectors__titleAccent">الشرق</span>
+          </h2>
+        </header>
+
+        <div class="lp-sectors__sliderWrap" aria-label="سلايدر القطاعات">
+          <div class="lp-sectors__slider lp-focus" data-lp-sectors-slider tabindex="0">
+            <div class="lp-sectors__track">
+
+              <article class="lp-sectorCard" aria-label="القطاع الطبي">
+                <img src="assets/images/section/1.png" alt="القطاع الطبي">
+                <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل القطاع الطبي">
+                  <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+                  <span class="lp-iconBtn__layer" aria-hidden="true">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <div class="lp-sectorCard__name">القطاع الطبي</div>
+              </article>
+
+              <article class="lp-sectorCard" aria-label="قطاع زيوت المحركات">
+                <img src="assets/images/section/2.jpeg" alt="قطاع زيوت المحركات">
+                <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل قطاع زيوت المحركات">
+                  <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+                  <span class="lp-iconBtn__layer" aria-hidden="true">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <div class="lp-sectorCard__name">قطاع زيوت المحركات</div>
+              </article>
+
+              <article class="lp-sectorCard" aria-label="قطاع الدعاية والإعلان">
+                <img src="assets/images/section/3.png" alt="قطاع الدعاية والإعلان">
+                <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل قطاع الدعاية والإعلان">
+                  <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+                  <span class="lp-iconBtn__layer" aria-hidden="true">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <div class="lp-sectorCard__name">قطاع الدعاية والإعلان</div>
+              </article>
+
+              <article class="lp-sectorCard" aria-label="قطاع الإتصالات">
+                <img src="assets/images/section/4.jpeg" alt="قطاع الإتصالات">
+                <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل قطاع الإتصالات">
+                  <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+                  <span class="lp-iconBtn__layer" aria-hidden="true">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <div class="lp-sectorCard__name">قطاع الإتصالات</div>
+              </article>
+
+              <article class="lp-sectorCard" aria-label="قطاع حليب الأطفال والأغذية">
+                <img src="assets/images/section/5.jpeg" alt="قطاع حليب الأطفال والأغذية">
+                <a class="lp-iconBtn lp-sectorCard__btn" href="#contact" aria-label="تفاصيل قطاع حليب الأطفال والأغذية">
+                  <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+                  <span class="lp-iconBtn__layer" aria-hidden="true">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                  </span>
+                </a>
+                <div class="lp-sectorCard__name">قطاع حليب الأطفال والأغذية</div>
+              </article>
+
+            </div>
+          </div>
+
+          <div class="lp-sectors__dots" data-lp-sectors-dots aria-label="مؤشر الشرائح"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ✅ Footer (id=contact عشان رابط "اتصل بنا" ينزل للفوتر) -->
+  <footer class="lp-footer" id="contact" aria-label="Footer">
+    <div class="lp-footer__inner">
+
+      <div class="lp-footer__grid">
+
+        <!-- روابط سريعة -->
+        <div class="lp-footer__col">
+          <h3 class="lp-footer__title">روابط سريعة</h3>
+
+          <nav class="lp-footer__links" aria-label="روابط سريعة">
+            <a class="lp-footer__link" href="#home">الرئيسية</a>
+            <a class="lp-footer__link" href="#about">عن الشركة</a>
+            <a class="lp-footer__link" href="#news">الاخبار</a>
+            <a class="lp-footer__link" href="#sectors">القطاعات</a>
+            <a class="lp-footer__link" href="#contact">اتصل بنا</a>
+          </nav>
+        </div>
+
+        <!-- تواصل معنا -->
+        <div class="lp-footer__col">
+          <h3 class="lp-footer__title">تواصل معنا</h3>
+
+          <div class="lp-footer__contact">
+
+            <div class="lp-footer__contactItem">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              <div class="lp-footer__contactText">
+                <div class="lp-footer__label">الهاتف</div>
+                <a class="lp-footer__value" href="tel:+967144445455" dir="ltr">+ 967 1 444454/55</a>
+              </div>
+            </div>
+
+            <div class="lp-footer__contactItem">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              <div class="lp-footer__contactText">
+                <div class="lp-footer__label">بريد الكتروني</div>
+                <a class="lp-footer__value" href="mailto:info@ata-yemen.com">info@ata-yemen.com</a>
+              </div>
+            </div>
+
+            <div class="lp-footer__contactItem">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <div class="lp-footer__contactText">
+                <div class="lp-footer__label">العنوان</div>
+                <div class="lp-footer__value">صنعاء , شارع الستين - خلف مبنى الأمم المتحدة</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- تابعنا على -->
+        <div class="lp-footer__col">
+          <h3 class="lp-footer__title">تابعنا على</h3>
+
+          <div class="lp-footer__social">
+
+            <!-- غيّر الروابط لاحقاً للروابط الحقيقية -->
+            <a class="lp-socialIcon" href="#" aria-label="واتساب">
+              <span class="lp-socialIcon__stroke" aria-hidden="true"></span>
+              <span class="lp-socialIcon__layer" aria-hidden="true">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              </span>
+            </a>
+
+            <a class="lp-socialIcon" href="#" aria-label="فيسبوك">
+              <span class="lp-socialIcon__stroke" aria-hidden="true"></span>
+              <span class="lp-socialIcon__layer" aria-hidden="true">
+                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+              </span>
+            </a>
+
+            <a class="lp-socialIcon" href="#" aria-label="انستجرام">
+              <span class="lp-socialIcon__stroke" aria-hidden="true"></span>
+              <span class="lp-socialIcon__layer" aria-hidden="true">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="lp-footer__bottom">
+        © <span class="lp-enDigits" dir="ltr" lang="en">2026</span> جميع الحقوق محفوظة شركة الشرق للتجارة والتوكيلات .
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ✅ GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="assets/js/landing.js"></script>
+</body>
+</html>

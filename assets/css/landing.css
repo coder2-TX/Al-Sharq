@@ -1,0 +1,1204 @@
+/* ========== Fonts: Myriad Arabic (OTF) ========== */
+@font-face{
+  font-family: "Myriad Arabic";
+  src: url("../fonts/ArbFONTS-MyriadArabic-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "Myriad Arabic";
+  src: url("../fonts/ArbFONTS-MyriadArabic-It.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "Myriad Arabic";
+  src: url("../fonts/ArbFONTS-MyriadArabic-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "Myriad Arabic";
+  src: url("../fonts/ArbFONTS-MyriadArabic-BoldIt.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ========== Fonts: GE SS TV (Bold only - current) ========== */
+@font-face{
+  font-family: "GE SS TV";
+  src: url("../fonts/ArbFONTS-GE-SS-TV-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* (اختياري) نسخة بديلة لو حبّيتي تجربينها */
+@font-face{
+  font-family: "GE SS TV Alt";
+  src: url("../fonts/ArbFONTS-GE-SS-TV-Bold_0.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "GE SS TV";
+  src: url("../fonts/ArbFONTS-GE-SS-TV-Light_10.otf") format("opentype");
+  font-weight: 300; /* ✅ Light */
+  font-style: normal;
+  font-display: swap;
+}
+
+:root{
+  --lp-font: "GE SS TV", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --lp-accent: #00BFF2;
+  --lp-stroke: #D9D9D9;
+  --lp-btn-offset: 10px;
+
+  --lp-header-h: 74px;
+  --lp-container: 1200px;
+
+  --lp-nav-font-size: 20px;
+  --lp-cta-font-size: 16.5px;
+
+  --lp-text: #ffffff;
+
+  --lp-subtitle-size: clamp(16px, 1.6vw, 20px);
+
+  --lp-about-title: #2E3191;
+
+  --lp-lines-edge-pad: 40px;
+
+  --lp-logo-panel-bg: #ffffff;
+  --lp-logo-panel-round: 50px;
+  --lp-logo-panel-pad-x: 16px;
+  --lp-logo-panel-extra-h: 16px;
+  --lp-page-pad: 24px;
+
+  /* ✅ Footer */
+  --lp-footer-bg: #2E3191;
+  --lp-footer-accent: #00BFF2;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+html{ font-synthesis: none; }
+
+body{
+  margin: 0;
+  font-family: var(--lp-font);
+  background: #0b0f14;
+  color: var(--lp-text);
+}
+
+/* ✅ مفيد مع الهيدر الثابت لما تضغط روابط الناف */
+.lp-section{
+  scroll-margin-top: 0; /* ✅ ما عاد نحتاج تعويض لأن الهيدر مش ثابت */
+}
+
+/* Header (مدمج مع الهيرو) */
+.lp-header{
+  position: absolute; /* ✅ بدل fixed: الهيدر بيطلع مع الصفحة وما يظل بالسكرول */
+  top: 0;
+  inset-inline: 0;
+  height: var(--lp-header-h);
+  z-index: 50;
+
+  background: transparent;
+  transition: background .22s ease, backdrop-filter .22s ease, border-color .22s ease;
+}
+
+
+.lp-header.is-scrolled{
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* Grid لضمان أن الروابط في وسط الهيدر */
+.lp-header__inner{
+  max-width: var(--lp-container);
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 18px;
+}
+
+/* ✅ خلفية بيضاء خلف الشعار فقط */
+.lp-header__logo{
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  text-decoration: none;
+  padding: 0;
+  justify-self: start;
+}
+
+.lp-header__logo::before{
+  content: "";
+  position: absolute;
+  z-index: -1;
+
+  inset-inline: calc(var(--lp-logo-panel-pad-x) * -1);
+  top: 0;
+  bottom: calc(var(--lp-logo-panel-extra-h) * -1);
+
+  background: var(--lp-logo-panel-bg);
+  border-radius: 0 0 var(--lp-logo-panel-round) var(--lp-logo-panel-round);
+}
+
+.lp-header__logo img{
+  height: 60px;
+  width: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* Nav */
+.lp-nav{
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.lp-nav__link{
+  color: #fff;
+  text-decoration: none;
+
+  font-size: var(--lp-nav-font-size);
+  font-weight: 700;
+  line-height: 1;
+
+  padding: 8px 10px;
+  opacity: .92;
+  transition: opacity .18s ease;
+}
+
+.lp-nav__link:hover{ opacity: 1; }
+
+.lp-nav__link[aria-current="page"]{
+  font-weight: 700;
+  opacity: 1;
+  position: relative;
+}
+
+.lp-nav__link[aria-current="page"]::after{
+  content: "";
+  position: absolute;
+  inset-inline: 10px;
+  bottom: -10px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--lp-accent);
+  opacity: .95;
+}
+
+.lp-nav__link:focus-visible{
+  outline: 2px solid rgba(255,255,255,.35);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+/* CTA button (stroke + fill) */
+.lp-cta{
+  width: 134px;
+  height: 40px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+}
+
+/* stroke ثابت */
+.lp-cta__stroke{
+  width: 128px;
+  height: 34px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  border-top-left-radius: 20px;
+  border: 1px solid var(--lp-stroke);
+  z-index: 1;
+}
+
+/* الكارد الأزرق + النص بداخله ويتحركون معاً */
+.lp-cta__layer{
+  width: 128px;
+  height: 34px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+
+  background: var(--lp-accent);
+  border-top-left-radius: 20px;
+
+  transform: translate(6px, 6px);
+  transition: transform .22s ease;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.lp-cta__text{
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--lp-cta-font-size);
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.lp-cta:hover .lp-cta__layer,
+.lp-cta:focus-visible .lp-cta__layer{
+  transform: translate(0, 0);
+}
+
+.lp-cta:focus-visible{
+  outline: 2px solid rgba(255,255,255,.35);
+  outline-offset: 6px;
+  border-radius: 999px;
+}
+
+/* Hero */
+.lp-hero{
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  background-image: url("../images/hero.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* طبقة شفافة سوداء - من فوق أغمق */
+.lp-hero__overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.80) 0%,
+      rgba(0,0,0,.55) 45%,
+      rgba(0,0,0,.30) 100%
+    );
+  pointer-events: none;
+}
+
+/* ✅ طبقة رسومات GSAP (خطوط فقط) */
+.lp-hero__graphics{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  color: var(--lp-accent);
+}
+
+/* مجموعات الخطوط */
+.lp-lines{
+  position: absolute;
+  width: min(760px, calc(92vw - (var(--lp-lines-edge-pad) * 2)));
+  height: auto;
+  opacity: .95;
+}
+
+/* جهة البداية (RTL) = يمين */
+.lp-lines--topStart{
+  top: calc(var(--lp-header-h) + 26px);
+  inset-inline-start: var(--lp-lines-edge-pad);
+  transform: translateX(0);
+}
+
+/* الجهة السفلى المقابلة = يسار */
+.lp-lines--bottomEnd{
+  bottom: 26px;
+  inset-inline-end: var(--lp-lines-edge-pad);
+  transform: translateX(0);
+}
+
+/* خطوط SVG */
+.lp-lines .lp-line{
+  stroke: currentColor;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  will-change: stroke-dashoffset, opacity;
+}
+
+/* سماكات مختلفة */
+.lp-lines .lp-line--w10{ stroke-width: 6; }
+.lp-lines .lp-line--w4 { stroke-width: 4; }
+.lp-lines .lp-line--w1 { stroke-width: 1; }
+
+/* ✅ محتوى الهيرو */
+.lp-hero__content{
+  position: relative;
+  z-index: 3;
+
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+
+  padding-top: calc(var(--lp-header-h) + 48px);
+  padding-bottom: 80px;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+
+  align-items: flex-start;
+  text-align: start;
+}
+
+/* ✅ العنوان */
+.lp-hero__title{
+  margin: 0;
+  color: #fff;
+  font-size: clamp(36px, 4.8vw, 70px);
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.lp-hero__titleLine{ display: block; }
+.lp-hero__titleLine + .lp-hero__titleLine{ margin-top: 8px; }
+
+.lp-hero__subtitle{
+  margin: 0;
+  color: rgba(255,255,255,.92);
+  font-size: var(--lp-subtitle-size);
+  line-height: 1.85;
+  max-width: min(96ch, 980px);
+  font-weight: 700;
+}
+
+/* ==============================
+   About / من نحن (بدون صورة)
+   ============================== */
+.lp-about{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-about__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-block: clamp(54px, 7vw, 110px);
+}
+
+.lp-about__grid{
+  display: flex;
+  gap: clamp(18px, 3.5vw, 60px);
+  align-items: flex-start;
+}
+
+/* مكان الصورة سابقًا */
+.lp-about__intro{
+  flex: 0 0 clamp(340px, 34vw, 520px);
+}
+
+.lp-about__headline{
+  margin: 0;
+  color: var(--lp-about-title);
+
+  font-size: clamp(36px, 4.8vw, 70px);
+  line-height: 1.08;
+  font-weight: 700;
+}
+.lp-about__headline--us{ color: var(--lp-accent); }
+
+.lp-about__actions{
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+/* ✅ زر تشغيل فيديو (دائرة + توهج ينبض) */
+.lp-about__play{
+  width: 56px;
+  height: 56px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+}
+
+/* stroke دائري ثابت */
+.lp-about__playStroke{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+
+  border: 1px solid var(--lp-stroke);
+  border-radius: 999px;
+  z-index: 1;
+}
+
+/* layer دائري + الأيقونة داخله ويتحركوا معًا */
+.lp-about__playLayer{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+
+  background: var(--lp-about-title);
+  border-radius: 999px;
+
+  transform: translate(6px, 6px);
+  transition: transform .22s ease;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.lp-about__playLayer i{
+  color: var(--lp-accent);
+  font-size: 18px;
+}
+
+.lp-about__play:hover .lp-about__playLayer,
+.lp-about__play:focus-visible .lp-about__playLayer{
+  transform: translate(0, 0);
+}
+
+.lp-about__play:focus-visible{
+  outline: 2px solid rgba(46,49,145,.25);
+  outline-offset: 6px;
+  border-radius: 999px;
+}
+
+.lp-about__play i{
+  color: var(--lp-accent);
+  font-size: 18px;
+}
+
+/* ✅ زر "اطلاع اكثر" */
+.lp-cta.lp-cta--more{
+  width: 160px;
+  height: 52px;
+}
+
+.lp-cta.lp-cta--more .lp-cta__stroke{
+  width: 172px;
+  height: 44px;
+  border-top-left-radius: 24px;
+}
+
+.lp-cta.lp-cta--more .lp-cta__layer{
+  width: 172px;
+  height: 44px;
+  border-top-left-radius: 24px;
+
+  background: var(--lp-about-title);
+}
+
+/* الجهة المقابلة للمحتوى */
+.lp-about__body{
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.lp-about__lead{
+  margin: 0;
+  color: var(--lp-about-title);
+  font-size: clamp(18px, 2.1vw, 26px);
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.lp-about__lead + .lp-about__text{
+  margin-top: 22px;
+}
+
+.lp-about__text{
+  margin: 0;
+  color: rgba(0,0,0,.72);
+  font-size: var(--lp-subtitle-size);
+  line-height: 1.5;
+
+  font-family: "GE SS TV", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 200;
+
+  max-width: none;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .lp-nav{ display: none; }
+  .lp-header__inner{ grid-template-columns: auto auto; }
+
+  .lp-lines{
+    width: min(640px, calc(96vw - (var(--lp-lines-edge-pad) * 2)));
+    opacity: .9;
+  }
+
+  .lp-lines--topStart{
+    top: calc(var(--lp-header-h) + 18px);
+  }
+
+  .lp-hero__subtitle{
+    max-width: 70ch;
+  }
+
+  :root{
+    --lp-logo-panel-pad-x: 12px;
+    --lp-logo-panel-extra-h: 12px;
+  }
+
+  .lp-about__grid{
+    flex-direction: column;
+  }
+
+  .lp-about__intro{
+    flex: 0 0 auto;
+  }
+}
+
+/* ==============================
+   ISO Certificate Section (v5)
+   ============================== */
+.lp-iso{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-iso__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+
+  padding-top: 0;
+  margin-top: -22px;
+
+  padding-bottom: clamp(32px, 4.4vw, 70px);
+}
+
+.lp-isoCard{
+  position: relative;
+  width: 100%;
+  padding-bottom: 8px;
+}
+
+.lp-isoCard__stroke{
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 22px;
+  z-index: 1;
+}
+
+.lp-isoCard__layer{
+  position: relative;
+  z-index: 2;
+
+  background: #2E3191;
+  border-radius: 22px;
+
+  transform: translate(-8px, 8px);
+  transition: transform .22s ease;
+
+  padding-block: 22px;
+  padding-inline: clamp(28px, 3.2vw, 46px);
+}
+
+.lp-isoCard__row{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+
+  direction: rtl;
+}
+
+.lp-isoCard__main{
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.lp-isoCard__icon{
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.18));
+}
+
+.lp-isoCard__iso{
+  display: inline-block;
+  white-space: nowrap;
+
+  direction: ltr;
+  unicode-bidi: isolate;
+
+  font-family: "Myriad Arabic", var(--lp-font), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  font-size: clamp(36px, 4.2vw, 58px);
+  letter-spacing: .02em;
+}
+
+.lp-isoCard__text{
+  justify-self: center;
+  text-align: center;
+
+  margin: 0;
+  color: rgba(255,255,255,.92);
+  font-size: clamp(14px, 1.45vw, 18px);
+  line-height: 1.55;
+  font-weight: 300;
+
+  max-width: 78ch;
+  min-width: 0;
+}
+
+.lp-isoCard__cert{
+  display: inline-block;
+  margin-inline: 14px;
+}
+
+.lp-cta.lp-cta--iso{
+  justify-self: end;
+
+  width: 162px;
+  height: 46px;
+  flex: 0 0 auto;
+}
+
+.lp-cta.lp-cta--iso .lp-cta__stroke{
+  width: 162px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-top-left-radius: 22px;
+}
+
+.lp-cta.lp-cta--iso .lp-cta__layer{
+  width: 162px;
+  height: 38px;
+  background: #ffffff;
+  border-top-left-radius: 22px;
+
+  transform: translate(-6px, 6px);
+}
+
+.lp-cta.lp-cta--iso .lp-cta__text{
+  color: #2E3191;
+  font-weight: 700;
+}
+
+.lp-cta.lp-cta--iso:hover .lp-cta__layer,
+.lp-cta.lp-cta--iso:focus-visible .lp-cta__layer{
+  transform: translate(0, 0);
+}
+
+.lp-enDigits{
+  font-family: Arial, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+}
+
+@media (max-width: 700px){
+  .lp-iso__inner{ margin-top: -14px; }
+
+  .lp-isoCard__row{
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+    justify-items: center;
+  }
+
+  .lp-isoCard__main{ justify-self: center; }
+  .lp-cta.lp-cta--iso{ justify-self: center; }
+  .lp-isoCard__text{ max-width: 38ch; }
+}
+
+/* ==============================
+   News (قسم بسيط بدل الفراغ)
+   ============================== */
+.lp-news{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-news__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-block: clamp(54px, 6vw, 92px);
+}
+
+.lp-news__head{
+  text-align: center;
+}
+
+.lp-news__title{
+  margin: 0;
+  color: var(--lp-about-title);
+  font-size: clamp(26px, 3.2vw, 48px);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.lp-news__hint{
+  margin: 10px 0 0;
+  color: rgba(0,0,0,.55);
+  font-size: clamp(14px, 1.3vw, 18px);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ==============================
+   Sectors Section (v4)
+   ============================== */
+.lp-sectors{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-sectors__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+
+  padding-top: clamp(72px, 7.2vw, 120px);
+  padding-bottom: clamp(46px, 6vw, 92px);
+}
+
+.lp-sectors__head{
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.lp-sectors__title{
+  margin: 0;
+  color: var(--lp-about-title);
+
+  font-size: clamp(26px, 3.2vw, 48px);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.lp-sectors__titleAccent{
+  color: var(--lp-accent);
+}
+
+/* ===== Slider (like services) ===== */
+.lp-sectors__sliderWrap{ margin-top: 14px; }
+
+.lp-sectors__slider{
+  --per-view: 3;
+  --gap: 14px;
+  --card-h: clamp(170px, 18vw, 245px);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+  border-radius: 22px;
+}
+
+.lp-sectors__slider::-webkit-scrollbar{ display: none; }
+
+.lp-sectors__track{
+  display: flex;
+  gap: var(--gap);
+  padding: 10px 2px;
+}
+
+.lp-sectorCard{
+  flex: 0 0 calc((100% - (var(--gap) * (var(--per-view) - 1))) / var(--per-view));
+  height: var(--card-h);
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 22px;
+  scroll-snap-align: start;
+
+  background: rgba(0,0,0,.06);
+}
+
+.lp-sectorCard img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.lp-sectorCard::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,191,242,.70) 0%,
+    rgba(0,191,242,.40) 28%,
+    rgba(0,191,242,.1) 52%,
+    rgba(0,191,242,0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lp-sectorCard__name{
+  position: absolute;
+  inset-inline: 14px;
+  bottom: 12px;
+  z-index: 2;
+
+  color: #ffffff;
+  font-weight: 900;
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.2;
+
+  text-shadow: 0 2px 14px rgba(0,0,0,.18);
+
+  padding-inline-end: 54px;
+}
+
+/* ===== Icon Button ===== */
+.lp-iconBtn{
+  width: 38px;
+  height: 38px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+}
+
+.lp-iconBtn__stroke{
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: 14px 0 0 0;
+  z-index: 1;
+}
+
+.lp-iconBtn__layer{
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+
+  background: rgba(255,255,255,.14);
+  border-radius: 14px 0 0 0;
+
+  transform: translate(6px, 6px);
+  transition: transform .22s ease;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  pointer-events: auto;
+}
+
+.lp-iconBtn__layer i{
+  color: #fff;
+  font-size: 16px;
+}
+
+.lp-iconBtn:hover .lp-iconBtn__layer,
+.lp-iconBtn:focus-visible .lp-iconBtn__layer{
+  transform: translate(0, 0);
+}
+
+.lp-iconBtn:focus-visible{
+  outline: 2px solid rgba(0,191,242,.35);
+  outline-offset: 6px;
+  border-radius: 14px 0 0 0;
+}
+
+.lp-sectorCard__btn{
+  position: absolute;
+  bottom: 10px;
+  inset-inline-end: 14px;
+  z-index: 2;
+}
+
+/* ===== Dots ===== */
+.lp-sectors__dots{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lp-sectors__dot{
+  height: 8px;
+  width: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.28);
+  background: rgba(0,0,0,.08);
+  padding: 0;
+  cursor: pointer;
+  transition: transform .18s ease, width .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.lp-sectors__dot[aria-current="true"]{
+  width: 26px;
+  background: var(--lp-accent);
+  border-color: var(--lp-accent);
+  transform: none;
+}
+
+@media (max-width: 980px){
+  .lp-sectors__slider{
+    --per-view: 2;
+    --card-h: clamp(175px, 22vw, 260px);
+  }
+}
+
+@media (max-width: 520px){
+  .lp-sectors__slider{
+    --per-view: 1;
+    --card-h: 205px;
+  }
+}
+
+/* ==============================
+   Footer (حسب طلبك)
+   - bg: #2E3191
+   - icons: #00BFF2 (بدون حاويات)
+   - social cards: #00BFF2 + stroke أبيض + نفس فكرة stroke/layer
+   ============================== */
+.lp-footer{
+  background: var(--lp-footer-bg);
+  color: #fff;
+  padding-top: clamp(44px, 5vw, 70px);
+  padding-bottom: 0;
+}
+
+.lp-footer__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+}
+
+.lp-footer__grid{
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: clamp(18px, 3vw, 40px);
+  align-items: start;
+}
+
+.lp-footer__title{
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Quick links */
+.lp-footer__links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lp-footer__link{
+  color: rgba(255,255,255,.92);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.4;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.lp-footer__link:hover{
+  opacity: 1;
+  transform: translateX(-2px);
+  color: var(--lp-footer-accent); 
+}
+
+/* Contact */
+.lp-footer__contact{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lp-footer__contactItem{
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.lp-footer__contactItem i{
+  color: var(--lp-footer-accent);
+  font-size: 18px;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.lp-footer__contactText{
+  min-width: 0;
+}
+
+.lp-footer__label{
+  color: var(--lp-footer-accent);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.lp-footer__value{
+  color: rgba(255,255,255,.95);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.55;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.lp-footer__value:hover{
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.55);
+}
+
+/* Social */
+/* Social (3 مربعات جنب بعض) */
+.lp-footer__social{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* مربع أيقونة بنفس فكرة stroke + layer */
+.lp-socialIcon{
+  width: 56px;
+  height: 56px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+}
+
+.lp-socialIcon__stroke{
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 14px 0 0 0; 
+  z-index: 1;
+}
+
+.lp-socialIcon__layer{
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  width: 44px;
+  height: 44px;
+
+  background: var(--lp-footer-accent); /* #00BFF2 */
+  border-radius: 14px 0 0 0; 
+
+  transform: translate(6px, 6px);
+  transition: transform .22s ease;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.lp-socialIcon__layer i{
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.lp-socialIcon:hover .lp-socialIcon__layer,
+.lp-socialIcon:focus-visible .lp-socialIcon__layer{
+  transform: translate(0, 0);
+}
+
+.lp-socialIcon:focus-visible{
+  outline: 2px solid rgba(255,255,255,.35);
+  outline-offset: 6px;
+  border-radius: 16px;
+}
+
+
+/* Bottom bar */
+.lp-footer__bottom{
+  margin-top: clamp(22px, 3vw, 32px);
+  padding-block: 16px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.92);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Responsive footer */
+@media (max-width: 980px){
+  .lp-footer__grid{
+    grid-template-columns: 1fr;
+  }
+
+  .lp-socialCard{
+    width: 100%;
+    max-width: 320px;
+  }
+}
