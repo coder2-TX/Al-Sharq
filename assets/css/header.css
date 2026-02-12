@@ -1,0 +1,214 @@
+.lp-header{
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: var(--lp-header-h);
+  z-index: 2602;
+  background: transparent;
+}
+
+.lp-header__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-top: var(--lp-logo-top-gap);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.lp-header__logo{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0;
+}
+
+.lp-header__logo img{
+  height: 120px;
+  width: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* Menu Button */
+.lp-menuBtn{
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+
+  width: calc(var(--lp-menu-size) + var(--lp-menu-offset));
+  height: calc(var(--lp-menu-size) + var(--lp-menu-offset));
+
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+
+  z-index: 2601;
+}
+
+/* FIX: stroke hover now works (stroke snaps over the layer) */
+.lp-menuBtn__stroke{
+  position: absolute;
+  inset-inline-start: var(--lp-menu-offset);
+  inset-block-start: var(--lp-menu-offset);
+
+  width: var(--lp-menu-size);
+  height: var(--lp-menu-size);
+
+  border: 1px solid var(--lp-stroke);
+  border-radius: 0;
+  border-end-end-radius: var(--lp-menu-round);
+
+  transform: translate(0, 0);
+  transition: transform .22s ease;
+
+  z-index: 1;
+}
+
+.lp-menuBtn__layer{
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+
+  width: var(--lp-menu-size);
+  height: var(--lp-menu-size);
+
+  background: var(--lp-accent);
+  border-radius: 0;
+  border-end-end-radius: var(--lp-menu-round);
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.lp-menuBtn__layer i{
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  transition: transform .18s ease, opacity .18s ease;
+  transform-origin: 50% 50%;
+}
+
+.lp-menuBtn[data-icon-anim="out"] .lp-menuBtn__layer i{
+  opacity: 0;
+  transform: scale(.85) rotate(-10deg);
+}
+.lp-menuBtn[data-icon-anim="in"] .lp-menuBtn__layer i{
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.lp-menuBtn:hover .lp-menuBtn__stroke,
+.lp-menuBtn:focus-visible .lp-menuBtn__stroke,
+body.lp-drawer-open .lp-menuBtn__stroke{
+  transform: translate(var(--lp-menu-shift-x), calc(var(--lp-menu-offset) * -1));
+}
+
+.lp-menuBtn:focus-visible{ outline: none; }
+.lp-menuBtn:focus-visible .lp-menuBtn__layer{
+  box-shadow: 0 0 0 2px rgba(255,255,255,.35);
+}
+
+body.lp-drawer-open{ overflow: hidden; }
+
+/* Drawer */
+.lp-drawer{
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .32s cubic-bezier(.22, 1, .36, 1);
+}
+
+.lp-drawer.is-open{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lp-drawer__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+}
+
+.lp-drawer__panel{
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+  width: min(360px, 86vw);
+  background: #fff;
+  color: #111;
+
+  transform: translate3d(var(--lp-drawer-offscreen), 0, 0);
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
+
+  box-shadow: 0 18px 60px rgba(0,0,0,.22);
+  padding: 18px 18px 22px;
+  outline: none;
+}
+
+.lp-drawer.is-open .lp-drawer__panel{
+  transform: translate3d(0, 0, 0);
+}
+
+.lp-drawer__head{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  margin-bottom: 14px;
+}
+
+.lp-drawer__title{
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--lp-about-title);
+}
+
+.lp-drawer__nav{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lp-drawer__link{
+  text-decoration: none;
+  color: var(--lp-about-title);
+  font-weight: 800;
+  font-size: 18px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.lp-drawer__link:hover{
+  background: rgba(0,191,242,.10);
+  transform: translateX(-2px);
+}
+
+.lp-drawer__cta{
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px){
+  .lp-nav{ display: none; }
+}

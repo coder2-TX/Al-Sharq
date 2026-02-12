@@ -1,0 +1,255 @@
+@font-face{
+  font-family: "GE SS TV";
+  src: url("../fonts/ArbFONTS-GE-SS-TV-Light_10.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: "GE SS TV";
+  src: url("../fonts/ArbFONTS-GE-SS-TV-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "Myriad Arabic";
+  src: url("../fonts/ArbFONTS-MyriadArabic-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: "Myriad Arabic";
+  src: url("../fonts/ArbFONTS-MyriadArabic-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root{
+  --lp-font: "GE SS TV", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --lp-accent: #00BFF2;
+  --lp-stroke: #D9D9D9;
+
+  --lp-header-h: 74px;
+  --lp-logo-top-gap: 12px;
+
+  --lp-container: 1200px;
+  --lp-page-pad: 24px;
+
+  --lp-text: #ffffff;
+  --lp-subtitle-size: clamp(16px, 1.6vw, 20px);
+
+  --lp-about-title: #2E3191;
+
+  --lp-lines-edge-pad: 40px;
+
+  --lp-footer-bg: #2E3191;
+  --lp-footer-accent: #00BFF2;
+
+  --lp-menu-size: 66px;
+  --lp-menu-offset: 6px;
+  --lp-menu-round: 34px;
+
+  --lp-cta-font-size: 16.5px;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+html{ font-synthesis: none; }
+
+body{
+  margin: 0;
+  font-family: var(--lp-font);
+  background: #0b0f14;
+  color: var(--lp-text);
+}
+
+.lp-section{ scroll-margin-top: 0; }
+
+html[dir="rtl"]{
+  --lp-drawer-offscreen: 100%;
+  --lp-menu-shift-x: var(--lp-menu-offset);
+}
+html[dir="ltr"]{
+  --lp-drawer-offscreen: -100%;
+  --lp-menu-shift-x: calc(var(--lp-menu-offset) * -1);
+}
+
+.lp-enDigits{
+  font-family: Arial, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+}
+
+/* Shared CTA */
+.lp-cta{
+  width: 134px;
+  height: 40px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+}
+
+.lp-cta__stroke{
+  width: 128px;
+  height: 34px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  border-top-left-radius: 20px;
+  border: 1px solid var(--lp-stroke);
+  z-index: 1;
+}
+
+.lp-cta__layer{
+  width: 128px;
+  height: 34px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  background: var(--lp-accent);
+  border-top-left-radius: 20px;
+  transform: translate(6px, 6px);
+  transition: transform .22s ease;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.lp-cta__text{
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--lp-cta-font-size);
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.lp-cta:hover .lp-cta__layer,
+.lp-cta:focus-visible .lp-cta__layer{
+  transform: translate(0, 0);
+}
+
+.lp-cta:focus-visible{
+  outline: 2px solid rgba(255,255,255,.35);
+  outline-offset: 6px;
+  border-radius: 999px;
+}
+
+/* Shared Icon Button */
+.lp-iconBtn{
+  width: 38px;
+  height: 38px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+}
+
+.lp-iconBtn__stroke{
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: 14px 0 0 0;
+  z-index: 1;
+}
+
+.lp-iconBtn__layer{
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  background: rgba(255,255,255,.14);
+  border-radius: 14px 0 0 0;
+  transform: translate(6px, 6px);
+  transition: transform .22s ease;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: auto;
+}
+
+.lp-iconBtn__layer i{
+  color: #fff;
+  font-size: 16px;
+}
+
+.lp-iconBtn:hover .lp-iconBtn__layer,
+.lp-iconBtn:focus-visible .lp-iconBtn__layer{
+  transform: translate(0, 0);
+}
+
+.lp-iconBtn:focus-visible{
+  outline: 2px solid rgba(0,191,242,.35);
+  outline-offset: 6px;
+  border-radius: 14px 0 0 0;
+}
+
+/* Shared Social Icon */
+.lp-socialIcon{
+  width: 56px;
+  height: 56px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+}
+
+.lp-socialIcon__stroke{
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 14px 0 0 0;
+  z-index: 1;
+}
+
+.lp-socialIcon__layer{
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  width: 44px;
+  height: 44px;
+  background: var(--lp-footer-accent);
+  border-radius: 14px 0 0 0;
+  transform: translate(6px, 6px);
+  transition: transform .22s ease;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.lp-socialIcon__layer i{
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.lp-socialIcon:hover .lp-socialIcon__layer,
+.lp-socialIcon:focus-visible .lp-socialIcon__layer{
+  transform: translate(0, 0);
+}
+
+.lp-socialIcon:focus-visible{
+  outline: 2px solid rgba(255,255,255,.35);
+  outline-offset: 6px;
+  border-radius: 16px;
+}

@@ -1,0 +1,111 @@
+.lp-footer{
+  background: var(--lp-footer-bg);
+  color: #fff;
+  padding-top: clamp(44px, 5vw, 70px);
+  padding-bottom: 0;
+}
+
+.lp-footer__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+}
+
+.lp-footer__grid{
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: clamp(18px, 3vw, 40px);
+  align-items: start;
+}
+
+.lp-footer__title{
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.lp-footer__links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lp-footer__link{
+  color: rgba(255,255,255,.92);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.4;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.lp-footer__link:hover{
+  opacity: 1;
+  transform: translateX(-2px);
+  color: var(--lp-footer-accent);
+}
+
+.lp-footer__contact{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lp-footer__contactItem{
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.lp-footer__contactItem i{
+  color: var(--lp-footer-accent);
+  font-size: 18px;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.lp-footer__contactText{ min-width: 0; }
+
+.lp-footer__label{
+  color: var(--lp-footer-accent);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.lp-footer__value{
+  color: rgba(255,255,255,.95);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.55;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.lp-footer__value:hover{
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.55);
+}
+
+.lp-footer__social{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.lp-footer__bottom{
+  margin-top: clamp(22px, 3vw, 32px);
+  padding-block: 16px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.92);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 980px){
+  .lp-footer__grid{ grid-template-columns: 1fr; }
+}

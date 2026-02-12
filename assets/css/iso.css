@@ -1,0 +1,139 @@
+.lp-iso{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-iso__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-top: 0;
+  margin-top: -22px;
+  padding-bottom: clamp(32px, 4.4vw, 70px);
+}
+
+.lp-isoCard{
+  position: relative;
+  width: 100%;
+  padding-bottom: 8px;
+}
+
+.lp-isoCard__stroke{
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 22px;
+  z-index: 1;
+}
+
+.lp-isoCard__layer{
+  position: relative;
+  z-index: 2;
+  background: #2E3191;
+  border-radius: 22px;
+  transform: translate(-8px, 8px);
+  transition: transform .22s ease;
+  padding-block: 22px;
+  padding-inline: clamp(28px, 3.2vw, 46px);
+}
+
+.lp-isoCard__row{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+  direction: rtl;
+}
+
+.lp-isoCard__main{
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.lp-isoCard__icon{
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.18));
+}
+
+.lp-isoCard__iso{
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: "Myriad Arabic", var(--lp-font), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  font-size: clamp(36px, 4.2vw, 58px);
+  letter-spacing: .02em;
+}
+
+.lp-isoCard__text{
+  justify-self: center;
+  text-align: center;
+  margin: 0;
+  color: rgba(255,255,255,.92);
+  font-size: clamp(14px, 1.45vw, 18px);
+  line-height: 1.55;
+  font-weight: 300;
+  max-width: 78ch;
+  min-width: 0;
+}
+
+.lp-isoCard__cert{
+  display: inline-block;
+  margin-inline: 14px;
+}
+
+.lp-cta.lp-cta--iso{
+  justify-self: end;
+  width: 162px;
+  height: 46px;
+  flex: 0 0 auto;
+}
+
+.lp-cta.lp-cta--iso .lp-cta__stroke{
+  width: 162px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-top-left-radius: 22px;
+}
+
+.lp-cta.lp-cta--iso .lp-cta__layer{
+  width: 162px;
+  height: 38px;
+  background: #ffffff;
+  border-top-left-radius: 22px;
+  transform: translate(-6px, 6px);
+}
+
+.lp-cta.lp-cta--iso .lp-cta__text{
+  color: #2E3191;
+  font-weight: 700;
+}
+
+.lp-cta.lp-cta--iso:hover .lp-cta__layer,
+.lp-cta.lp-cta--iso:focus-visible .lp-cta__layer{
+  transform: translate(0, 0);
+}
+
+@media (max-width: 700px){
+  .lp-iso__inner{ margin-top: -14px; }
+
+  .lp-isoCard__row{
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+    justify-items: center;
+  }
+
+  .lp-isoCard__main{ justify-self: center; }
+  .lp-cta.lp-cta--iso{ justify-self: center; }
+  .lp-isoCard__text{ max-width: 38ch; }
+}
