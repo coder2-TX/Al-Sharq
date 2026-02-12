@@ -9,19 +9,31 @@
   background-position: center;
 }
 
-/* Overlay as pseudo-element (always behind content) */
 .lp-hero::before{
   content: "";
   position: absolute;
-  inset: 0;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: min(1180px, 82vw);
   z-index: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.80) 0%,
-    rgba(0,0,0,.55) 45%,
-    rgba(0,0,0,.30) 100%
-  );
   pointer-events: none;
+  background: linear-gradient(
+    to left,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.38) 58%,
+    rgba(0,0,0,.14) 82%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+html[dir="ltr"] .lp-hero::before{
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.38) 58%,
+    rgba(0,0,0,.14) 82%,
+    rgba(0,0,0,0) 100%
+  );
 }
 
 .lp-hero__graphics{
@@ -93,6 +105,27 @@
 .lp-hero__titleLine{ display: block; }
 .lp-hero__titleLine + .lp-hero__titleLine{ margin-top: 8px; }
 
+.lp-hero__accentWord{
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  padding-inline: .10em;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.lp-hero__accentWord::before{
+  content: "";
+  position: absolute;
+  inset-inline: -0.06em;
+  height: .34em;
+  bottom: .06em;
+  background: var(--lp-accent);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+
 .lp-hero__subtitle{
   margin: 0;
   font-size: var(--lp-subtitle-size);
@@ -105,6 +138,27 @@
 }
 
 @media (max-width: 900px){
+  .lp-hero::before{
+    width: 100%;
+    background: linear-gradient(
+      to left,
+      rgba(0,0,0,.52) 0%,
+      rgba(0,0,0,.36) 70%,
+      rgba(0,0,0,.12) 88%,
+      rgba(0,0,0,0) 100%
+    );
+  }
+
+  html[dir="ltr"] .lp-hero::before{
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,.52) 0%,
+      rgba(0,0,0,.36) 70%,
+      rgba(0,0,0,.12) 88%,
+      rgba(0,0,0,0) 100%
+    );
+  }
+
   .lp-lines{
     width: min(640px, calc(96vw - (var(--lp-lines-edge-pad) * 2)));
     opacity: .9;

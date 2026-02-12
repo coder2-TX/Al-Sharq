@@ -7,17 +7,14 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Base first -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Sections -->
   <link rel="stylesheet" href="assets/css/header.css" />
   <link rel="stylesheet" href="assets/css/about.css" />
   <link rel="stylesheet" href="assets/css/iso.css" />
   <link rel="stylesheet" href="assets/css/sectors.css" />
   <link rel="stylesheet" href="assets/css/footer.css" />
 
-  <!-- Hero last to win overrides -->
   <link rel="stylesheet" href="assets/css/hero.css" />
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
@@ -33,7 +30,6 @@
 
 <main id="home">
 
-  <!--  HERO inline (حل مضمون - بدون fetch) -->
   <section class="lp-hero" aria-label="Hero">
     <div class="lp-hero__graphics" aria-hidden="true">
       <svg class="lp-lines lp-lines--topStart" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +47,7 @@
 
     <div class="lp-hero__content">
       <h1 class="lp-hero__title">
-        <span class="lp-hero__titleLine">شركة الشرق</span>
+        <span class="lp-hero__titleLine">شركة <span class="lp-hero__accentWord">الشرق</span></span>
         <span class="lp-hero__titleLine">للتجارة والتوكيلات</span>
       </h1>
 
@@ -61,13 +57,11 @@
     </div>
   </section>
 
-  <!-- باقي الأقسام تظل partials -->
   <div id="about-slot" data-partial="partials/about.html"></div>
   <div id="iso-slot" data-partial="partials/iso.html"></div>
   <div id="sectors-slot" data-partial="partials/sectors.html" data-after="lpInitSectors"></div>
 
 </main>
-
 
   <div id="footer-slot" data-partial="partials/footer.html"></div>
 </body>
