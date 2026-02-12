@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const animateCount = (el, target, durationMs = 1200) => {
+  const animateCount = (el, target, durationMs = 2200) => {
     const start = performance.now();
     const from = 0;
 
