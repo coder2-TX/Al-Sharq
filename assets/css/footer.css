@@ -1,16 +1,78 @@
 /* assets/css/footer.css */
 
 .lp-footer{
-  background: var(--lp-footer-bg);
+  /* ✅ خلي الخلفية على العنصر نفسه عشان ما يظهر الأسود */
+  background: transparent;
   color: #fff;
+
+  /* ✅ انحناء كبير وواضح (زي فكرة kiwi) */
+  --lp-footer-radius: clamp(140px, 18vw, 240px);
+
+  border-top-right-radius: 0;
+  border-top-left-radius: var(--lp-footer-radius);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  position: relative;
+
+  /* ✅ إعدادات الستروك (نفس فكرة kiwi) */
+  --lp-footer-stroke-show: 220px;      /* مقدار الجزء الظاهر من الستروك */
+  --lp-footer-stroke-thickness: 2px;   /* سماكة الستروك (بارز) */
+  --lp-footer-stroke-y: -12px;         /* رفع الستروك لفوق عشان يبان */
+  --lp-footer-stroke-x: 0px;
+
+  /* ✅ لازم يكون visible عشان الستروك يطلع لفوق */
+  overflow: visible;
+
   padding-top: clamp(44px, 5vw, 70px);
   padding-bottom: 0;
+}
+
+/* ✅ الستروك الخارجي */
+.lp-footer::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  transform: translate3d(-18px, -18px, 0);
+  border: var(--lp-footer-stroke-thickness) solid var(--lp-stroke);
+
+  border-top-right-radius: 0;
+  border-top-left-radius: var(--lp-footer-radius);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  /* ✅ نعرض فقط جزء من الستروك من الأعلى */
+  clip-path: inset(0 0 calc(100% - var(--lp-footer-stroke-show)) 0);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lp-footer::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: var(--lp-footer-bg);
+
+  border-top-right-radius: 0;
+  border-top-left-radius: var(--lp-footer-radius);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
 }
 
 .lp-footer__inner{
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
+
+  /* ✅ نخلي المحتوى فوق الستروك */
+  position: relative;
+  z-index: 2;
 }
 
 /*  أعمدة متساوية + Gap واحد ثابت */
@@ -20,7 +82,6 @@
   gap: clamp(22px, 3vw, 44px);
   align-items: start;
 
-  /*  يقلل إحساس عدم تساوي المسافات في RTL (محاذاة المحتوى لليمين داخل كل عمود) */
   justify-items: start;
 }
 
@@ -40,10 +101,9 @@ html[dir="rtl"] .lp-footer__col{ text-align: right; }
 .lp-footer__col--brand{
   display: flex;
   flex-direction: column;
-  gap: 50px; /*  مسافة أكبر بين اللوجو والسوشيال */
+  gap: 50px;
 }
 
-/* في RTL خلّي عناصر العمود الأول تلزق يمين */
 html[dir="rtl"] .lp-footer__col--brand{
   align-items: flex-start;
 }
@@ -55,36 +115,32 @@ html[dir="rtl"] .lp-footer__col--brand{
   width: fit-content;
 }
 
-/*  لوجو أكبر + أبيض إجباري */
 .lp-footer__logoImg{
-  height: clamp(88px, 6vw, 118px); /*  أكبر من السابق */
+  height: clamp(88px, 6vw, 118px);
   width: auto;
   display: block;
   filter: brightness(0) invert(1);
 }
 
-/* Social wrap */
 .lp-footer__socialWrap{
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* صف الأيقونات */
 .lp-footer__social--compact{
   display: flex;
   flex-direction: row;
-  gap: 12px; /*  أكبر */
+  gap: 12px;
   flex-wrap: wrap;
   align-items: center;
 }
 
-/*  في RTL خلّي الأيقونات تبدأ من اليمين */
 html[dir="rtl"] .lp-footer__social--compact{
   justify-content: flex-end;
 }
 
-/* Label تحت الأيقونات */
+/* (لو موجود عندك) */
 .lp-footer__socialLabel{
   color: rgba(255,255,255,.95);
   font-weight: 800;
@@ -92,7 +148,7 @@ html[dir="rtl"] .lp-footer__social--compact{
   line-height: 1.2;
 }
 
-/*  أيقونات أصغر من الأصل لكن أكبر "قليل" + انحناء 20 */
+/* أيقونات صغيرة + انحناء 20 */
 .lp-socialIcon.lp-socialIcon--sm{
   width: 56px;
   height: 56px;
@@ -102,8 +158,6 @@ html[dir="rtl"] .lp-footer__social--compact{
 .lp-socialIcon.lp-socialIcon--sm .lp-socialIcon__layer{
   width: 40px;
   height: 40px;
-
-  /*  انحناء أكبر (20) */
   border-radius: 20px 0 0 0;
 }
 
@@ -117,7 +171,7 @@ html[dir="rtl"] .lp-footer__social--compact{
 }
 
 .lp-socialIcon.lp-socialIcon--sm .lp-socialIcon__layer i{
-  font-size: 18px; /*  أكبر قليل */
+  font-size: 18px;
 }
 
 /* =========================
@@ -129,30 +183,26 @@ html[dir="rtl"] .lp-footer__social--compact{
   flex-direction: column;
 }
 
-/*  روابط سريعة: سطر واحد فقط بدون نزول نهائياً */
+/* روابط سريعة: سطر واحد بدون نزول */
 .lp-footer__linksRow{
   display: flex;
-  flex-wrap: nowrap;          /*  يمنع النزول لسطر ثاني */
+  flex-wrap: nowrap;
   gap: 16px 24px;
   align-items: center;
 
   width: 100%;
-  overflow-x: auto;           /*  لو ضاقت الشاشة يصير سحب أفقي بدل wrap */
+  overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 
-  scrollbar-width: none;      /* Firefox */
+  scrollbar-width: none;
 }
-.lp-footer__linksRow::-webkit-scrollbar{
-  display: none;              /* Chrome/Safari */
-}
+.lp-footer__linksRow::-webkit-scrollbar{ display: none; }
 
-/*  في RTL خلي الروابط تبدأ من اليمين (start) */
 html[dir="rtl"] .lp-footer__linksRow{
-  justify-content: flex-start; /* start في RTL = يمين */
+  justify-content: flex-start;
 }
 
-/*  روابط أكبر قليلاً */
 .lp-footer__link{
   color: rgba(255,255,255,.92);
   text-decoration: none;
@@ -161,8 +211,8 @@ html[dir="rtl"] .lp-footer__linksRow{
   line-height: 1.3;
   transition: opacity .18s ease, transform .18s ease, color .18s ease;
 
-  white-space: nowrap;        /*  يمنع كسر "اتصل بنا" */
-  flex: 0 0 auto;             /*  يمنع انضغاط الرابط */
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .lp-footer__link:hover{
@@ -175,9 +225,8 @@ html[dir="rtl"] .lp-footer__linksRow{
   color: var(--lp-accent);
 }
 
-/*  النص تحت الروابط: أبعد أكثر */
 .lp-footer__brandText{
-  margin-top: 46px; /*  زيادة المسافة حسب طلبك */
+  margin-top: 46px;
 }
 
 .lp-footer__brandTitle{
@@ -203,8 +252,7 @@ html[dir="rtl"] .lp-footer__linksRow{
   display: flex;
   flex-direction: column;
 
-  /*  يزيد المسافة فقط بين الروابط (عمود 2) والتواصل (عمود 3)
-     بدون ما يأثر على عمود اللوجو (عمود 1) */
+  /* المسافة الخاصة بين عمود 2 و 3 */
   padding-inline-start: 88px;
 }
 
@@ -235,8 +283,6 @@ html[dir="rtl"] .lp-footer__linksRow{
   word-break: break-word;
 }
 
-/*  حل مشكلة رقم الهاتف يروح للطرف:
-   نخليه LTR لكن بمحاذاة يمين داخل RTL */
 .lp-footer__value--ltr{
   direction: ltr;
   text-align: right;
@@ -261,17 +307,18 @@ html[dir="rtl"] .lp-footer__linksRow{
 
 /* Responsive */
 @media (max-width: 980px){
+  .lp-footer{
+    /* في الموبايل الانحناء يقل شوي */
+    --lp-footer-radius: clamp(110px, 22vw, 180px);
+    --lp-footer-stroke-show: 200px;
+  }
+
   .lp-footer__grid{
     grid-template-columns: 1fr;
   }
 
-  /* في الموبايل لا نحتاج زيادة مسافة بين عمود 2 و 3 */
   .lp-footer__col--contact{
     padding-inline-start: 0;
-  }
-
-  html[dir="rtl"] .lp-footer__col--brand{
-    align-items: flex-start;
   }
 
   html[dir="rtl"] .lp-footer__linksRow{

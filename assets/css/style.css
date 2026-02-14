@@ -64,7 +64,7 @@ html{ font-synthesis: none; }
 body{
   margin: 0;
   font-family: var(--lp-font);
-  background: #0b0f14;
+  background: #fff;
   color: var(--lp-text);
 }
 
