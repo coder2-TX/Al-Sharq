@@ -1,12 +1,10 @@
 (() => {
   "use strict";
 
-  let inited = false;
+  // ✅ نخليها قابلة لإعادة التشغيل بعد تحميل partials
+  const animated = new WeakSet();
 
   window.lpInitHeroLines = function lpInitHeroLines() {
-    if (inited) return;
-    inited = true;
-
     if (!window.gsap) return;
 
     const setupTravelDash = (el, segRatio = 0.35) => {
@@ -28,8 +26,15 @@
       return 0.88;
     };
 
-    const animateLineGroup = (els, { stagger = 0.22, duration = 1.2, segRatio = 0.32, dir = -1 } = {}) => {
+    const animateLineGroup = (
+      els,
+      { stagger = 0.22, duration = 1.2, segRatio = 0.32, dir = -1 } = {}
+    ) => {
       els.forEach((el, i) => {
+        // ✅ لا نعيد تهيئة نفس الخط مرتين
+        if (animated.has(el)) return;
+        animated.add(el);
+
         const pack = setupTravelDash(el, segRatio);
         if (!pack) return;
 
@@ -62,6 +67,7 @@
       });
     };
 
+    // ✅ هذا سيشمل الهيرو + الفوتر (وأي مكان ثاني) طالما نفس الكلاسات موجودة
     const topLines = Array.from(document.querySelectorAll(".lp-lines--topStart .lp-line"));
     const botLines = Array.from(document.querySelectorAll(".lp-lines--bottomEnd .lp-line"));
 

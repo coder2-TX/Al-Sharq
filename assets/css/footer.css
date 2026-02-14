@@ -22,7 +22,9 @@
   --lp-footer-stroke-x: 0px;
 
   /* ✅ لازم يكون visible عشان الستروك يطلع لفوق */
-  overflow: visible;
+overflow-y: visible;
+overflow-x: hidden; /* fallback */
+overflow-x: clip;   /* أفضل لو مدعوم */
 
   padding-top: clamp(44px, 5vw, 70px);
   padding-bottom: 0;
@@ -65,14 +67,59 @@
   pointer-events: none;
 }
 
+/* =========================
+   ✅ Footer moving lines (copied from hero)
+   التعديل الوحيد: اللون --lp-stroke + شفافية
+========================= */
+
+.lp-footer__graphics{
+  position: absolute;
+  inset: 0;
+  z-index: 2; /* فوق الخلفية */
+  pointer-events: none;
+
+  color: var(--lp-stroke);
+  opacity: .35; /* ✅ الشفافية المطلوبة */
+}
+
+/* نخلي إعدادات الـ SVG داخل الفوتر محددة (عشان ما تتأثر بقواعد الهيرو) */
+.lp-footer .lp-lines{
+  position: absolute;
+  width: min(760px, calc(92vw - (var(--lp-lines-edge-pad) * 2)));
+  height: auto;
+}
+
+.lp-footer .lp-lines--topStart{
+  top: 24px;
+  inset-inline-start: var(--lp-lines-edge-pad);
+}
+
+.lp-footer .lp-lines--bottomEnd{
+  bottom: 24px;
+  inset-inline-end: var(--lp-lines-edge-pad);
+}
+
+.lp-footer .lp-lines .lp-line{
+  stroke: currentColor;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  will-change: stroke-dashoffset, opacity;
+}
+
+.lp-footer .lp-lines .lp-line--w10{ stroke-width: 6; }
+.lp-footer .lp-lines .lp-line--w4 { stroke-width: 4; }
+.lp-footer .lp-lines .lp-line--w1 { stroke-width: 1; }
+
+/* ========================= */
+
 .lp-footer__inner{
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
 
-  /* ✅ نخلي المحتوى فوق الستروك */
+  /* ✅ نخلي المحتوى فوق الخطوط */
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 /*  أعمدة متساوية + Gap واحد ثابت */
@@ -101,7 +148,7 @@ html[dir="rtl"] .lp-footer__col{ text-align: right; }
 .lp-footer__col--brand{
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 40px;
 }
 
 html[dir="rtl"] .lp-footer__col--brand{
@@ -327,5 +374,10 @@ html[dir="rtl"] .lp-footer__linksRow{
 
   .lp-footer__brandDesc{
     max-width: 70ch;
+  }
+
+  /* نفس فكرة الهيرو للموبايل */
+  .lp-footer .lp-lines{
+    width: min(640px, calc(96vw - (var(--lp-lines-edge-pad) * 2)));
   }
 }
