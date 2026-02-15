@@ -2,37 +2,12 @@
   position: absolute;
   top: 0;
   inset-inline: 0;
-  height: var(--lp-header-h);
+
+  /* ✅ الهيدر لم يعد يحتوي لوجو، فلا نحتاج ارتفاع يغطي الهيرو */
+  height: 0;
+
   z-index: 2602;
   background: transparent;
-}
-
-.lp-header__inner{
-  max-width: var(--lp-container);
-  margin-inline: auto;
-  padding-inline: var(--lp-page-pad);
-  padding-top: var(--lp-logo-top-gap);
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-}
-
-.lp-header__logo{
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  text-decoration: none;
-  padding: 0;
-}
-
-.lp-header__logo img{
-  height: 160px;
-  width: auto;
-  display: block;
-  position: relative;
-  z-index: 1;
 }
 
 /* Menu Button */

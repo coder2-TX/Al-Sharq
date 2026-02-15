@@ -1,9 +1,14 @@
 /* assets/css/footer.css */
 
 .lp-footer{
+  /* ✅ خلفية الفوتر المطلوبة */
+  --lp-footer-bg: #e5e5e5;
+
   /* ✅ خلي الخلفية على العنصر نفسه عشان ما يظهر الأسود */
   background: transparent;
-  color: #fff;
+
+  /* ✅ لون النصوص */
+  color: var(--lp-about-title);
 
   /* ✅ انحناء كبير وواضح (زي فكرة kiwi) */
   --lp-footer-radius: clamp(140px, 18vw, 240px);
@@ -22,9 +27,9 @@
   --lp-footer-stroke-x: 0px;
 
   /* ✅ لازم يكون visible عشان الستروك يطلع لفوق */
-overflow-y: visible;
-overflow-x: hidden; /* fallback */
-overflow-x: clip;   /* أفضل لو مدعوم */
+  overflow-y: visible;
+  overflow-x: hidden; /* fallback */
+  overflow-x: clip;   /* أفضل لو مدعوم */
 
   padding-top: clamp(44px, 5vw, 70px);
   padding-bottom: 0;
@@ -37,7 +42,9 @@ overflow-x: clip;   /* أفضل لو مدعوم */
   inset: 0;
 
   transform: translate3d(-18px, -18px, 0);
-  border: var(--lp-footer-stroke-thickness) solid var(--lp-stroke);
+
+  /* ✅ كل الستروك صار --lp-about-title */
+  border: var(--lp-footer-stroke-thickness) solid var(--lp-about-title);
 
   border-top-right-radius: 0;
   border-top-left-radius: var(--lp-footer-radius);
@@ -55,6 +62,7 @@ overflow-x: clip;   /* أفضل لو مدعوم */
   content:"";
   position:absolute;
   inset:0;
+
   background: var(--lp-footer-bg);
 
   border-top-right-radius: 0;
@@ -69,7 +77,7 @@ overflow-x: clip;   /* أفضل لو مدعوم */
 
 /* =========================
    ✅ Footer moving lines (copied from hero)
-   التعديل الوحيد: اللون --lp-stroke + شفافية
+   اللون صار --lp-about-title + شفافية
 ========================= */
 
 .lp-footer__graphics{
@@ -78,8 +86,8 @@ overflow-x: clip;   /* أفضل لو مدعوم */
   z-index: 2; /* فوق الخلفية */
   pointer-events: none;
 
-  color: var(--lp-stroke);
-  opacity: .35; /* ✅ الشفافية المطلوبة */
+  color: var(--lp-about-title);
+  opacity: .35;
 }
 
 /* نخلي إعدادات الـ SVG داخل الفوتر محددة (عشان ما تتأثر بقواعد الهيرو) */
@@ -166,7 +174,9 @@ html[dir="rtl"] .lp-footer__col--brand{
   height: clamp(88px, 6vw, 118px);
   width: auto;
   display: block;
-  filter: brightness(0) invert(1);
+
+  /* ✅ لا نخلي اللوجو أبيض */
+  filter: none;
 }
 
 .lp-footer__socialWrap{
@@ -189,10 +199,15 @@ html[dir="rtl"] .lp-footer__social--compact{
 
 /* (لو موجود عندك) */
 .lp-footer__socialLabel{
-  color: rgba(255,255,255,.95);
+  color: var(--lp-about-title);
   font-weight: 800;
   font-size: 15px;
   line-height: 1.2;
+}
+
+/* ✅ ستروك حاويات السوشيال صار --lp-about-title */
+.lp-footer .lp-socialIcon__stroke{
+  border-color: var(--lp-about-title);
 }
 
 /* أيقونات صغيرة + انحناء 20 */
@@ -251,7 +266,7 @@ html[dir="rtl"] .lp-footer__linksRow{
 }
 
 .lp-footer__link{
-  color: rgba(255,255,255,.92);
+  color: var(--lp-about-title);
   text-decoration: none;
   font-weight: 900;
   font-size: 17px;
@@ -260,6 +275,8 @@ html[dir="rtl"] .lp-footer__linksRow{
 
   white-space: nowrap;
   flex: 0 0 auto;
+
+  opacity: .92;
 }
 
 .lp-footer__link:hover{
@@ -277,18 +294,20 @@ html[dir="rtl"] .lp-footer__linksRow{
 }
 
 .lp-footer__brandTitle{
-  color: #fff;
+  color: var(--lp-about-title);
   font-weight: 900;
   font-size: 19px;
   margin-bottom: 10px;
 }
 
 .lp-footer__brandDesc{
-  color: rgba(255,255,255,.92);
+  color: var(--lp-about-title);
   font-weight: 650;
   font-size: 14px;
   line-height: 1.95;
   max-width: 60ch;
+
+  opacity: .92;
 }
 
 /* =========================
@@ -322,12 +341,14 @@ html[dir="rtl"] .lp-footer__linksRow{
 }
 
 .lp-footer__value{
-  color: rgba(255,255,255,.95);
+  color: var(--lp-about-title);
   font-weight: 800;
   font-size: 15px;
   line-height: 1.7;
   text-decoration: none;
   word-break: break-word;
+
+  opacity: .95;
 }
 
 .lp-footer__value--ltr{
@@ -338,18 +359,23 @@ html[dir="rtl"] .lp-footer__linksRow{
 
 .lp-footer__value:hover{
   text-decoration: underline;
-  text-decoration-color: rgba(255,255,255,.55);
+  text-decoration-color: var(--lp-about-title);
 }
 
 /* Bottom */
 .lp-footer__bottom{
   margin-top: clamp(22px, 3vw, 32px);
   padding-block: 16px;
-  border-top: 1px solid rgba(255,255,255,.12);
-  color: rgba(255,255,255,.92);
+
+  /* ✅ خط الفصل صار --lp-about-title */
+  border-top: 1px solid var(--lp-about-title);
+
+  color: var(--lp-about-title);
   font-weight: 800;
   font-size: 14px;
   text-align: center;
+
+  opacity: .92;
 }
 
 /* Responsive */
