@@ -20,11 +20,29 @@
   font-weight: 700;
   font-size: clamp(26px, 3.2vw, 48px);
   line-height: 1.15;
+
   color: var(--lp-about-title);
 }
 
 .lp-partners__titleAccent{
-  color: var(--lp-accent);
+  color: var(--lp-about-title);
+
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  padding-inline: .10em;
+}
+
+.lp-partners__titleAccent::before{
+  content: "";
+  position: absolute;
+  inset-inline: -0.06em;
+  height: .34em;
+  bottom: .06em;
+
+  background: var(--lp-accent);
+  border-radius: 10px;
+  z-index: -1;
 }
 
 .lp-partners__slider{

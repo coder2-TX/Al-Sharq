@@ -28,7 +28,8 @@
   font-weight: 700;
 }
 
-.lp-about__headline--us{ color: var(--lp-accent); }
+.lp-about__headline--from{ color: var(--lp-about-title); }
+.lp-about__headline--us{ color: var(--lp-about-title); }
 
 .lp-about__actions{
   margin-top: 18px;

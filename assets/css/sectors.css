@@ -24,7 +24,24 @@
   font-weight: 700;
 }
 
-.lp-sectors__titleAccent{ color: var(--lp-accent); }
+.lp-sectors__titleAccent{
+  color: var(--lp-about-title);
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  padding-inline: .10em;
+}
+
+.lp-sectors__titleAccent::before{
+  content: "";
+  position: absolute;
+  inset-inline: -0.06em;
+  height: .34em;
+  bottom: .06em;
+  background: var(--lp-accent); 
+  border-radius: 10px;
+  z-index: -1;
+}
 
 .lp-sectors__sliderWrap{ margin-top: 14px; }
 
