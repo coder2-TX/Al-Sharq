@@ -305,9 +305,26 @@ html[dir="rtl"] .lp-footer__linksRow{
   font-weight: 650;
   font-size: 14px;
   line-height: 1.95;
-  max-width: 60ch;
+
+  /* ✅ خلي النص يمتد بعرض العمود كامل */
+  max-width: none;
+  width: 100%;
+
+  /* ✅ يخلي السطور تنتهي مع بعض */
+  text-align: justify;
+  text-justify: inter-word;
+
+  /* ✅ يساعد العربي يضبط نهاية السطور (زي “تطويل” خفيف بالكلمات) */
+  word-spacing: .06em;
+
+  /* ✅ آخر سطر يرجع طبيعي (مهم مع justify) */
+  text-align-last: start;
 
   opacity: .92;
+}
+
+html[dir="rtl"] .lp-footer__brandDesc{
+  text-align-last: right;
 }
 
 /* =========================
@@ -399,7 +416,9 @@ html[dir="rtl"] .lp-footer__linksRow{
   }
 
   .lp-footer__brandDesc{
-    max-width: 70ch;
+    /* ✅ خليها 100% حتى بالموبايل */
+    max-width: none;
+    width: 100%;
   }
 
   /* نفس فكرة الهيرو للموبايل */
