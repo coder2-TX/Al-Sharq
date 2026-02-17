@@ -1,0 +1,170 @@
+/* assets/css/pages/about/section-2.css */
+/* ABOUT - ISO Section (same design as iso.css) + Video circle button */
+
+.lp-iso{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-iso__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-top: 0;
+  margin-top: -22px;
+  padding-bottom: clamp(32px, 4.4vw, 70px);
+}
+
+.lp-isoCard{
+  position: relative;
+  width: 100%;
+  padding-bottom: 8px;
+}
+
+.lp-isoCard__stroke{
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 22px;
+  z-index: 1;
+}
+
+.lp-isoCard__layer{
+  position: relative;
+  z-index: 2;
+  background: #2E3191;
+  border-radius: 22px;
+  transform: translate(-8px, 8px);
+  transition: transform .22s ease;
+  padding-block: 22px;
+  padding-inline: clamp(28px, 3.2vw, 46px);
+}
+
+.lp-isoCard__row{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+  direction: rtl;
+}
+
+.lp-isoCard__main{
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.lp-isoCard__icon{
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.18));
+}
+
+.lp-isoCard__iso{
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: "Myriad Arabic", var(--lp-font), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  font-size: clamp(36px, 4.2vw, 58px);
+  letter-spacing: .02em;
+}
+
+.lp-isoCard__text{
+  justify-self: center;
+  text-align: center;
+  margin: 0;
+  color: rgba(255,255,255,.92);
+  font-size: clamp(14px, 1.45vw, 18px);
+  line-height: 1.55;
+  font-weight: 300;
+  max-width: 78ch;
+  min-width: 0;
+}
+
+.lp-isoCard__cert{
+  display: inline-block;
+  margin-inline: 14px;
+}
+
+/* =========================
+   Video button (circle)
+   Same style as about button
+   but colors reversed for ISO
+   ========================= */
+
+.lp-isoCard__play{
+  width: 56px;
+  height: 56px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  user-select: none;
+  justify-self: end;
+}
+
+.lp-isoCard__playStroke{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.lp-isoCard__playLayer{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  background: #ffffff;
+  border-radius: 999px;
+  transform: translate(-6px, 6px);
+  transition: transform .22s ease;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.lp-isoCard__playLayer i{
+  color: var(--lp-accent);
+  font-size: 18px;
+}
+
+.lp-isoCard__play:hover .lp-isoCard__playLayer,
+.lp-isoCard__play:focus-visible .lp-isoCard__playLayer{
+  transform: translate(0, 0);
+}
+
+.lp-isoCard__play:focus-visible{
+  outline: 2px solid rgba(255,255,255,.35);
+  outline-offset: 6px;
+  border-radius: 999px;
+}
+
+@media (max-width: 700px){
+  .lp-iso__inner{ margin-top: -14px; }
+
+  .lp-isoCard__row{
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+    justify-items: center;
+  }
+
+  .lp-isoCard__main{ justify-self: center; }
+  .lp-isoCard__play{ justify-self: center; }
+  .lp-isoCard__text{ max-width: 38ch; }
+}

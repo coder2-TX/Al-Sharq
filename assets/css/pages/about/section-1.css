@@ -30,7 +30,7 @@ html[dir="ltr"] .lp-aboutS1__head{ text-align: left; }
 }
 
 .lp-aboutS1__text{
-  margin: 18px 0 28px;
+  margin: 18px 0 0; /* كان 28px لأن بعدها كارد — الآن شلناه */
   width: 100%;
   max-width: none;
   color: #111;
@@ -43,144 +43,7 @@ html[dir="ltr"] .lp-aboutS1__head{ text-align: left; }
 
   text-align-last: start;
 }
-html[dir="rtl"] .lp-aboutS1__text{ text-align-last: right; }
 
-/* -------- ISO-like Card -------- */
-
-.lp-aboutS1__cardWrap{ margin-top: 10px; }
-
-.lp-aboutIsoCard{
-  --lp-card-offset: 14px;
-  --lp-card-radius: 26px;
-
-  position: relative;
-  width: 100%;
-  margin-inline: 0;
-
-  /* ✅ ارتفاع أقل */
-  min-height: clamp(170px, 18vw, 260px);
-}
-
-html[dir="rtl"] .lp-aboutIsoCard{ --lp-card-shift-x: calc(var(--lp-card-offset) * -1); }
-html[dir="ltr"] .lp-aboutIsoCard{ --lp-card-shift-x: var(--lp-card-offset); }
-
-.lp-aboutIsoCard__stroke{
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: 0;
-
-  width: calc(100% - var(--lp-card-offset));
-  height: 100%;
-
-  border: 1px solid var(--lp-stroke);
-  border-radius: var(--lp-card-radius);
-  z-index: 1;
-}
-
-.lp-aboutIsoCard__layer{
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: 0;
-
-  width: calc(100% - var(--lp-card-offset));
-  height: 100%;
-
-  background: var(--lp-about-title);
-  border-radius: var(--lp-card-radius);
-
-  transform: translate(var(--lp-card-shift-x), var(--lp-card-offset));
-  z-index: 2;
-
-  /* ✅ بادنج واحد فقط (بدون تكرار) */
-  padding: clamp(10px, 1.6vw, 18px);
-
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ✅ خلي التوسيط عمودي “نظيف” */
-.lp-aboutIsoCard__media{
-  width: 100%;
-  height: 100%;
-
-  display: grid;
-  place-items: center;
-
-  background: transparent;
-  border-radius: 0;
-}
-
-/* ✅ كلمة ALSARQ: بدون قص من الأعلى */
-.lp-aboutIsoCard__word{
-  display: inline-block;
-
-  font-weight: 900;
-  white-space: nowrap;
-
-  letter-spacing: .05em;
-
-  /* ✅ أهم سطر: يمنع قص الحروف */
-  line-height: 1;
-
-  font-size: clamp(140px, 14vw, 420px);
-
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-
-  background-image: url("../../../images/pages/about/1.jpeg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 170%;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  filter: contrast(1.12) saturate(1.12);
-  text-shadow: 0 2px 18px rgba(0,0,0,.18);
-
-  /* ✅ تعويض بصري بسيط: يحل إحساس “تحت أكبر” */
-  transform: translateY(0.03em);
-}
-
-/* شاشات أصغر */
-@media (max-width: 820px){
-  .lp-aboutIsoCard{
-    min-height: clamp(150px, 22vw, 210px);
-  }
-
-  .lp-aboutIsoCard__layer{
-    padding: clamp(10px, 2vw, 16px);
-  }
-
-  .lp-aboutIsoCard__word{
-    font-size: clamp(110px, 18vw, 240px);
-    background-size: 185%;
-    letter-spacing: .04em;
-    transform: translateY(0.03em);
-  }
-}
-
-@media (max-width: 520px){
-  .lp-aboutIsoCard{
-    min-height: 150px;
-  }
-
-  .lp-aboutIsoCard__layer{
-    padding: 12px;
-  }
-
-  .lp-aboutIsoCard__word{
-    font-size: clamp(90px, 16vw, 170px);
-    letter-spacing: .03em;
-  }
-}
-
-@media (max-width: 380px){
-  .lp-aboutIsoCard__word{
-    font-size: clamp(78px, 17vw, 140px);
-    letter-spacing: .02em;
-  }
+html[dir="rtl"] .lp-aboutS1__text{
+  text-align-last: right;
 }
