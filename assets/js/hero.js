@@ -41,10 +41,13 @@
         const { len } = pack;
         const travel = len * getTravelFactor(el);
 
+        let start = (len * (0.17 + (i * 0.23))) % len;
+
         const setNewStart = () => {
-          const start = Math.random() * len;
+          start = (start + (len * 0.41)) % len;
           gsap.set(el, { strokeDashoffset: start, opacity: 0 });
         };
+
 
         setNewStart();
 
@@ -67,12 +70,16 @@
       });
     };
 
-    // ✅ هذا سيشمل الهيرو + الفوتر (وأي مكان ثاني) طالما نفس الكلاسات موجودة
-    const topLines = Array.from(document.querySelectorAll(".lp-lines--topStart .lp-line"));
-    const botLines = Array.from(document.querySelectorAll(".lp-lines--bottomEnd .lp-line"));
+    document.querySelectorAll(".lp-lines--topStart").forEach((svg) => {
+      const lines = Array.from(svg.querySelectorAll(".lp-line"));
+      if (lines.length) animateLineGroup(lines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: 1 });
+    });
 
-    if (topLines.length) animateLineGroup(topLines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: 1 });
-    if (botLines.length) animateLineGroup(botLines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: -1 });
+    document.querySelectorAll(".lp-lines--bottomEnd").forEach((svg) => {
+      const lines = Array.from(svg.querySelectorAll(".lp-line"));
+      if (lines.length) animateLineGroup(lines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: -1 });
+    });
+
   };
 
   const boot = () => {
