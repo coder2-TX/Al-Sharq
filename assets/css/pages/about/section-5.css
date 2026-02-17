@@ -1,0 +1,153 @@
+/* assets/css/pages/about/section-5.css */
+/* ABOUT - Section 5 (General Manager Message + Image) - same as Section 4 but swapped */
+
+.lp-gm{
+  background: #fff;
+  color: #111;
+}
+
+.lp-gm__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-block: clamp(54px, 7vw, 110px);
+}
+
+.lp-gm__grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(18px, 3.5vw, 60px);
+  align-items: stretch;
+}
+
+/* Default: swapped vs section-4 */
+.lp-gm__grid{
+  grid-template-areas: "media content";
+}
+
+/* RTL: نعكس عشان يطلع التناوب بشكل صحيح */
+html[dir="rtl"] .lp-gm__grid{
+  grid-template-areas: "content media";
+}
+
+.lp-gm__media{ grid-area: media; }
+.lp-gm__content{ grid-area: content; }
+
+.lp-gm__head{
+  margin-bottom: 12px;
+}
+
+html[dir="rtl"] .lp-gm__head{ text-align: right; }
+html[dir="ltr"] .lp-gm__head{ text-align: left; }
+
+.lp-gm__title{
+  margin: 0;
+}
+
+/* نفس تقليل حجم النص */
+.lp-gm__text{
+  margin: 18px 0 0;
+  width: 100%;
+  max-width: none;
+  color: #111;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 2;
+
+  text-align: justify;
+  text-justify: inter-word;
+  word-spacing: .06em;
+
+  text-align-last: start;
+}
+
+html[dir="rtl"] .lp-gm__text{
+  text-align-last: right;
+}
+
+/* Signature: سطر واحد + الاسم أسود */
+.lp-gm__sign{
+  margin-top: 18px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lp-gm__signRole{
+  color: var(--lp-accent);
+  font-weight: 700;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.6;
+}
+
+.lp-gm__signName{
+  color: #111;
+  font-weight: 700;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.6;
+}
+
+/* =========================
+   Media: ISO-like stroke/layer
+   ========================= */
+
+.lp-gmMedia{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 8px;
+}
+
+.lp-gmMedia__stroke{
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0,0,0,.12);
+  border-color: var(--lp-stroke);
+  border-radius: 22px;
+  z-index: 1;
+  opacity: .7;
+}
+
+.lp-gmMedia__layer{
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  transform: translate(-8px, 8px);
+  transition: transform .22s ease;
+}
+
+.lp-gmMedia:hover .lp-gmMedia__layer{
+  transform: translate(0, 0);
+}
+
+.lp-gmMedia__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .lp-gm__grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "media"
+      "content";
+  }
+
+  .lp-gmMedia{
+    height: auto;
+  }
+
+  .lp-gmMedia__layer{
+    height: clamp(260px, 42vw, 420px);
+  }
+
+  .lp-gmMedia__img{
+    height: 100%;
+  }
+}
