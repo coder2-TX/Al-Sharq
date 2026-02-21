@@ -1,17 +1,65 @@
 /* assets/css/pages/about/section-1.css */
 
 .lp-aboutS1{
+  /* ✅ خلي أعلى الصفحة (منطقة الهيدر) أبيض وما يتأثر */
   background: #fff;
-  color: #111;
+
+  /* ✅ نص السكشن أبيض */
+  color: #fff;
+
+  /* ✅ Needed for pseudo layers */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
+/* ✅ Background IMAGE يبدأ بعد ارتفاع الهيدر (عشان الهيدر يظل أبيض) */
+.lp-aboutS1::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--lp-header-h, 0px);
+  bottom: 0;
+
+  background-image: url("../../../images/pages/about/section4/1.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ✅ Overlay color يبدأ بعد الهيدر + شفافية أقل (الصورة أوضح) */
+.lp-aboutS1::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--lp-header-h, 0px);
+  bottom: 0;
+
+  background: var(--lp-about-title, #111);
+  opacity: 0.70;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ✅ Ensure content is above image + overlay */
 .lp-aboutS1__inner{
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
 
-  padding-top: calc(var(--lp-header-h) + clamp(18px, 3vw, 34px));
-  padding-bottom: clamp(52px, 7vw, 110px);
+  /* ✅ نفس البادنج فوق وتحت */
+  --lp-aboutS1-pad: clamp(52px, 7vw, 110px);
+
+  padding-top: calc(var(--lp-header-h) + var(--lp-aboutS1-pad));
+  padding-bottom: var(--lp-aboutS1-pad);
+
+  position: relative;
+  z-index: 2;
 }
 
 .lp-aboutS1__head{ margin-bottom: 12px; }
@@ -21,19 +69,27 @@ html[dir="ltr"] .lp-aboutS1__head{ text-align: left; }
 
 .lp-aboutS1__title{ margin: 0; }
 
+/* ✅ Title + accent inside it become white */
+.lp-aboutS1 .lp-sectors__title,
+.lp-aboutS1 .lp-sectors__titleAccent{
+  color: #fff;
+}
+
+/* ✅ Subtitle becomes white */
 .lp-aboutS1__subTitle{
   margin-top: 10px;
-  color: var(--lp-accent);
+  color: #fff;
   font-weight: 700;
   font-size: clamp(18px, 2.1vw, 26px);
   line-height: 1.55;
 }
 
+/* ✅ Paragraph becomes white */
 .lp-aboutS1__text{
-  margin: 18px 0 0; /* كان 28px لأن بعدها كارد — الآن شلناه */
+  margin: 18px 0 0;
   width: 100%;
   max-width: none;
-  color: #111;
+  color: #fff;
   font-size: var(--lp-subtitle-size);
   line-height: 2;
 
