@@ -1,54 +1,161 @@
 /* assets/css/pages/about/section-4.css */
-/* ABOUT - Section 4 (Chairman Message + Image) - ISO-like media card */
+/* ABOUT - Section 4 (Leadership cards) - like sectors but taller + overlay panels */
 
-.lp-chairman{
-  background: #fff;
+.lp-aboutLeaders{
+  background: #ffffff;
   color: #111;
 }
 
-.lp-chairman__inner{
+.lp-aboutLeaders__inner{
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-  padding-block: clamp(54px, 7vw, 110px);
+
+  /* نفس بادنج قسم القطاعات */
+  padding-top: clamp(72px, 7.2vw, 120px);
+  padding-bottom: clamp(46px, 6vw, 92px);
+
+  position: relative; /* مهم للـ overlay */
 }
 
-.lp-chairman__grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(18px, 3.5vw, 60px);
-  align-items: stretch; /* عشان ارتفاع الصورة يساوي ارتفاع النص */
+/* ✅ Stage holds cards + overlay */
+.lp-aboutLeaders__stage{
+  position: relative;
 }
 
-/* RTL: نخلي الصورة يمين والنص يسار */
-.lp-chairman__grid{
-  grid-template-areas: "content media";
+/* نفس track حق القطاعات لكن بدون سلايدر (2 كارد جنب بعض) */
+.lp-aboutLeaders__grid{
+  --per-view: 2;
+  --gap: 14px;
+
+  /* ✅ ارتفاع أكبر */
+  --card-h: clamp(240px, 24vw, 350px);
+
+  display: flex;
+  gap: var(--gap);
+  padding: 10px 2px; /* نفس track padding */
+
+  overflow: visible;
 }
 
-html[dir="rtl"] .lp-chairman__grid{
-  grid-template-areas: "media content";
+/* نفس كروت القطاعات تمامًا */
+.lp-aboutLeaders__grid .lp-sectorCard{
+  height: var(--card-h);
+  flex: 0 0 calc((100% - (var(--gap) * (var(--per-view) - 1))) / var(--per-view));
 }
 
-.lp-chairman__media{ grid-area: media; }
-.lp-chairman__content{ grid-area: content; }
-
-.lp-chairman__head{
-  margin-bottom: 12px;
+/* Responsive */
+@media (max-width: 980px){
+  .lp-aboutLeaders__grid{
+    --card-h: clamp(250px, 30vw, 390px);
+  }
 }
 
-html[dir="rtl"] .lp-chairman__head{ text-align: right; }
-html[dir="ltr"] .lp-chairman__head{ text-align: left; }
+@media (max-width: 900px){
+  .lp-aboutLeaders__grid{
+    --per-view: 1;
+    flex-direction: column;
+    --card-h: clamp(260px, 60vw, 420px);
+  }
 
-.lp-chairman__title{
+  .lp-aboutLeaders__grid .lp-sectorCard{
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 520px){
+  .lp-aboutLeaders__grid{
+    --card-h: 280px;
+  }
+}
+
+/* =========================
+   Overlay Panel (opens on click)
+   ========================= */
+
+.lp-leaderPanel{
+  /* يغطي على الكاردين داخل نفس padding/track */
+  position: absolute;
+  inset: 10px 2px; /* نفس padding حق grid/track */
+  border-radius: 22px;
+
+  background: var(--lp-about-title);
+  color: #fff;
+
+  z-index: 5;
+  overflow: auto;
+
+  padding: clamp(18px, 2.3vw, 32px);
+  padding-top: calc(clamp(18px, 2.3vw, 32px) + 44px); /* مساحة لزر الإغلاق */
+
+  /* إغلاق افتراضي */
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+
+  transition: opacity .25s ease, transform .25s ease;
+  box-shadow: 0 24px 60px rgba(0,0,0,.22);
+
+  /* حتى لو الصفحة تتحرك مع الهاش */
+  scroll-margin-top: calc(var(--lp-header-h, 0px) + 14px);
+}
+
+/* فتح عند target */
+.lp-leaderPanel:target{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* تحسين حركة “فتح تدريجي” لو المتصفح يدعم clip-path */
+@supports (clip-path: inset(0 0 0 0 round 22px)){
+  .lp-leaderPanel{
+    clip-path: inset(0 0 100% 0 round 22px);
+    transition: clip-path .34s ease, opacity .2s ease, transform .25s ease;
+  }
+  .lp-leaderPanel:target{
+    clip-path: inset(0 0 0 0 round 22px);
+  }
+}
+
+/* زر الإغلاق (نفس زر السهم) */
+.lp-leaderPanel__close{
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 14px;
+  z-index: 2;
+  text-decoration: none;
+}
+
+/* نخلي زر السهم مناسب على الخلفية الداكنة */
+.lp-leaderPanel .lp-iconBtn__stroke{
+  border-color: rgba(255,255,255,.9);
+}
+
+.lp-leaderPanel .lp-iconBtn__layer{
+  background: #ffffff;
+}
+
+.lp-leaderPanel .lp-iconBtn__layer i{
+  color: var(--lp-about-title);
+}
+
+/* عنوان داخل اللوحة */
+.lp-leaderPanel__title{
+  margin: 0 0 14px;
+  font-weight: 900;
+  line-height: 1.2;
+  font-size: clamp(18px, 2vw, 26px);
+  color: #fff;
+  text-align: center;
+}
+
+/* نص اللوحة */
+.lp-leaderPanel__text{
   margin: 0;
-}
-
-/* النص: نفس أسلوب الترتيب لكن أصغر شوي عشان ما ينفش */
-.lp-chairman__text{
-  margin: 18px 0 0;
   width: 100%;
   max-width: none;
-  color: #111;
+  color: rgba(255,255,255,.95);
   font-size: clamp(15px, 1.35vw, 18px);
   line-height: 2;
 
@@ -59,94 +166,30 @@ html[dir="ltr"] .lp-chairman__head{ text-align: left; }
   text-align-last: start;
 }
 
-html[dir="rtl"] .lp-chairman__text{
+html[dir="rtl"] .lp-leaderPanel__text{
   text-align-last: right;
 }
 
-/* Signature: سطر واحد + مقاس أصغر + الاسم أسود */
-.lp-chairman__sign{
+/* توقيع */
+.lp-leaderPanel__sign{
   margin-top: 18px;
   display: flex;
   align-items: baseline;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.lp-chairman__signRole{
+.lp-leaderPanel__signRole{
   color: var(--lp-accent);
-  font-weight: 700;
+  font-weight: 800;
   font-size: clamp(15px, 1.35vw, 18px);
   line-height: 1.6;
 }
 
-.lp-chairman__signName{
-  color: #111;
-  font-weight: 700;
+.lp-leaderPanel__signName{
+  color: #fff;
+  font-weight: 800;
   font-size: clamp(15px, 1.35vw, 18px);
   line-height: 1.6;
-}
-
-/* =========================
-   Media: ISO-like stroke/layer
-   ========================= */
-
-.lp-chairmanMedia{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding-bottom: 8px;
-}
-
-.lp-chairmanMedia__stroke{
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(0,0,0,.12);
-  border-color: var(--lp-stroke);
-  border-radius: 22px;
-  z-index: 1;
-  opacity: .7;
-}
-
-.lp-chairmanMedia__layer{
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  border-radius: 22px;
-  overflow: hidden;
-  background: #fff;
-  transform: translate(-8px, 8px);
-  transition: transform .22s ease;
-}
-
-.lp-chairmanMedia:hover .lp-chairmanMedia__layer{
-  transform: translate(0, 0);
-}
-
-.lp-chairmanMedia__img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Responsive */
-@media (max-width: 900px){
-  .lp-chairman__grid{
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "media"
-      "content";
-  }
-
-  .lp-chairmanMedia{
-    height: auto;
-  }
-
-  .lp-chairmanMedia__layer{
-    height: clamp(260px, 42vw, 420px);
-  }
-
-  .lp-chairmanMedia__img{
-    height: 100%;
-  }
 }

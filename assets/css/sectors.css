@@ -1,3 +1,5 @@
+/* assets/css/sectors.css */
+
 .lp-sectors{
   background: #ffffff;
   color: #111;
@@ -109,7 +111,9 @@
   position: absolute;
   bottom: 10px;
   inset-inline-end: 14px;
-  z-index: 2;
+
+  /* ✅ كان 2 ويساوي اسم الكارد، فكان الاسم يغطي الزر */
+  z-index: 3;
 }
 
 .lp-sectors__dots{

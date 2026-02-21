@@ -1,45 +1,110 @@
 <!-- pages/about/partials/section-4.html -->
-<!-- ABOUT PAGE - Section 4 (Chairman Message + Image) -->
+<!-- ABOUT PAGE - Leadership (2 cards like sectors) + full-width overlay text panels -->
 
-<section class="lp-section lp-chairman" id="chairman" aria-label="كلمة رئيس مجلس الإدارة">
-  <div class="lp-chairman__inner">
+<section class="lp-section lp-aboutLeaders" id="leadership" aria-label="قيادة الشركة">
+  <div class="lp-aboutLeaders__inner">
 
-    <div class="lp-chairman__grid">
+    <!-- Title (same as sectors style) -->
+    <header class="lp-sectors__head">
+      <h2 class="lp-sectors__title">
+        قيادة <span class="lp-sectors__titleAccent">الشركة</span>
+      </h2>
+    </header>
 
-      <!-- Media (ISO-like stroke/layer) -->
-      <div class="lp-chairman__media" aria-label="صورة رئيس مجلس الإدارة">
-        <div class="lp-chairmanMedia" role="group" aria-label="صورة رئيس مجلس الإدارة">
-          <span class="lp-chairmanMedia__stroke" aria-hidden="true"></span>
+    <!-- Stage: cards + overlay panels -->
+    <div class="lp-aboutLeaders__stage" aria-label="بطاقات القيادة والتفاصيل">
 
-          <div class="lp-chairmanMedia__layer">
-            <img
-              class="lp-chairmanMedia__img"
-              src="../../assets/images/pages/about/section3/Chairman_of_the_Board.jpeg"
-              alt="صورة رئيس مجلس الإدارة" />
-          </div>
-        </div>
+      <!-- Cards row -->
+      <div class="lp-aboutLeaders__grid" role="list" aria-label="بطاقات القيادة">
+
+        <!-- Chairman card -->
+        <article class="lp-sectorCard lp-aboutLeaders__card" role="listitem" aria-label="كلمة رئيس مجلس الإدارة">
+          <img
+            src="../../assets/images/pages/about/section3/Chairman_of_the_Board.jpeg"
+            alt="صورة رئيس مجلس الإدارة">
+
+          <!-- open panel -->
+          <a class="lp-iconBtn lp-sectorCard__btn"
+             href="#leader-chairman"
+             aria-label="عرض كلمة رئيس مجلس الإدارة">
+            <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+            <span class="lp-iconBtn__layer" aria-hidden="true">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </span>
+          </a>
+
+          <div class="lp-sectorCard__name">كلمة رئيس مجلس الإدارة</div>
+        </article>
+
+        <!-- General Manager card -->
+        <article class="lp-sectorCard lp-aboutLeaders__card" role="listitem" aria-label="كلمة المدير العام">
+          <img
+            src="../../assets/images/pages/about/section3/General_Manager.jpeg"
+            alt="صورة المدير العام">
+
+          <!-- open panel -->
+          <a class="lp-iconBtn lp-sectorCard__btn"
+             href="#leader-gm"
+             aria-label="عرض كلمة المدير العام">
+            <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+            <span class="lp-iconBtn__layer" aria-hidden="true">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </span>
+          </a>
+
+          <div class="lp-sectorCard__name">كلمة المدير العام</div>
+        </article>
+
       </div>
 
-      <!-- Content -->
-      <div class="lp-chairman__content">
-        <header class="lp-chairman__head">
-          <h2 class="lp-sectors__title lp-chairman__title">
-            كلمة <span class="lp-sectors__titleAccent">رئيس مجلس الإدارة</span>
-          </h2>
-        </header>
+      <!-- Overlay Panel: Chairman -->
+      <article class="lp-leaderPanel" id="leader-chairman" aria-label="تفاصيل كلمة رئيس مجلس الإدارة">
+        <!-- close (same arrow) -->
+        <a class="lp-iconBtn lp-leaderPanel__close"
+           href="#leadership"
+           aria-label="إغلاق تفاصيل كلمة رئيس مجلس الإدارة">
+          <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+          <span class="lp-iconBtn__layer" aria-hidden="true">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </span>
+        </a>
 
-        <p class="lp-chairman__text">
+        <h3 class="lp-leaderPanel__title">كلمة رئيس مجلس الإدارة</h3>
+
+        <p class="lp-leaderPanel__text">
           أسست شركة الشرق للتجارة والتوكيلات في أوائل التسعينيات في طليعة الشركات حيث نشأت في خضم التغيرات العالمية واستطاعت المحافظة على مكانتها في الريادة ومواجهة الآثار الاقتصادية العميقة وتحديات السوق برؤية واضحة وشجاعة للمساهمة في دعم الاقتصاد الوطني وتلبية جزء أساسي من احتياجات المجتمع. إن النجاح الذي حققته الشركة جاء من خلال الالتزام بالمعايير الدولية ذات العلاقة والمبادئ والأخلاق المهنية واتباع الطرق التي يمكن من خلالها الارتقاء بالخدمات التي تقدمها الشركة لأعلى المستويات وتقديم أصناف وخدمات عالية الجودة من أعلى مستوى حيث حصلت الشركة على شهادة الجودة العالمية بالإضافة الى التوسع والتنويع بقطاعات الأعمال والخدمات لتشمل نطاقاً كبيراً من القطاعات الهامة الأساسية وتلبي احتياجات العملاء والسوق المحلي. ولإيماننا في شركة الشرق للتجارة والتوكيلات بأهمية إرضاء العملاء وان أول خطوة لذلك هي إعداد الكفاءات، فقد التزمنا بمنهجية خاصة تشمل التحفيز والتدريب المستمر وتطوير العمل الوظيفي للوصول إلى مرحلة التميز في توفير خدمات ومنتجات ذات جودة عالية وميزة تنافسية، كما أن الشركة ملتزمة بالعمل بأهداف واضحة يتم متابعتها من خلال التقييم المستمر لمدى التقدم والتحقيق بالنسبة لهذه الأهداف. وتمتلك شركة الشرق للتجارة والتوكيلات شبكة توزيع واسعة وفعالة لضمان سهولة وصول الخدمات والمنتجات للعملاء حيث تقوم بتغطية معظم محافظات الجمهورية حيث تتواجد الشركة في (10) فروع في المدن الرئيسية بالجمهورية اليمنية لتسهيل عملية البيع والتوزيع.
         </p>
 
-        <!-- Signature (same line) -->
-        <div class="lp-chairman__sign" aria-label="توقيع">
-          <span class="lp-chairman__signRole">رئيس مجلس الإدارة</span>
-          <span class="lp-chairman__signName">محمد عبدالقوي عثمان</span>
+        <div class="lp-leaderPanel__sign" aria-label="توقيع">
+          <span class="lp-leaderPanel__signRole">رئيس مجلس الإدارة</span>
+          <span class="lp-leaderPanel__signName">محمد عبدالقوي عثمان</span>
         </div>
-      </div>
+      </article>
+
+      <!-- Overlay Panel: GM -->
+      <article class="lp-leaderPanel" id="leader-gm" aria-label="تفاصيل كلمة المدير العام">
+        <!-- close (same arrow) -->
+        <a class="lp-iconBtn lp-leaderPanel__close"
+           href="#leadership"
+           aria-label="إغلاق تفاصيل كلمة المدير العام">
+          <span class="lp-iconBtn__stroke" aria-hidden="true"></span>
+          <span class="lp-iconBtn__layer" aria-hidden="true">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </span>
+        </a>
+
+        <h3 class="lp-leaderPanel__title">كلمة المدير العام</h3>
+
+        <p class="lp-leaderPanel__text">
+          بدات مجموعة الشرق للتجارة والتوكيلات نشاطها في مجال استيراد الادوية والمستلزمات الطبية والأجهزة منتصف عام 1991م في وقت كانت فية اليمن تستورد معظم أحتياجاتها الطبية من الخارج وهناك القليل من المصانع المحلية ولأصناف محدده فقط لذلك راينا ان ندعم هذا القطاع الخاص والمهم بتوفير اهم احتياجات البلد وبالجودة العالية والمصادر المضمونة مع التطلع لتاسيس مشروع الانتاج المحلي والتصنيع و التطوير نحن لنا مبادئنا وأهدافنا وقيمنا خلال التأسيس والسير في هذا المجال والتي تتمثل في رضا العملاء وتقديم المنتجات بافضل جودة تلبي التطلعات الحالية والمستقبلية وحسب المواصفات العالمية والتطور المستمر سواء على مستوى أداء الموظفين وخدمة العملاء أو توفير كل ماهو جديد ونافع ويخدم المرضى والمجتمع وذلك كان حرصنا دائماً على تمثيل كبرى الشركات العالمية في المجال الطبي والمستلزمات وبعد ذلك في مجال غذاء وحليب الأطفال وفي ظل الظروف المتقلبة في اليمن من الناحية الامنية والاقتصادية واجهنا تحديات كبيره جداً كما واجهها المجتمع بشكل عام وحاولنا بكل جهد تجاوز هذه التحديات العظيمة والاستمرار في أداء واجبنا المهني والاخلاقي بكل قوة وبهذا استطعنا الاستمرار بتوفير الأمن الدوائي لمنتجاتنا وكذلك توفير احتياجات الاطفال من أفضل المصادر وكبرى الشركات العالمية وكذلك إضافة أنشطة قطاعات جديدة للشركة في مجالات متعددة مثل تقنية الاتصالات وزيوت المحركات ومستلزمات السيارات ونحن بذلك دوماً نتطلع لتحقيق أهدافنا ورؤيتنا لتقديم ما هو افضل والتطوير المستمر لما يخدم مصلحة واحتياجات المواطن .
+        </p>
+
+        <div class="lp-leaderPanel__sign" aria-label="توقيع">
+          <span class="lp-leaderPanel__signRole">المدير العام</span>
+          <span class="lp-leaderPanel__signName">عادل عبدالقوي عثمان</span>
+        </div>
+      </article>
 
     </div>
-
   </div>
 </section>
