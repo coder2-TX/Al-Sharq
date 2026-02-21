@@ -1,5 +1,5 @@
 /* assets/css/pages/about/section-3.css */
-/* ABOUT - Section 3 (Vision / Message + Values) - NO cards + divider + centered top text */
+/* ABOUT - Section 3 (Vision / Message + Values) - FULL cards (Values = one card) + equal height top cards */
 
 .lp-vmv{
   background: #ffffff;
@@ -18,7 +18,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(18px, 3.5vw, 60px);
-  align-items: start;
+  align-items: stretch; /* ✅ يخلي عمودين نفس الارتفاع */
   position: relative;
 }
 
@@ -38,11 +38,45 @@
   }
 }
 
-/* Each block: no card */
-.lp-vmv__item{
-  text-align: center;
+/* =========================
+   ✅ Card (white) + shadow uses --lp-about-title
+   ========================= */
+.lp-vmv__card{
+  background: #fff;
+  border-radius: 22px;
+
+  /* fallback */
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 18px 42px rgba(0,0,0,.10);
 }
 
+/* Use about-title color in shadow/border when supported */
+@supports (color: color-mix(in srgb, #000 10%, transparent)){
+  .lp-vmv__card{
+    border-color: color-mix(in srgb, var(--lp-about-title) 14%, transparent);
+    box-shadow:
+      0 18px 42px color-mix(in srgb, var(--lp-about-title) 18%, transparent),
+      0 2px 0 rgba(0,0,0,.02);
+  }
+}
+
+/* Top cards (Vision/Message) */
+.lp-vmv__card--top{
+  padding: clamp(18px, 2.2vw, 28px) clamp(18px, 2.4vw, 30px);
+  text-align: center;
+
+  /* ✅ يخلي الكارد يملأ ارتفاع الخلية في grid */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ يخلي الفقرة "تتمدد" لو الكارد الثاني أطول، وبالتالي الفراغ يكون تحت */
+.lp-vmv__card--top .lp-vmv__text{
+  flex: 1 1 auto;
+}
+
+/* Icons */
 .lp-vmv__icon{
   width: clamp(76px, 7.6vw, 112px);
   height: auto;
@@ -74,9 +108,15 @@
   text-align: center;
 }
 
-/* Values */
+/* =========================
+   Values (ONE full card)
+   ========================= */
 .lp-vmv__values{
   margin-top: clamp(28px, 4vw, 70px);
+}
+
+.lp-vmv__valuesCard{
+  padding: clamp(18px, 2.2vw, 28px) clamp(18px, 2.4vw, 30px);
 }
 
 .lp-vmv__valuesHead{
@@ -91,20 +131,34 @@
   margin-top: 12px;
 }
 
+/* Values list inside the card */
 .lp-vmv__valuesBody{
   margin-top: 18px;
   display: grid;
-  gap: 16px; /* بدون خطوط، فقط مسافات */
+  gap: 0; /* ✅ لأننا بنعمل فواصل */
 }
 
-/* Value item */
+/* Value row (not a card anymore) */
 .lp-vmv__value{
   display: grid;
   grid-template-columns: 44px 1fr;
   gap: 12px;
   align-items: start;
+  padding-block: 14px;
 }
 
+/* divider between rows */
+.lp-vmv__value + .lp-vmv__value{
+  border-top: 1px solid rgba(0,0,0,.08); /* fallback */
+}
+
+@supports (color: color-mix(in srgb, #000 10%, transparent)){
+  .lp-vmv__value + .lp-vmv__value{
+    border-top-color: color-mix(in srgb, var(--lp-about-title) 14%, transparent);
+  }
+}
+
+/* Number badge */
 .lp-vmv__valueNo{
   width: 36px;
   height: 36px;
@@ -112,16 +166,13 @@
   display: grid;
   place-items: center;
 
-  /* خلفية شفافة بلون الـ accent */
   background: rgba(46,49,145,.10); /* fallback */
   background: color-mix(in srgb, var(--lp-accent) 12%, transparent);
 
-  /* لون الرقم */
   color: var(--lp-accent);
   font-weight: 700;
   line-height: 1;
 
-  /* تأكيد عرض الأرقام إنجليزي داخل RTL */
   direction: ltr;
   unicode-bidi: isolate;
   font-variant-numeric: lining-nums;
@@ -135,7 +186,7 @@
   line-height: 1.35;
 }
 
-/* Values text: keep the "مرتّب/justify" style like section-1 */
+/* Values text: keep justify like section-1 */
 .lp-vmv__valueText{
   margin: 0;
   width: 100%;
@@ -163,5 +214,10 @@ html[dir="rtl"] .lp-vmv__valueText{
 
   .lp-vmv__top::before{
     content: none;
+  }
+
+  /* على الموبايل طبيعي كل كارد لحاله */
+  .lp-vmv__card--top{
+    height: auto;
   }
 }
