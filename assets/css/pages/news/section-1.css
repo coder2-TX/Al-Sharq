@@ -1,0 +1,188 @@
+.lp-news{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-news__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-top: clamp(72px, 7.2vw, 120px);
+  padding-bottom: clamp(46px, 6vw, 92px);
+}
+
+.lp-news__head{
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* Grid */
+.lp-news__grid{
+  --col-gap: 14px;
+  --row-gap: clamp(26px, 3vw, 44px);
+  --card-h: clamp(170px, 18vw, 245px);
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--col-gap);
+  row-gap: var(--row-gap);
+  margin-top: 14px;
+}
+
+/* Card */
+.lp-newsCard{
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image area */
+.lp-newsCard__media{
+  height: var(--card-h);
+  border-radius: 22px;
+  overflow: hidden;
+  display: block;
+  background: rgba(0,0,0,.06);
+}
+
+.lp-newsCard__img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+
+  transform: scale(1);
+  transition: transform .28s ease;
+  will-change: transform;
+}
+
+/* Meta (date row) */
+.lp-newsCard__meta{
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--lp-about-title);
+  font-size: var(--lp-subtitle-size);
+  line-height: 1.65;
+
+  font-weight: 400; /* التاريخ بدون Bold */
+}
+
+.lp-newsCard__dateIcon{
+  font-size: 14px;
+  line-height: 1;
+  color: var(--lp-about-title);
+  opacity: .95;
+}
+
+.lp-newsCard__date{
+  color: var(--lp-about-title);
+  opacity: .95;
+}
+
+/* Title (news text) */
+.lp-newsCard__title{
+  margin-top: 6px;
+  display: block;
+
+  color: #111;
+  font-size: var(--lp-subtitle-size);
+  line-height: 1.75;
+  font-weight: 800;
+
+  text-decoration: none;
+  transition: color .22s ease;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hover / Focus: scale image + title turns accent */
+.lp-newsCard:hover .lp-newsCard__img,
+.lp-newsCard:focus-within .lp-newsCard__img{
+  transform: scale(1.045);
+}
+
+.lp-newsCard:hover .lp-newsCard__title,
+.lp-newsCard:focus-within .lp-newsCard__title{
+  color: var(--lp-accent);
+}
+
+/* Pagination */
+.lp-pagination{
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.lp-pageBtn{
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 900;
+  font-size: 14px;
+  text-decoration: none;
+
+  transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.lp-pageBtn--wide{
+  padding-inline: 16px;
+}
+
+.lp-pageBtn--num{
+  width: 42px;
+  padding-inline: 0;
+}
+
+.lp-pageBtn:hover{
+  transform: translateY(-1px);
+}
+
+/* ✅ الزر المفعل */
+.lp-pageBtn[aria-current="page"]{
+  background: var(--lp-about-title);
+  border-color: var(--lp-about-title);
+  color: #fff;
+  transform: none;
+}
+
+/* ✅ Hover/Focus: يصير نفس لون المفعل (أزرق) */
+.lp-pageBtn:not([aria-disabled="true"]):not([aria-current="page"]):hover,
+.lp-pageBtn:not([aria-disabled="true"]):not([aria-current="page"]):focus-visible{
+  background: var(--lp-about-title);
+  border-color: var(--lp-about-title);
+  color: #fff;
+  transform: none;
+}
+
+.lp-pageBtn[aria-disabled="true"]{
+  opacity: .45;
+  pointer-events: none;
+}
+
+/* Responsive like sectors */
+@media (max-width: 980px){
+  .lp-news__grid{
+    grid-template-columns: repeat(2, 1fr);
+    --card-h: clamp(175px, 22vw, 260px);
+  }
+}
+
+@media (max-width: 520px){
+  .lp-news__grid{
+    grid-template-columns: 1fr;
+    --card-h: 205px;
+  }
+}
