@@ -18,8 +18,20 @@
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-  padding-block: clamp(54px, 7vw, 110px);
+
+  /* ✅ نفس القديم تماماً، بس عرفناه بمتغير عشان نضاعف السفلي بالموبايل فقط */
+  --s6-pad: clamp(54px, 7vw, 110px);
+  padding-block: var(--s6-pad);
 }
+
+/* ✅ Mobile title (hidden by default) */
+.lp-aboutS6__mobileHead{
+  display: none;
+  margin-bottom: 12px;
+}
+
+html[dir="rtl"] .lp-aboutS6__mobileHead{ text-align: right; }
+html[dir="ltr"] .lp-aboutS6__mobileHead{ text-align: left; }
 
 .lp-aboutS6__grid{
   display: grid;
@@ -97,12 +109,10 @@ html[dir="rtl"] .lp-aboutS6__text{
   border-radius: 22px;
   z-index: 1;
 
-  /* يخلي لون --lp-stroke ثابت + يظهر حتى على الأبيض */
   opacity: .9;
   box-shadow: 0 0 0 1px rgba(0,0,0,.10);
   pointer-events: none;
 }
-
 
 .lp-aboutS6Media__layer{
   position: relative;
@@ -130,32 +140,78 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
   display: block;
 }
 
-@media (max-width: 900px){
-  .lp-aboutS6::before{
-    background: linear-gradient(to bottom, var(--lp-about-title) 0 58%, #fff 58% 100%);
+/* ✅✅ Breakpoint مضمون لحل تداخل 911 + ترتيب الموبايل */
+@media (max-width: 920px){
+
+  /* ✅ ضاعف فقط padding السفلي للسكشن (بدون لمس العلوي) */
+  .lp-aboutS6__inner{
+    padding-top: var(--s6-pad);
+    padding-bottom: calc(var(--s6-pad) + var(--s6-pad)); /* ✅ ضعف */
   }
 
+  /* ✅ بالموبايل/آيباد: الخلفية العامة أبيض (بدون نسب تتسبب بتداخل) */
+  .lp-aboutS6::before{
+    background: #fff;
+  }
+
+  /* ✅ عنوان ملوّن مستقل أعلى السكشن */
+  .lp-aboutS6__mobileHead{
+    display: block;
+    background: var(--lp-about-title);
+    border-radius: 22px;
+    padding: clamp(18px, 4.2vw, 26px);
+    margin-bottom: clamp(14px, 3.5vw, 22px);
+  }
+
+  /* ✅ نخفي عنوان الديسكتوب داخل الجريد */
+  .lp-aboutS6__deskHead{
+    display: none;
+  }
+
+  /* ✅ عمود واحد: أولاً النص (content) ثم الصورة (media) */
   .lp-aboutS6__grid{
     grid-template-columns: 1fr;
     grid-template-areas:
-      "media"
-      "content";
+      "content"
+      "media";
   }
 
   .lp-aboutS6__content{
     justify-content: flex-start;
   }
 
+  /* ✅ لأن العنوان اختفى داخل content: نخلي النص يبدأ بشكل طبيعي */
+  .lp-aboutS6__text{
+    margin-top: 12px;
+  }
+
+  /* ✅ مسافة بين النص والصورة */
+  .lp-aboutS6__media{
+    margin-top: clamp(14px, 3.5vw, 22px);
+    display: block !important; /* يمنع أي CSS آخر يخفيها */
+  }
+
+  /* ✅✅ حل مضمون لعدم اختفاء الصورة:
+     نعطي parent ارتفاع ثابت عبر aspect-ratio */
   .lp-aboutS6Media{
     height: auto;
+    padding-bottom: 0;      /* يمنع فراغ تحت */
+    aspect-ratio: 16 / 9;   /* يضمن ارتفاع ثابت */
   }
 
   .lp-aboutS6Media__layer{
-    height: clamp(220px, 42vw, 360px);
-    transform: translate(0, 0);
+    height: 100% !important;     /* الآن 100% له معنى */
+    transform: translate(0, 0) !important;
   }
 
   html[dir="rtl"] .lp-aboutS6Media__layer{
-    transform: translate(0, 0);
+    transform: translate(0, 0) !important;
+  }
+}
+
+/* ✅ موبايل صغير جداً: نخلي الصورة أطول شوي */
+@media (max-width: 420px){
+  .lp-aboutS6Media{
+    aspect-ratio: 4 / 3;
   }
 }
