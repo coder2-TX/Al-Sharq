@@ -33,16 +33,19 @@
   z-index: 2602;
 }
 
-/* ✅ فقط الصفحات التي تُظهر اللوجو: شريط أبيض بارتفاع مناسب (بدون ظل افتراضيًا) */
-body[data-show-brand="true"] .lp-header{
+/* ✅ الهيدر الأبيض يعمل:
+   - إذا الصفحة مستدعية اللوجو (data-show-brand="true")
+   - أو إذا صار سكرول (lp-header-scrolled) حتى لو الصفحة مش مستدعية */
+body[data-show-brand="true"] .lp-header,
+body.lp-header-scrolled .lp-header{
   height: var(--lp-header-white-h);
   background: #fff;
   box-shadow: none;
-  transition: box-shadow .18s ease;
+  transition: box-shadow .18s ease, background .18s ease, height .18s ease;
 }
 
-/* ✅ الظل يظهر فقط عند السـكرول */
-body[data-show-brand="true"].lp-header-scrolled .lp-header{
+/* ✅ الظل يظهر فقط عند السـكرول (لكل الصفحات) */
+body.lp-header-scrolled .lp-header{
   box-shadow: 0 10px 30px rgba(0,0,0,.06);
 }
 

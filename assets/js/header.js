@@ -83,44 +83,62 @@
       (hasAttr(document.body, "data-brand-src") ? getBodyData("brandSrc") : undefined) ||
       "";
 
-    if (brand) {
-      if (showBrand) {
-        brand.hidden = false;
-        brand.setAttribute("href", brandHref);
+    // ✅ Prepare brand once (even pages that don't show it at top will need it on scroll)
+    let brandPrepared = false;
 
-        if (brandImg) {
-          const candidates = [
-            providedBrandSrc,
-            "/assets/images/header/Brand_Mark.png",
-            "../../assets/images/header/Brand_Mark.png",
-            "../assets/images/header/Brand_Mark.png",
-            "assets/images/header/Brand_Mark.png",
-          ].filter(Boolean);
+    const prepareBrand = () => {
+      if (!brand || brandPrepared) return;
+      brandPrepared = true;
 
-          const tryList = [...new Set(candidates.map(resolveUrl))];
+      brand.setAttribute("href", brandHref);
 
-          let i = 0;
-          const applyNext = () => {
-            if (i >= tryList.length) return;
-            brandImg.src = tryList[i++];
-          };
+      if (brandImg) {
+        const candidates = [
+          providedBrandSrc,
+          "/assets/images/header/Brand_Mark.png",
+          "../../assets/images/header/Brand_Mark.png",
+          "../assets/images/header/Brand_Mark.png",
+          "assets/images/header/Brand_Mark.png",
+        ].filter(Boolean);
 
-          brandImg.onerror = () => applyNext();
-          applyNext();
-        }
-      } else {
-        brand.hidden = true;
+        const tryList = [...new Set(candidates.map(resolveUrl))];
+
+        let i = 0;
+        const applyNext = () => {
+          if (i >= tryList.length) return;
+          brandImg.src = tryList[i++];
+        };
+
+        brandImg.onerror = () => applyNext();
+        applyNext();
       }
-    }
-
-    // ✅ Header shadow only on scroll
-    const headerEl = document.getElementById("lpHeader");
-    const updateHeaderShadow = () => {
-      const y = window.scrollY || window.pageYOffset || 0;
-      document.body.classList.toggle("lp-header-scrolled", y > 6);
     };
-    updateHeaderShadow();
-    window.addEventListener("scroll", updateHeaderShadow, { passive: true });
+
+    // ✅ Header shadow + Brand visibility on scroll
+    const headerEl = document.getElementById("lpHeader");
+
+    const updateHeaderOnScroll = () => {
+      const y = window.scrollY || window.pageYOffset || 0;
+      const scrolled = y > 6;
+
+      // class controls shadow + white header in CSS (now for all pages)
+      document.body.classList.toggle("lp-header-scrolled", scrolled);
+
+      // ✅ brand is visible if (page wants it) OR (scrolled)
+      const shouldShowBrand = !!showBrand || scrolled;
+
+      if (brand) {
+        if (shouldShowBrand) {
+          prepareBrand();
+          brand.hidden = false;
+        } else {
+          brand.hidden = true;
+        }
+      }
+    };
+
+    updateHeaderOnScroll();
+    window.addEventListener("scroll", updateHeaderOnScroll, { passive: true });
 
     const focusableSel = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
     const getFocusable = () => Array.from(panel.querySelectorAll(focusableSel));
