@@ -1,32 +1,60 @@
 /* assets/css/header.css */
 
+/* ✅ Controls */
+:root{
+  /* حجم لوجو الهيدر (Brand Mark) */
+  --lp-brand-size: clamp(74px, 6.6vw, 118px);
+
+  /* ✅ صفر تمامًا فوق/تحت */
+  --lp-brand-pad-y: 0px;
+
+  /* يمين/يسار (خليه كما هو) */
+  --lp-brand-pad-x: clamp(1px, 0.35vw, 4px);
+
+  /* ✅ ارتفاع الهيدر الأبيض = ارتفاع اللوجو فقط */
+  --lp-header-white-h: var(--lp-brand-size);
+
+  /* ✅ إزاحة اللوجو للداخل بنفس نظام الصفحة (container + page pad) */
+  --lp-brand-inset: max(
+    var(--lp-page-pad),
+    calc((100vw - var(--lp-container)) / 2 + var(--lp-page-pad))
+  );
+}
+
+/* الهيدر افتراضيًا شفاف وبدون ارتفاع (مثل قبل) */
 .lp-header{
-  position: absolute;
+  position: fixed;
   top: 0;
   inset-inline: 0;
 
-  /* ✅ الهيدر لم يعد يحتوي لوجو، فلا نحتاج ارتفاع يغطي الهيرو */
   height: 0;
+  background: transparent;
 
   z-index: 2602;
-  background: transparent;
 }
 
-/* ✅ Optional Brand Mark (shown only on specific pages via JS) */
+/* ✅ فقط الصفحات التي تُظهر اللوجو: شريط أبيض بارتفاع مناسب */
+body[data-show-brand="true"] .lp-header{
+  height: var(--lp-header-white-h);
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+/* ✅ Brand Mark */
 .lp-headerBrand{
   position: fixed;
-  inset-block-start: 0;
-  inset-inline-end: 0;
+  top: 0;
+  inset-inline-end: var(--lp-brand-inset);
 
-  width: calc(var(--lp-menu-size) + var(--lp-menu-offset));
-  height: calc(var(--lp-menu-size) + var(--lp-menu-offset));
+  height: var(--lp-header-white-h);
 
-  padding: var(--lp-menu-offset);
-  margin: 0;
+  /* ✅ فوق/تحت صفر، يمين/يسار خفيف */
+  padding-block: var(--lp-brand-pad-y);
+  padding-inline: var(--lp-brand-pad-x);
 
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 
   background: transparent;
   border: 0;
@@ -41,13 +69,13 @@
 }
 
 .lp-headerBrand img{
-  width: var(--lp-menu-size);
-  height: var(--lp-menu-size);
+  width: var(--lp-brand-size);
+  height: var(--lp-brand-size);
   object-fit: contain;
   display: block;
 }
 
-/* Menu Button */
+/* ✅ Menu Button: يبقى على الطرف (بدون padding من الصفحة) */
 .lp-menuBtn{
   position: fixed;
   inset-block-start: 0;
