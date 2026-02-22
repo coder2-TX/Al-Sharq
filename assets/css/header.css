@@ -1,3 +1,5 @@
+/* assets/css/header.css */
+
 .lp-header{
   position: absolute;
   top: 0;
@@ -8,6 +10,41 @@
 
   z-index: 2602;
   background: transparent;
+}
+
+/* ✅ Optional Brand Mark (shown only on specific pages via JS) */
+.lp-headerBrand{
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+
+  width: calc(var(--lp-menu-size) + var(--lp-menu-offset));
+  height: calc(var(--lp-menu-size) + var(--lp-menu-offset));
+
+  padding: var(--lp-menu-offset);
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+
+  z-index: 2601;
+}
+
+/* ✅ IMPORTANT: hidden لازم يغلب على display:flex */
+.lp-headerBrand[hidden]{
+  display: none !important;
+}
+
+.lp-headerBrand img{
+  width: var(--lp-menu-size);
+  height: var(--lp-menu-size);
+  object-fit: contain;
+  display: block;
 }
 
 /* Menu Button */

@@ -34,28 +34,28 @@
   <script src="../../assets/js/app.js" defer></script>
 </head>
 
-<body>
-  <!-- نفس الهيدر (زر القائمة + الدروار) -->
-  <div id="header-slot" data-partial="../../partials/header.html" data-after="lpInitHeader"></div>
+<body
+  data-show-brand="true"
+  data-brand-src="../../assets/images/header/Brand_Mark.png"
+  data-brand-href="../../index.html#home"
+>
+  <div
+    id="header-slot"
+    data-partial="../../partials/header.html"
+    data-after="lpInitHeader"
+    data-show-brand="true"
+    data-brand-src="/assets/images/header/Brand_Mark.png"
+    data-brand-href="../../index.html#home"
+  ></div>
 
   <main id="about-page">
-    <!-- Section 1 -->
     <div id="about-s1-slot" data-partial="partials/section-1.html"></div>
-
-    <!-- Section 2 (ISO + زر فيديو دائري) -->
     <div id="about-s2-slot" data-partial="partials/section-2.html"></div>
-
-    <!-- Section 3 (رؤيتنا / رسالتنا + قيمنا) -->
     <div id="about-s3-slot" data-partial="partials/section-3.html"></div>
-
-    <!-- Section 4 (الآن يحتوي الكاردين: كلمة رئيس مجلس الإدارة + كلمة المدير العام جنب بعض) -->
     <div id="about-s4-slot" data-partial="partials/section-4.html"></div>
-
-    <!-- Section 6 -->
     <div id="about-s6-slot" data-partial="partials/section-6.html"></div>
   </main>
 
-  <!-- Footer (نفس استدعاء الرئيسية) -->
   <div id="footer-slot" data-partial="../../partials/footer.html" data-after="lpInitHeroLines"></div>
-</body>
+</body> 
 </html>
