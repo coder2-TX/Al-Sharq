@@ -33,10 +33,16 @@
   z-index: 2602;
 }
 
-/* ✅ فقط الصفحات التي تُظهر اللوجو: شريط أبيض بارتفاع مناسب */
+/* ✅ فقط الصفحات التي تُظهر اللوجو: شريط أبيض بارتفاع مناسب (بدون ظل افتراضيًا) */
 body[data-show-brand="true"] .lp-header{
   height: var(--lp-header-white-h);
   background: #fff;
+  box-shadow: none;
+  transition: box-shadow .18s ease;
+}
+
+/* ✅ الظل يظهر فقط عند السـكرول */
+body[data-show-brand="true"].lp-header-scrolled .lp-header{
   box-shadow: 0 10px 30px rgba(0,0,0,.06);
 }
 

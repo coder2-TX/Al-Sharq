@@ -113,6 +113,15 @@
       }
     }
 
+    // ✅ Header shadow only on scroll
+    const headerEl = document.getElementById("lpHeader");
+    const updateHeaderShadow = () => {
+      const y = window.scrollY || window.pageYOffset || 0;
+      document.body.classList.toggle("lp-header-scrolled", y > 6);
+    };
+    updateHeaderShadow();
+    window.addEventListener("scroll", updateHeaderShadow, { passive: true });
+
     const focusableSel = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
     const getFocusable = () => Array.from(panel.querySelectorAll(focusableSel));
     const isOpen = () => drawer.classList.contains("is-open");
