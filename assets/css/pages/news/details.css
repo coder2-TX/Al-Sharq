@@ -1,0 +1,123 @@
+.lp-newsDetails{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-newsDetails__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-top: clamp(72px, 7.2vw, 120px);
+  padding-bottom: clamp(46px, 6vw, 92px);
+}
+
+/* Head */
+.lp-newsDetails__head{
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* نفس نظام عنوان القطاعات */
+.lp-newsDetails__kicker{
+  margin: 0;
+}
+
+/* ✅ عنوان الخبر (نفس حجم عنوان الكارد تقريبًا لكن بدون قص) */
+.lp-newsDetails__headline{
+  margin: 14px 0 10px;
+  color: #111;
+  font-size: var(--lp-subtitle-size);
+  line-height: 1.85;
+  font-weight: 800;
+
+  /* ✅ ياخذ العرض كامل داخل الكونتينر (بدون max-width إضافي) */
+  width: 100%;
+}
+
+/* Meta date */
+.lp-newsDetails__meta{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 2px;
+
+  color: var(--lp-about-title);
+  font-size: var(--lp-subtitle-size);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.lp-newsDetails__dateIcon{
+  font-size: 14px;
+  line-height: 1;
+  color: var(--lp-about-title);
+  opacity: .95;
+}
+
+.lp-newsDetails__date{
+  color: var(--lp-about-title);
+  opacity: .95;
+}
+
+/* Back */
+.lp-newsDetails__back{
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  color: #111;
+
+  font-weight: 900;
+  font-size: 13px;
+
+  transition: color .18s ease, transform .18s ease;
+}
+
+.lp-newsDetails__back:hover,
+.lp-newsDetails__back:focus-visible{
+  color: var(--lp-accent);
+  transform: translateY(-1px);
+}
+
+/* Figure / Image */
+.lp-newsDetails__figure{
+  margin: 18px 0 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(0,0,0,.04);
+}
+
+.lp-newsDetails__img{
+  display: block;
+  width: 100%;
+  height: auto;      /* ✅ بدون قص */
+  object-fit: contain;
+}
+
+/* Content text */
+.lp-newsDetails__content{
+  margin-top: 18px;
+  text-align: start;
+
+  color: #111;
+  font-size: var(--lp-subtitle-size);
+  line-height: 2.0;
+  font-weight: 400; /* ✅ غير عريض */
+}
+
+.lp-newsDetails__content p{
+  margin: 0 0 14px;
+}
+
+@media (max-width: 520px){
+  .lp-newsDetails__headline{
+    line-height: 1.95;
+  }
+
+  .lp-newsDetails__figure{
+    border-radius: 18px;
+  }
+}
