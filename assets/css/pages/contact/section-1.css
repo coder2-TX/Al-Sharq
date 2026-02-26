@@ -1,0 +1,87 @@
+body.lp-page--contact{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-page{
+  flex: 1 0 auto;
+}
+
+.lp-contactIntro{
+  background: #F7F7F7;
+  color: #111;
+  position: relative;
+  overflow: hidden;
+}
+
+/* =========================
+   ✅ Contact intro moving lines
+   نفس فكرة الفوتر
+========================= */
+.lp-contactIntro__graphics{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  color: var(--lp-about-title);
+  opacity: .35;
+}
+
+.lp-contactIntro .lp-lines{
+  position: absolute;
+  width: min(760px, calc(92vw - (var(--lp-lines-edge-pad) * 2)));
+  height: auto;
+}
+
+.lp-contactIntro .lp-lines--bottomEnd{
+  bottom: 24px;
+  inset-inline-end: var(--lp-lines-edge-pad);
+}
+
+.lp-contactIntro .lp-lines .lp-line{
+  stroke: currentColor;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  will-change: stroke-dashoffset, opacity;
+}
+
+.lp-contactIntro .lp-lines .lp-line--w10{ stroke-width: 6; }
+.lp-contactIntro .lp-lines .lp-line--w4 { stroke-width: 4; }
+.lp-contactIntro .lp-lines .lp-line--w1 { stroke-width: 1; }
+/* ========================= */
+
+.lp-contactIntro__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+
+  /* نفس الأخبار من الأعلى */
+  padding-top: clamp(72px, 7.2vw, 120px);
+
+  /* اتركيه كما أردتِ */
+  padding-bottom: clamp(92px, 12vw, 184px);
+
+  position: relative;
+  z-index: 2;
+}
+
+.lp-contactIntro__head{
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.lp-contactIntro__title{
+  margin: 0;
+}
+
+@media (max-width: 980px){
+  .lp-contactIntro .lp-lines{
+    width: min(640px, calc(96vw - (var(--lp-lines-edge-pad) * 2)));
+  }
+
+  .lp-contactIntro .lp-lines--bottomEnd{
+    bottom: 16px;
+  }
+}
