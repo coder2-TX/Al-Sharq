@@ -1,0 +1,105 @@
+/* assets/css/pages/sectors/medical/section-1.css */
+
+.lp-medicalS1{
+  /* ✅ خلي أعلى الصفحة (منطقة الهيدر) أبيض وما يتأثر */
+  background: #fff;
+
+  /* ✅ نص السكشن أبيض */
+  color: #fff;
+
+  /* ✅ Needed for pseudo layers */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ✅ Background IMAGE يبدأ بعد ارتفاع الهيدر (عشان الهيدر يظل أبيض) */
+.lp-medicalS1::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--lp-header-h, 0px);
+  bottom: 0;
+
+  background-image: url("../../../../images/section/1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ✅ Overlay color يبدأ بعد الهيدر + شفافية أقل (الصورة أوضح) */
+.lp-medicalS1::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--lp-header-h, 0px);
+  bottom: 0;
+
+  background: var(--lp-about-title, #111);
+  opacity: 0.70;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ✅ Ensure content is above image + overlay */
+.lp-medicalS1__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+
+  /* ✅ نفس البادنج فوق وتحت */
+  --lp-medicalS1-pad: clamp(52px, 7vw, 110px);
+
+  padding-top: calc(var(--lp-header-h) + var(--lp-medicalS1-pad));
+  padding-bottom: var(--lp-medicalS1-pad);
+
+  position: relative;
+  z-index: 2;
+}
+
+.lp-medicalS1__head{ margin-bottom: 12px; }
+
+html[dir="rtl"] .lp-medicalS1__head{ text-align: right; }
+html[dir="ltr"] .lp-medicalS1__head{ text-align: left; }
+
+.lp-medicalS1__title{ margin: 0; }
+
+/* ✅ Title + accent inside it become white */
+.lp-medicalS1 .lp-sectors__title,
+.lp-medicalS1 .lp-sectors__titleAccent{
+  color: #fff;
+}
+
+/* ✅ Subtitle (نفس ستايل about) */
+.lp-medicalS1__subTitle{
+  margin-top: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(18px, 2.1vw, 26px);
+  line-height: 1.55;
+}
+
+/* ✅ Paragraph (نفس تنسيقات about) */
+.lp-medicalS1__text{
+  margin: 18px 0 0;
+  width: 100%;
+  max-width: none;
+  color: #fff;
+  font-size: var(--lp-subtitle-size);
+  line-height: 2;
+
+  text-align: justify;
+  text-justify: inter-word;
+  word-spacing: .06em;
+
+  text-align-last: start;
+}
+
+html[dir="rtl"] .lp-medicalS1__text{
+  text-align-last: right;
+}

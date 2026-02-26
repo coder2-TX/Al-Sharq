@@ -29,16 +29,35 @@
   margin-top: 14px;
 }
 
-/* Card */
+/* =========================
+   Card (ONE white card)
+   ========================= */
 .lp-newsCard{
   display: flex;
   flex-direction: column;
+
+  background: #fff;
+  border-radius: 22px;
+  overflow: hidden;
+
+  /* fallback (مثل vmv card) */
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
 }
 
-/* Image area */
+/* Use about-title color in shadow/border when supported */
+@supports (color: color-mix(in srgb, #000 10%, transparent)){
+  .lp-newsCard{
+    border-color: color-mix(in srgb, var(--lp-about-title) 14%, transparent);
+    box-shadow:
+      0 12px 30px color-mix(in srgb, var(--lp-about-title) 12%, transparent),
+      0 2px 0 rgba(0,0,0,.02);
+  }
+}
+
+/* Image area (inside card) */
 .lp-newsCard__media{
   height: var(--card-h);
-  border-radius: 22px;
   overflow: hidden;
   display: block;
   background: rgba(0,0,0,.06);
@@ -55,9 +74,14 @@
   will-change: transform;
 }
 
+/* Body padding inside the card */
+.lp-newsCard__body{
+  padding: clamp(12px, 1.6vw, 18px) clamp(14px, 1.9vw, 20px) clamp(14px, 2vw, 22px);
+}
+
 /* Meta (date row) */
 .lp-newsCard__meta{
-  margin-top: 12px;
+  margin-top: 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -66,7 +90,7 @@
   font-size: var(--lp-subtitle-size);
   line-height: 1.65;
 
-  font-weight: 400; /* التاريخ بدون Bold */
+  font-weight: 400;
 }
 
 .lp-newsCard__dateIcon{

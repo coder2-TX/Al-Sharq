@@ -47,7 +47,7 @@
 
   /* fallback */
   border: 1px solid rgba(0,0,0,.08);
-  box-shadow: 0 18px 42px rgba(0,0,0,.10);
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
 }
 
 /* Use about-title color in shadow/border when supported */
@@ -55,7 +55,7 @@
   .lp-vmv__card{
     border-color: color-mix(in srgb, var(--lp-about-title) 14%, transparent);
     box-shadow:
-      0 18px 42px color-mix(in srgb, var(--lp-about-title) 18%, transparent),
+      0 12px 30px color-mix(in srgb, var(--lp-about-title) 12%, transparent),
       0 2px 0 rgba(0,0,0,.02);
   }
 }

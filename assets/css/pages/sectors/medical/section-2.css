@@ -1,0 +1,73 @@
+/* assets/css/pages/sectors/medical/section-2.css */
+/* MEDICAL - Section 2 (Pharmacovigilance card)
+   Fix spacing like about/section-2.css
+   + keep medical row (text + button only)
+*/
+
+.lp-medicalIso{
+  background: #ffffff;
+  color: #111;
+}
+
+/* ✅ نفس مساحات about: بادنج فوق/تحت + رفع خفيف */
+.lp-medicalIso .lp-iso__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+
+  /* ✅ مساحة بيضاء حول الكارد */
+  --lp-iso-pad: clamp(32px, 4.4vw, 70px);
+  padding-top: var(--lp-iso-pad);
+  padding-bottom: var(--lp-iso-pad);
+
+  /* ✅ تخفيف الرفع عشان يظهر فراغ بين السكشنات */
+  margin-top: -8px; /* كان iso.css: -22px */
+}
+
+/* ✅ صفّ بسيط: نص + زر (بدون أيقونة) */
+.lp-medicalIso .lp-isoCard__row.lp-isoCard__row--medical{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+  direction: rtl;
+}
+
+html[dir="ltr"] .lp-medicalIso .lp-isoCard__row.lp-isoCard__row--medical{
+  direction: ltr;
+  grid-template-columns: 1fr auto;
+}
+
+.lp-medicalIso__text{
+  justify-self: start;
+  text-align: start;
+  margin: 0;
+  max-width: none;
+
+  /* عنوان أوضح */
+  font-weight: 700;
+  font-size: clamp(16px, 1.7vw, 22px);
+  line-height: 1.55;
+}
+
+/* ✅ موبايل: نفس منطق about (رفع أقل) + ترتيب عمودي */
+@media (max-width: 700px){
+  .lp-medicalIso .lp-iso__inner{
+    margin-top: -6px;
+  }
+
+  .lp-medicalIso .lp-isoCard__row.lp-isoCard__row--medical{
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+    justify-items: center;
+  }
+
+  .lp-medicalIso__text{
+    text-align: center;
+    justify-self: center;
+  }
+
+  .lp-medicalIso .lp-cta.lp-cta--iso{
+    justify-self: center;
+  }
+}
