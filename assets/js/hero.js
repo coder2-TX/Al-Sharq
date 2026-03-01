@@ -1,10 +1,10 @@
 (() => {
   "use strict";
 
-  // ✅ نخليها قابلة لإعادة التشغيل بعد تحميل partials
+  // تخزين العناصر التي تمت تهيئتها بالفعل
   const animated = new WeakSet();
 
-  window.lpInitHeroLines = function lpInitHeroLines() {
+  window.lpInitHeroLines = function lpInitHeroLines(container = document) {
     if (!window.gsap) return;
 
     const setupTravelDash = (el, segRatio = 0.35) => {
@@ -48,7 +48,6 @@
           gsap.set(el, { strokeDashoffset: start, opacity: 0 });
         };
 
-
         setNewStart();
 
         const tl = gsap.timeline({
@@ -70,18 +69,19 @@
       });
     };
 
-    document.querySelectorAll(".lp-lines--topStart").forEach((svg) => {
+    // تهيئة جميع الخطوط داخل الحاوية المحددة
+    container.querySelectorAll(".lp-lines--topStart").forEach((svg) => {
       const lines = Array.from(svg.querySelectorAll(".lp-line"));
       if (lines.length) animateLineGroup(lines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: 1 });
     });
 
-    document.querySelectorAll(".lp-lines--bottomEnd").forEach((svg) => {
+    container.querySelectorAll(".lp-lines--bottomEnd").forEach((svg) => {
       const lines = Array.from(svg.querySelectorAll(".lp-line"));
       if (lines.length) animateLineGroup(lines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: -1 });
     });
-
   };
 
+  // تهيئة أولية للصفحة
   const boot = () => {
     const tryInit = () => {
       if (window.gsap && typeof window.lpInitHeroLines === "function") {
