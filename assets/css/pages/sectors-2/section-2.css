@@ -21,7 +21,7 @@
   --lp-s2-center-logo-size: calc(var(--lp-s2-fill-size) * 0.28);
 
   width: 100%;
-  min-height: clamp(700px, 74vw, 860px);
+  min-height: clamp(620px, 68vw, 780px);
   background: #ffffff;
   border-radius: clamp(24px, 3vw, 38px) clamp(24px, 3vw, 38px) 0 0;
   transform: translateY(clamp(-240px, -32vw, -360px));
@@ -306,6 +306,10 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
 .lp-sectorsSection2__trackGroup{
   width: 100%;
   position: relative;
+
+  /* تحكم مستقل وآمن فقط للدائرة الأساسية داخل كل مجموعة */
+  --lp-s2-primary-dot-fine-x: 0px;
+  --lp-s2-primary-dot-fine-y: 0px;
 }
 
 /* السطر الأساسي */
@@ -329,13 +333,15 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
 .lp-sectorsSection2__track::after{
   content: "";
   position: absolute;
-  inset-inline-start: calc(var(--lp-s2-dot-x) * -1);
+  inset-inline-start: calc(
+    (var(--lp-s2-dot-x) * -1) + var(--lp-s2-primary-dot-fine-x, 0px)
+  );
   border-radius: 999px;
   pointer-events: none;
 }
 
 .lp-sectorsSection2__track::before{
-  top: calc(50% + var(--lp-s2-dot-y));
+  top: calc(50% + var(--lp-s2-dot-y) + var(--lp-s2-primary-dot-fine-y, 0px));
   width: 22px;
   height: 22px;
   background: #ffffff;
@@ -344,7 +350,7 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
 }
 
 .lp-sectorsSection2__track::after{
-  top: calc(50% + var(--lp-s2-dot-y));
+  top: calc(50% + var(--lp-s2-dot-y) + var(--lp-s2-primary-dot-fine-y, 0px));
   width: 16px;
   height: 16px;
   background: var(--lp-accent);
@@ -363,17 +369,25 @@ html[dir="ltr"] .lp-sectorsSection2__track::after{
 
 /* نفس تموضع النسخة القديمة:
    المجموعة 1 = الفقرة 1 القديمة
-   المجموعة 2 = الفقرة 3 القديمة */
+   المجموعة 2 = الفقرة 3 القديمة
+   من الآن لا تعدلي dot-x / dot-y القديمة
+   عدلي فقط primary-dot-fine-x / primary-dot-fine-y */
 .lp-sectorsSection2__trackGroup:nth-child(1){
   --lp-s2-track-anchor: 186px;
   --lp-s2-dot-x: -8px;
   --lp-s2-dot-y: 0px;
+
+  --lp-s2-primary-dot-fine-x: 140px;
+  --lp-s2-primary-dot-fine-y: 0px;
 }
 
 .lp-sectorsSection2__trackGroup:nth-child(2){
   --lp-s2-track-anchor: 186px;
   --lp-s2-dot-x: -8px;
   --lp-s2-dot-y: 0px;
+
+  --lp-s2-primary-dot-fine-x: 200px;
+  --lp-s2-primary-dot-fine-y: 0px;
 }
 
 .lp-sectorsSection2__trackLine{
@@ -412,9 +426,15 @@ html[dir="ltr"] .lp-sectorsSection2__track::after{
   padding-block: 8px;
 }
 
-/* الرقم بالطرف المقابل - فقط للكروت الأساسية */
+/* إخفاء الرقم من الكروت الأساسية */
 .lp-sectorsSection2__sectorCard--primary::after{
-  content: attr(data-number);
+  content: none;
+  display: none;
+}
+
+/* الرقم بالطرف المقابل - للكروت الفرعية */
+.lp-sectorsSection2__sectorCard--sub::after{
+  content: "";
   width: 36px;
   height: 36px;
   border: 0;
@@ -434,6 +454,23 @@ html[dir="ltr"] .lp-sectorsSection2__track::after{
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
+}
+
+/* ترقيم الفروع */
+.lp-sectorsSection2__trackGroup:nth-child(1) .lp-sectorsSection2__subTrack:nth-of-type(1) .lp-sectorsSection2__sectorCard--sub::after{
+  content: "01";
+}
+
+.lp-sectorsSection2__trackGroup:nth-child(2) .lp-sectorsSection2__subTrack:nth-of-type(1) .lp-sectorsSection2__sectorCard--sub::after{
+  content: "01";
+}
+
+.lp-sectorsSection2__trackGroup:nth-child(2) .lp-sectorsSection2__subTrack:nth-of-type(2) .lp-sectorsSection2__sectorCard--sub::after{
+  content: "02";
+}
+
+.lp-sectorsSection2__trackGroup:nth-child(2) .lp-sectorsSection2__subTrack:nth-of-type(3) .lp-sectorsSection2__sectorCard--sub::after{
+  content: "03";
 }
 
 /* الترتيب بصرياً: الأيقونة ثم النص */
@@ -458,19 +495,19 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary{
 }
 
 html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub{
-  padding-left: 14px;
+  padding-left: 60px;
 }
 
 html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub{
-  padding-right: 14px;
+  padding-right: 60px;
 }
 
-html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary::after{
+html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub::after{
   left: 14px;
   right: auto;
 }
 
-html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary::after{
+html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub::after{
   right: 14px;
   left: auto;
 }
@@ -633,12 +670,18 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
     --lp-s2-track-anchor: 76px;
     --lp-s2-dot-x: 40px;
     --lp-s2-dot-y: 0px;
+
+    --lp-s2-primary-dot-fine-x: 0px;
+    --lp-s2-primary-dot-fine-y: 0px;
   }
 
   .lp-sectorsSection2__trackGroup:nth-child(2){
     --lp-s2-track-anchor: 116px;
     --lp-s2-dot-x: 4px;
     --lp-s2-dot-y: 0px;
+
+    --lp-s2-primary-dot-fine-x: 0px;
+    --lp-s2-primary-dot-fine-y: 0px;
   }
 
   .lp-sectorsSection2__sectorCard--primary{
@@ -654,7 +697,7 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
     border-radius: 16px;
   }
 
-  .lp-sectorsSection2__sectorCard--primary::after{
+  .lp-sectorsSection2__sectorCard--sub::after{
     width: 33px;
     height: 33px;
     font-size: 14px;
@@ -677,18 +720,18 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
   }
 
   html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub{
-    padding-left: 14px;
+    padding-left: 56px;
   }
 
   html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub{
-    padding-right: 14px;
+    padding-right: 56px;
   }
 
-  html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary::after{
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub::after{
     left: 12px;
   }
 
-  html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary::after{
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub::after{
     right: 12px;
   }
 
@@ -779,12 +822,18 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
     --lp-s2-track-anchor: 44px;
     --lp-s2-dot-x: 2px;
     --lp-s2-dot-y: 0px;
+
+    --lp-s2-primary-dot-fine-x: 0px;
+    --lp-s2-primary-dot-fine-y: 0px;
   }
 
   .lp-sectorsSection2__trackGroup:nth-child(2){
     --lp-s2-track-anchor: 68px;
     --lp-s2-dot-x: 2px;
     --lp-s2-dot-y: 0px;
+
+    --lp-s2-primary-dot-fine-x: 0px;
+    --lp-s2-primary-dot-fine-y: 0px;
   }
 
   .lp-sectorsSection2__sectorCard--primary{
@@ -803,7 +852,7 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
     gap: 10px;
   }
 
-  .lp-sectorsSection2__sectorCard--primary::after{
+  .lp-sectorsSection2__sectorCard--sub::after{
     width: 30px;
     height: 30px;
     font-size: 13px;
@@ -826,18 +875,18 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
   }
 
   html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub{
-    padding-left: 12px;
+    padding-left: 48px;
   }
 
   html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub{
-    padding-right: 12px;
+    padding-right: 48px;
   }
 
-  html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary::after{
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub::after{
     left: 10px;
   }
 
-  html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary::after{
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub::after{
     right: 10px;
   }
 
