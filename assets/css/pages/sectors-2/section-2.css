@@ -21,7 +21,7 @@
   --lp-s2-center-logo-size: calc(var(--lp-s2-fill-size) * 0.28);
 
   width: 100%;
-  min-height: clamp(620px, 66vw, 760px);
+  min-height: clamp(700px, 74vw, 860px);
   background: #ffffff;
   border-radius: clamp(24px, 3vw, 38px) clamp(24px, 3vw, 38px) 0 0;
   transform: translateY(clamp(-240px, -32vw, -360px));
@@ -210,6 +210,11 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
     transform-origin: 0 50%;
   }
 
+  .lp-sectorsSection2.is-reveal-init .lp-s2Reveal--stem{
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+  }
+
   .lp-sectorsSection2.is-reveal-init .lp-s2Reveal--card{
     transform: translateX(28px);
   }
@@ -242,6 +247,10 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
     transform: scaleX(1);
   }
 
+  .lp-sectorsSection2.is-reveal-init .lp-s2Reveal--stem.is-visible{
+    transform: scaleY(1);
+  }
+
   .lp-sectorsSection2.is-reveal-init .lp-s2Reveal--card.is-visible{
     transform: translateX(0);
   }
@@ -270,22 +279,36 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
     transform: scaleX(1) !important;
   }
 
+  .lp-sectorsSection2 .lp-s2Reveal--stem{
+    transform: scaleY(1) !important;
+  }
+
   .lp-sectorsSection2 .lp-s2Reveal--card{
     transform: translateX(0) !important;
   }
 }
 
 /* =========================
-   Tracks: الخطوط جهة الدائرة
+   Tracks: خطّان أساسيان + فروع
 ========================= */
 .lp-sectorsSection2__tracks{
+  --lp-s2-primary-line-w: clamp(180px, 24vw, 300px);
+  --lp-s2-sub-line-w: clamp(58px, 7.2vw, 96px);
+  --lp-s2-sub-offset: 8px;
+
   position: relative;
   margin-top: clamp(72px, 8vw, 118px);
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 1.4vw, 18px);
+  gap: clamp(26px, 2.6vw, 40px);
 }
 
+.lp-sectorsSection2__trackGroup{
+  width: 100%;
+  position: relative;
+}
+
+/* السطر الأساسي */
 .lp-sectorsSection2__track{
   --lp-s2-track-anchor: 0px;
   --lp-s2-dot-x: 0px;
@@ -338,36 +361,18 @@ html[dir="ltr"] .lp-sectorsSection2__track::after{
   transform: translate(-50%, -50%);
 }
 
-/* ==========================================
-   تحكم مستقل لكل سطر (الكروت ثابتة مثل قبل)
-========================================== */
-.lp-sectorsSection2__track:nth-child(1){
+/* نفس تموضع النسخة القديمة:
+   المجموعة 1 = الفقرة 1 القديمة
+   المجموعة 2 = الفقرة 3 القديمة */
+.lp-sectorsSection2__trackGroup:nth-child(1){
   --lp-s2-track-anchor: 126px;
   --lp-s2-dot-x: -8px;
   --lp-s2-dot-y: 0px;
 }
 
-.lp-sectorsSection2__track:nth-child(2){
-  --lp-s2-track-anchor: 158px;
-  --lp-s2-dot-x: -18px;
-  --lp-s2-dot-y: 0px;
-}
-
-.lp-sectorsSection2__track:nth-child(3){
+.lp-sectorsSection2__trackGroup:nth-child(2){
   --lp-s2-track-anchor: 186px;
   --lp-s2-dot-x: -8px;
-  --lp-s2-dot-y: 0px;
-}
-
-.lp-sectorsSection2__track:nth-child(4){
-  --lp-s2-track-anchor: 158px;
-  --lp-s2-dot-x: -32px;
-  --lp-s2-dot-y: 0px;
-}
-
-.lp-sectorsSection2__track:nth-child(5){
-  --lp-s2-track-anchor: 126px;
-  --lp-s2-dot-x: -36px;
   --lp-s2-dot-y: 0px;
 }
 
@@ -375,32 +380,41 @@ html[dir="ltr"] .lp-sectorsSection2__track::after{
   position: relative;
   z-index: 2;
   display: block;
-  width: clamp(180px, 24vw, 300px);
+  width: var(--lp-s2-primary-line-w);
   height: 2px;
   background: var(--lp-about-title);
   border-radius: 999px;
   flex: 0 0 auto;
 }
 
+/* الكروت */
 .lp-sectorsSection2__sectorCard{
-  width: clamp(290px, 34vw, 400px);
-  min-height: 48px;
-  height: clamp(48px, 3.4vw, 56px);
   background: #C8EAF5;
   border: 2px solid var(--lp-about-title);
   border-radius: 18px;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-block: 0;
   box-sizing: border-box;
   position: relative;
   z-index: 4;
 }
 
-/* الرقم بالطرف المقابل - ثابت من نهاية الكارد */
-.lp-sectorsSection2__sectorCard::after{
-  content: "";
+.lp-sectorsSection2__sectorCard--primary{
+  width: clamp(290px, 34vw, 400px);
+  min-height: 48px;
+  height: clamp(48px, 3.4vw, 56px);
+}
+
+.lp-sectorsSection2__sectorCard--sub{
+  width: clamp(270px, 31vw, 380px);
+  min-height: 46px;
+  padding-block: 8px;
+}
+
+/* الرقم بالطرف المقابل - فقط للكروت الأساسية */
+.lp-sectorsSection2__sectorCard--primary::after{
+  content: attr(data-number);
   width: 36px;
   height: 36px;
   border: 0;
@@ -422,33 +436,41 @@ html[dir="ltr"] .lp-sectorsSection2__track::after{
   pointer-events: none;
 }
 
-.lp-sectorsSection2__track:nth-child(1) .lp-sectorsSection2__sectorCard::after{ content: "1"; }
-.lp-sectorsSection2__track:nth-child(2) .lp-sectorsSection2__sectorCard::after{ content: "2"; }
-.lp-sectorsSection2__track:nth-child(3) .lp-sectorsSection2__sectorCard::after{ content: "3"; }
-.lp-sectorsSection2__track:nth-child(4) .lp-sectorsSection2__sectorCard::after{ content: "4"; }
-.lp-sectorsSection2__track:nth-child(5) .lp-sectorsSection2__sectorCard::after{ content: "5"; }
-
 /* الترتيب بصرياً: الأيقونة ثم النص */
 html[dir="rtl"] .lp-sectorsSection2__sectorCard{
   flex-direction: row;
   justify-content: flex-start;
   padding-right: 14px;
-  padding-left: 60px;
 }
 
 html[dir="ltr"] .lp-sectorsSection2__sectorCard{
   flex-direction: row;
   justify-content: flex-start;
   padding-left: 14px;
+}
+
+html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary{
+  padding-left: 60px;
+}
+
+html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary{
   padding-right: 60px;
 }
 
-html[dir="rtl"] .lp-sectorsSection2__sectorCard::after{
+html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub{
+  padding-left: 14px;
+}
+
+html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub{
+  padding-right: 14px;
+}
+
+html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary::after{
   left: 14px;
   right: auto;
 }
 
-html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
+html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary::after{
   right: 14px;
   left: auto;
 }
@@ -477,9 +499,101 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
   font-size: clamp(13px, 1vw, 16px);
   line-height: 1.2;
   font-weight: 800;
-  white-space: nowrap;
   min-width: 0;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
+  white-space: nowrap;
+}
+
+.lp-sectorsSection2__sectorCard--sub .lp-sectorsSection2__sectorText{
+  white-space: normal;
+}
+
+/* الفروع */
+.lp-sectorsSection2__subTracks{
+  position: relative;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+  margin-inline-end: auto;
+  margin-inline-start: calc(
+    var(--lp-s2-track-anchor)
+    + var(--lp-s2-primary-line-w)
+    + var(--lp-s2-sub-offset)
+  );
+  padding-inline-start: 12px;
+}
+
+.lp-sectorsSection2__subStem{
+  position: absolute;
+  top: -18px;
+  bottom: 22px;
+  inset-inline-start: 16px;
+  width: 2px;
+  background: var(--lp-about-title);
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.lp-sectorsSection2__subTracks--single .lp-sectorsSection2__subStem{
+  bottom: 50%;
+}
+
+.lp-sectorsSection2__subTrack{
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  padding-inline-start: 12px;
+}
+
+.lp-sectorsSection2__subTrack::before,
+.lp-sectorsSection2__subTrack::after{
+  content: "";
+  position: absolute;
+  inset-inline-start: 5px;
+  top: 50%;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.lp-sectorsSection2__subTrack::before{
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border: 2px solid var(--lp-about-title);
+  z-index: 4;
+}
+
+.lp-sectorsSection2__subTrack::after{
+  width: 12px;
+  height: 12px;
+  background: var(--lp-accent);
+  z-index: 5;
+}
+
+html[dir="rtl"] .lp-sectorsSection2__subTrack::before,
+html[dir="rtl"] .lp-sectorsSection2__subTrack::after{
+  transform: translate(50%, -50%);
+}
+
+html[dir="ltr"] .lp-sectorsSection2__subTrack::before,
+html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
+  transform: translate(-50%, -50%);
+}
+
+.lp-sectorsSection2__subTrackLine{
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: var(--lp-s2-sub-line-w);
+  height: 2px;
+  background: var(--lp-about-title);
+  border-radius: 999px;
+  flex: 0 0 auto;
 }
 
 @media (max-width: 980px){
@@ -488,12 +602,21 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
     --lp-s2-fill-top: 180px;
     --lp-s2-ring-size: 286px;
 
-    min-height: clamp(500px, 70vw, 620px);
+    min-height: clamp(620px, 78vw, 760px);
     border-top-left-radius: 26px;
     border-top-right-radius: 26px;
     transform: translateY(-192px);
     margin-bottom: -192px;
     padding-bottom: clamp(16px, 2.4vw, 24px);
+  }
+
+  .lp-sectorsSection2__tracks{
+    --lp-s2-primary-line-w: clamp(100px, 16vw, 160px);
+    --lp-s2-sub-line-w: clamp(44px, 6.4vw, 68px);
+    --lp-s2-sub-offset: 6px;
+
+    margin-top: clamp(58px, 7vw, 88px);
+    gap: 20px;
   }
 
   .lp-sectorsSection2__track::before{
@@ -506,72 +629,66 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
     height: 14px;
   }
 
-  .lp-sectorsSection2__tracks{
-    margin-top: clamp(58px, 7vw, 88px);
-    gap: 14px;
-  }
-
-  .lp-sectorsSection2__track:nth-child(1){
+  .lp-sectorsSection2__trackGroup:nth-child(1){
     --lp-s2-track-anchor: 76px;
-    --lp-s2-dot-x: 4px;
+    --lp-s2-dot-x: 40px;
     --lp-s2-dot-y: 0px;
   }
 
-  .lp-sectorsSection2__track:nth-child(2){
-    --lp-s2-track-anchor: 96px;
-    --lp-s2-dot-x: 14px;
-    --lp-s2-dot-y: 0px;
-  }
-
-  .lp-sectorsSection2__track:nth-child(3){
+  .lp-sectorsSection2__trackGroup:nth-child(2){
     --lp-s2-track-anchor: 116px;
     --lp-s2-dot-x: 4px;
     --lp-s2-dot-y: 0px;
   }
 
-  .lp-sectorsSection2__track:nth-child(4){
-    --lp-s2-track-anchor: 96px;
-    --lp-s2-dot-x: 20px;
-    --lp-s2-dot-y: 0px;
-  }
-
-  .lp-sectorsSection2__track:nth-child(5){
-    --lp-s2-track-anchor: 76px;
-    --lp-s2-dot-x: 52px;
-    --lp-s2-dot-y: 0px;
-  }
-
-  .lp-sectorsSection2__trackLine{
-    width: clamp(110px, 18vw, 180px);
-  }
-
-  .lp-sectorsSection2__sectorCard{
+  .lp-sectorsSection2__sectorCard--primary{
     width: clamp(240px, 44vw, 340px);
+    min-height: 50px;
     height: 50px;
     border-radius: 16px;
   }
 
-  html[dir="rtl"] .lp-sectorsSection2__sectorCard{
-    padding-right: 14px;
-    padding-left: 56px;
+  .lp-sectorsSection2__sectorCard--sub{
+    width: clamp(220px, 39vw, 310px);
+    min-height: 48px;
+    border-radius: 16px;
   }
 
-  html[dir="ltr"] .lp-sectorsSection2__sectorCard{
-    padding-left: 14px;
-    padding-right: 56px;
-  }
-
-  .lp-sectorsSection2__sectorCard::after{
+  .lp-sectorsSection2__sectorCard--primary::after{
     width: 33px;
     height: 33px;
     font-size: 14px;
   }
 
-  html[dir="rtl"] .lp-sectorsSection2__sectorCard::after{
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard{
+    padding-right: 14px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard{
+    padding-left: 14px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary{
+    padding-left: 56px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary{
+    padding-right: 56px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub{
+    padding-left: 14px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub{
+    padding-right: 14px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary::after{
     left: 12px;
   }
 
-  html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary::after{
     right: 12px;
   }
 
@@ -587,7 +704,37 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
 
   .lp-sectorsSection2__sectorText{
     font-size: 14px;
-    white-space: normal;
+  }
+
+  .lp-sectorsSection2__subTracks{
+    margin-top: 14px;
+    padding-inline-start: 10px;
+    gap: 12px;
+  }
+
+  .lp-sectorsSection2__subStem{
+    inset-inline-start: 4px;
+    top: -14px;
+    bottom: 20px;
+  }
+
+  .lp-sectorsSection2__subTrack{
+    padding-inline-start: 10px;
+  }
+
+  .lp-sectorsSection2__subTrack::before,
+  .lp-sectorsSection2__subTrack::after{
+    inset-inline-start: 4px;
+  }
+
+  .lp-sectorsSection2__subTrack::before{
+    width: 16px;
+    height: 16px;
+  }
+
+  .lp-sectorsSection2__subTrack::after{
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -601,12 +748,21 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
     --lp-s2-fill-top: 145px;
     --lp-s2-ring-size: 184px;
 
-    min-height: 470px;
+    min-height: 590px;
     border-top-left-radius: 22px;
     border-top-right-radius: 22px;
     transform: translateY(-128px);
     margin-bottom: -128px;
     padding: 18px 18px 18px;
+  }
+
+  .lp-sectorsSection2__tracks{
+    --lp-s2-primary-line-w: 42px;
+    --lp-s2-sub-line-w: 18px;
+    --lp-s2-sub-offset: 4px;
+
+    margin-top: 42px;
+    gap: 18px;
   }
 
   .lp-sectorsSection2__track::before{
@@ -619,47 +775,20 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
     height: 12px;
   }
 
-  .lp-sectorsSection2__tracks{
-    margin-top: 42px;
-    gap: 12px;
-  }
-
-  .lp-sectorsSection2__track:nth-child(1){
+  .lp-sectorsSection2__trackGroup:nth-child(1){
     --lp-s2-track-anchor: 44px;
     --lp-s2-dot-x: 2px;
     --lp-s2-dot-y: 0px;
   }
 
-  .lp-sectorsSection2__track:nth-child(2){
-    --lp-s2-track-anchor: 56px;
-    --lp-s2-dot-x: 8px;
-    --lp-s2-dot-y: 0px;
-  }
-
-  .lp-sectorsSection2__track:nth-child(3){
+  .lp-sectorsSection2__trackGroup:nth-child(2){
     --lp-s2-track-anchor: 68px;
     --lp-s2-dot-x: 2px;
     --lp-s2-dot-y: 0px;
   }
 
-  .lp-sectorsSection2__track:nth-child(4){
-    --lp-s2-track-anchor: 56px;
-    --lp-s2-dot-x: 12px;
-    --lp-s2-dot-y: 0px;
-  }
-
-  .lp-sectorsSection2__track:nth-child(5){
-    --lp-s2-track-anchor: 44px;
-    --lp-s2-dot-x: 36px;
-    --lp-s2-dot-y: 0px;
-  }
-
-  .lp-sectorsSection2__trackLine{
-    width: 52px;
-  }
-
-  .lp-sectorsSection2__sectorCard{
-    width: min(260px, calc(100vw - 142px));
+  .lp-sectorsSection2__sectorCard--primary{
+    width: min(250px, calc(100vw - 118px));
     min-height: 46px;
     height: auto;
     padding-block: 8px;
@@ -667,27 +796,48 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
     gap: 10px;
   }
 
-  html[dir="rtl"] .lp-sectorsSection2__sectorCard{
-    padding-right: 12px;
-    padding-left: 48px;
+  .lp-sectorsSection2__sectorCard--sub{
+    width: min(214px, calc(100vw - 146px));
+    min-height: 44px;
+    border-radius: 14px;
+    gap: 10px;
   }
 
-  html[dir="ltr"] .lp-sectorsSection2__sectorCard{
-    padding-left: 12px;
-    padding-right: 48px;
-  }
-
-  .lp-sectorsSection2__sectorCard::after{
+  .lp-sectorsSection2__sectorCard--primary::after{
     width: 30px;
     height: 30px;
     font-size: 13px;
   }
 
-  html[dir="rtl"] .lp-sectorsSection2__sectorCard::after{
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard{
+    padding-right: 12px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard{
+    padding-left: 12px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary{
+    padding-left: 48px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary{
+    padding-right: 48px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard--sub{
+    padding-left: 12px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub{
+    padding-right: 12px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard--primary::after{
     left: 10px;
   }
 
-  html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard--primary::after{
     right: 10px;
   }
 
@@ -705,5 +855,36 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
     font-size: 13px;
     line-height: 1.35;
     white-space: normal;
+  }
+
+  .lp-sectorsSection2__subTracks{
+    margin-top: 12px;
+    padding-inline-start: 8px;
+    gap: 10px;
+  }
+
+  .lp-sectorsSection2__subStem{
+    inset-inline-start: 3px;
+    top: -12px;
+    bottom: 18px;
+  }
+
+  .lp-sectorsSection2__subTrack{
+    padding-inline-start: 8px;
+  }
+
+  .lp-sectorsSection2__subTrack::before,
+  .lp-sectorsSection2__subTrack::after{
+    inset-inline-start: 3px;
+  }
+
+  .lp-sectorsSection2__subTrack::before{
+    width: 14px;
+    height: 14px;
+  }
+
+  .lp-sectorsSection2__subTrack::after{
+    width: 9px;
+    height: 9px;
   }
 }
