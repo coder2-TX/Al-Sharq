@@ -9,31 +9,73 @@
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
   padding-top: 0;
-  padding-bottom: clamp(72px, 9vw, 140px);
+  padding-bottom: clamp(80px, 9vw, 140px);
   position: relative;
 }
 
 .lp-sectorsSection2__card{
+  --lp-s2-fill-size: 375px;
+  --lp-s2-fill-top: 220px;
+  --lp-s2-ring-size: 470px;
+  --lp-s2-ring-mask-gap: 8px;
+  --lp-s2-center-logo-size: calc(var(--lp-s2-fill-size) * 0.28);
+
   width: 100%;
-  min-height: clamp(420px, 42vw, 620px);
+  min-height: clamp(620px, 66vw, 760px);
   background: #ffffff;
   border-radius: clamp(24px, 3vw, 38px) clamp(24px, 3vw, 38px) 0 0;
-
   transform: translateY(clamp(-240px, -32vw, -360px));
-
+  margin-bottom: calc(clamp(240px, 32vw, 360px) * -1);
   border: 0;
   box-shadow: none;
   position: relative;
   z-index: 3;
-  padding: clamp(24px, 2.8vw, 38px) clamp(24px, 2.8vw, 38px) clamp(40px, 4vw, 60px);
+  padding: clamp(24px, 2.8vw, 38px) clamp(24px, 2.8vw, 38px) clamp(22px, 2.4vw, 34px);
   overflow: hidden;
+}
+
+/* طبقة إخفاء الخطوط داخل الستروك بدون المساس بالدائرة */
+.lp-sectorsSection2__card::before,
+.lp-sectorsSection2__card::after{
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.lp-sectorsSection2__card::before{
+  width: calc(var(--lp-s2-ring-size) - var(--lp-s2-ring-mask-gap));
+  height: calc(var(--lp-s2-ring-size) - var(--lp-s2-ring-mask-gap));
+  top: calc(
+    var(--lp-s2-fill-top)
+    + (var(--lp-s2-fill-size) / 2)
+    - ((var(--lp-s2-ring-size) - var(--lp-s2-ring-mask-gap)) / 2)
+  );
+  background: #ffffff;
+  transform: translateX(50%);
+  z-index: 3;
+}
+
+.lp-sectorsSection2__card::after{
+  width: var(--lp-s2-fill-size);
+  height: var(--lp-s2-fill-size);
+  top: var(--lp-s2-fill-top);
+  background: #EEFAFE;
+  transform: translateX(50%);
+  z-index: 3;
+}
+
+html[dir="ltr"] .lp-sectorsSection2__card::before,
+html[dir="ltr"] .lp-sectorsSection2__card::after{
+  transform: translateX(-50%);
 }
 
 .lp-sectorsSection2__head{
   text-align: center;
   margin-bottom: 18px;
   position: relative;
-  z-index: 3;
+  z-index: 5;
 }
 
 .lp-sectorsSection2__heading{
@@ -42,12 +84,10 @@
   line-height: 1.12;
   font-weight: 800;
   letter-spacing: 0;
-
   color: var(--lp-about-title) !important;
   -webkit-text-fill-color: var(--lp-about-title) !important;
-
   position: relative;
-  z-index: 3;
+  z-index: 5;
 }
 
 .lp-sectorsSection2__accent{
@@ -55,7 +95,6 @@
   display: inline-block;
   isolation: isolate;
   padding-inline: .12em;
-
   color: var(--lp-about-title) !important;
   -webkit-text-fill-color: var(--lp-about-title) !important;
 }
@@ -75,13 +114,11 @@
   position: absolute;
   z-index: 1;
   pointer-events: none;
-
-  width: 375px;
-  height: 375px;
+  width: var(--lp-s2-fill-size);
+  height: var(--lp-s2-fill-size);
   border-radius: 999px;
   background: rgba(20, 192, 243, 0.35);
-
-  top: 220px;
+  top: var(--lp-s2-fill-top);
   inset-inline-start: 0;
   transform: translateX(50%);
 }
@@ -90,8 +127,8 @@
   content: "";
   position: absolute;
   inset: 50% auto auto 50%;
-  width: 470px;
-  height: 470px;
+  width: var(--lp-s2-ring-size);
+  height: var(--lp-s2-ring-size);
   border-radius: 999px;
   border: 2px solid var(--lp-about-title);
   background: transparent;
@@ -103,48 +140,461 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
   transform: translateX(-50%);
 }
 
+/* لوجو المنتصف داخل نصف الدائرة الظاهر */
+.lp-sectorsSection2__centerLogo{
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+  width: var(--lp-s2-center-logo-size);
+  height: var(--lp-s2-center-logo-size);
+  top: calc(var(--lp-s2-fill-top) + (var(--lp-s2-fill-size) / 2));
+  inset-inline-start: calc(
+    (var(--lp-s2-fill-size) * 0.25) - (var(--lp-s2-center-logo-size) / 2)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+}
+
+.lp-sectorsSection2__centerLogoImg{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* =========================
+   Tracks: الخطوط جهة الدائرة
+========================= */
+.lp-sectorsSection2__tracks{
+  position: relative;
+  margin-top: clamp(72px, 8vw, 118px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.4vw, 18px);
+}
+
+.lp-sectorsSection2__track{
+  --lp-s2-track-anchor: 0px;
+  --lp-s2-dot-x: 0px;
+  --lp-s2-dot-y: 0px;
+
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  margin-inline-end: auto;
+  margin-inline-start: var(--lp-s2-track-anchor);
+  position: relative;
+}
+
+/* دوائر أطراف الخطوط من جهة الدائرة الكبيرة */
+.lp-sectorsSection2__track::before,
+.lp-sectorsSection2__track::after{
+  content: "";
+  position: absolute;
+  inset-inline-start: calc(var(--lp-s2-dot-x) * -1);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.lp-sectorsSection2__track::before{
+  top: calc(50% + var(--lp-s2-dot-y));
+  width: 22px;
+  height: 22px;
+  background: #ffffff;
+  border: 2px solid var(--lp-about-title);
+  z-index: 4;
+}
+
+.lp-sectorsSection2__track::after{
+  top: calc(50% + var(--lp-s2-dot-y));
+  width: 16px;
+  height: 16px;
+  background: var(--lp-accent);
+  z-index: 5;
+}
+
+html[dir="rtl"] .lp-sectorsSection2__track::before,
+html[dir="rtl"] .lp-sectorsSection2__track::after{
+  transform: translate(50%, -50%);
+}
+
+html[dir="ltr"] .lp-sectorsSection2__track::before,
+html[dir="ltr"] .lp-sectorsSection2__track::after{
+  transform: translate(-50%, -50%);
+}
+
+/* ==========================================
+   تحكم مستقل لكل سطر (الكروت ثابتة مثل قبل)
+========================================== */
+.lp-sectorsSection2__track:nth-child(1){
+  --lp-s2-track-anchor: 126px;
+  --lp-s2-dot-x: -8px;
+  --lp-s2-dot-y: 0px;
+}
+
+.lp-sectorsSection2__track:nth-child(2){
+  --lp-s2-track-anchor: 158px;
+  --lp-s2-dot-x: -18px;
+  --lp-s2-dot-y: 0px;
+}
+
+.lp-sectorsSection2__track:nth-child(3){
+  --lp-s2-track-anchor: 186px;
+  --lp-s2-dot-x: -8px;
+  --lp-s2-dot-y: 0px;
+}
+
+.lp-sectorsSection2__track:nth-child(4){
+  --lp-s2-track-anchor: 158px;
+  --lp-s2-dot-x: -32px;
+  --lp-s2-dot-y: 0px;
+}
+
+.lp-sectorsSection2__track:nth-child(5){
+  --lp-s2-track-anchor: 126px;
+  --lp-s2-dot-x: -36px;
+  --lp-s2-dot-y: 0px;
+}
+
+.lp-sectorsSection2__trackLine{
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: clamp(180px, 24vw, 300px);
+  height: 2px;
+  background: var(--lp-about-title);
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.lp-sectorsSection2__sectorCard{
+  width: clamp(290px, 34vw, 400px);
+  min-height: 48px;
+  height: clamp(48px, 3.4vw, 56px);
+  background: #C8EAF5;
+  border: 2px solid var(--lp-about-title);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-block: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 4;
+}
+
+/* الرقم بالطرف المقابل - ثابت من نهاية الكارد */
+.lp-sectorsSection2__sectorCard::after{
+  content: "";
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--lp-about-title);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 900;
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.lp-sectorsSection2__track:nth-child(1) .lp-sectorsSection2__sectorCard::after{ content: "1"; }
+.lp-sectorsSection2__track:nth-child(2) .lp-sectorsSection2__sectorCard::after{ content: "2"; }
+.lp-sectorsSection2__track:nth-child(3) .lp-sectorsSection2__sectorCard::after{ content: "3"; }
+.lp-sectorsSection2__track:nth-child(4) .lp-sectorsSection2__sectorCard::after{ content: "4"; }
+.lp-sectorsSection2__track:nth-child(5) .lp-sectorsSection2__sectorCard::after{ content: "5"; }
+
+/* الترتيب بصرياً: الأيقونة ثم النص */
+html[dir="rtl"] .lp-sectorsSection2__sectorCard{
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-right: 14px;
+  padding-left: 60px;
+}
+
+html[dir="ltr"] .lp-sectorsSection2__sectorCard{
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 14px;
+  padding-right: 60px;
+}
+
+html[dir="rtl"] .lp-sectorsSection2__sectorCard::after{
+  left: 14px;
+  right: auto;
+}
+
+html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
+  right: 14px;
+  left: auto;
+}
+
+.lp-sectorsSection2__sectorIconCircle{
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 2px solid var(--lp-about-title);
+  background: #C8EAF5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.lp-sectorsSection2__sectorIcon{
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+}
+
+.lp-sectorsSection2__sectorText{
+  color: var(--lp-about-title);
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.2;
+  font-weight: 800;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
 @media (max-width: 980px){
   .lp-sectorsSection2__card{
-    min-height: clamp(320px, 40vw, 460px);
+    --lp-s2-fill-size: 220px;
+    --lp-s2-fill-top: 180px;
+    --lp-s2-ring-size: 286px;
+
+    min-height: clamp(500px, 70vw, 620px);
     border-top-left-radius: 26px;
     border-top-right-radius: 26px;
     transform: translateY(-192px);
-    padding-bottom: clamp(32px, 4vw, 48px);
+    margin-bottom: -192px;
+    padding-bottom: clamp(16px, 2.4vw, 24px);
   }
 
-  .lp-sectorsSection2__halfCircle{
-    width: 220px;
-    height: 220px;
-    top: 180px;
+  .lp-sectorsSection2__track::before{
+    width: 20px;
+    height: 20px;
   }
 
-  .lp-sectorsSection2__halfCircle::before{
-    width: 286px;
-    height: 286px;
+  .lp-sectorsSection2__track::after{
+    width: 14px;
+    height: 14px;
+  }
+
+  .lp-sectorsSection2__tracks{
+    margin-top: clamp(58px, 7vw, 88px);
+    gap: 14px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(1){
+    --lp-s2-track-anchor: 76px;
+    --lp-s2-dot-x: 4px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(2){
+    --lp-s2-track-anchor: 96px;
+    --lp-s2-dot-x: 14px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(3){
+    --lp-s2-track-anchor: 116px;
+    --lp-s2-dot-x: 4px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(4){
+    --lp-s2-track-anchor: 96px;
+    --lp-s2-dot-x: 20px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(5){
+    --lp-s2-track-anchor: 76px;
+    --lp-s2-dot-x: 52px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__trackLine{
+    width: clamp(110px, 18vw, 180px);
+  }
+
+  .lp-sectorsSection2__sectorCard{
+    width: clamp(240px, 44vw, 340px);
+    height: 50px;
+    border-radius: 16px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard{
+    padding-right: 14px;
+    padding-left: 56px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard{
+    padding-left: 14px;
+    padding-right: 56px;
+  }
+
+  .lp-sectorsSection2__sectorCard::after{
+    width: 33px;
+    height: 33px;
+    font-size: 14px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard::after{
+    left: 12px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
+    right: 12px;
+  }
+
+  .lp-sectorsSection2__sectorIconCircle{
+    width: 35px;
+    height: 35px;
+  }
+
+  .lp-sectorsSection2__sectorIcon{
+    width: 18px;
+    height: 18px;
+  }
+
+  .lp-sectorsSection2__sectorText{
+    font-size: 14px;
+    white-space: normal;
   }
 }
 
 @media (max-width: 520px){
   .lp-sectorsSection2__inner{
-    padding-bottom: clamp(56px, 8vw, 96px);
+    padding-bottom: clamp(8px, 2.2vw, 14px);
   }
 
   .lp-sectorsSection2__card{
-    min-height: 220px;
+    --lp-s2-fill-size: 140px;
+    --lp-s2-fill-top: 145px;
+    --lp-s2-ring-size: 184px;
+
+    min-height: 470px;
     border-top-left-radius: 22px;
     border-top-right-radius: 22px;
     transform: translateY(-128px);
-    padding: 18px 18px 28px;
+    margin-bottom: -128px;
+    padding: 18px 18px 18px;
   }
 
-  .lp-sectorsSection2__halfCircle{
-    width: 140px;
-    height: 140px;
-    top: 120px;
+  .lp-sectorsSection2__track::before{
+    width: 18px;
+    height: 18px;
   }
 
-  .lp-sectorsSection2__halfCircle::before{
-    width: 184px;
-    height: 184px;
+  .lp-sectorsSection2__track::after{
+    width: 12px;
+    height: 12px;
+  }
+
+  .lp-sectorsSection2__tracks{
+    margin-top: 42px;
+    gap: 12px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(1){
+    --lp-s2-track-anchor: 44px;
+    --lp-s2-dot-x: 2px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(2){
+    --lp-s2-track-anchor: 56px;
+    --lp-s2-dot-x: 8px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(3){
+    --lp-s2-track-anchor: 68px;
+    --lp-s2-dot-x: 2px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(4){
+    --lp-s2-track-anchor: 56px;
+    --lp-s2-dot-x: 12px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__track:nth-child(5){
+    --lp-s2-track-anchor: 44px;
+    --lp-s2-dot-x: 36px;
+    --lp-s2-dot-y: 0px;
+  }
+
+  .lp-sectorsSection2__trackLine{
+    width: 52px;
+  }
+
+  .lp-sectorsSection2__sectorCard{
+    width: min(260px, calc(100vw - 142px));
+    min-height: 46px;
+    height: auto;
+    padding-block: 8px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard{
+    padding-right: 12px;
+    padding-left: 48px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard{
+    padding-left: 12px;
+    padding-right: 48px;
+  }
+
+  .lp-sectorsSection2__sectorCard::after{
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2__sectorCard::after{
+    left: 10px;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2__sectorCard::after{
+    right: 10px;
+  }
+
+  .lp-sectorsSection2__sectorIconCircle{
+    width: 32px;
+    height: 32px;
+  }
+
+  .lp-sectorsSection2__sectorIcon{
+    width: 16px;
+    height: 16px;
+  }
+
+  .lp-sectorsSection2__sectorText{
+    font-size: 13px;
+    line-height: 1.35;
+    white-space: normal;
   }
 }
