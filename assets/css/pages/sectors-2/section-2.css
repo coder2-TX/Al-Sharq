@@ -1,3 +1,4 @@
+/* assets\css\pages\sectors-2\section-2.css */
 .lp-sectorsSection2{
   background: #ffffff;
   color: #111;
@@ -198,6 +199,16 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
     transform: translateY(calc(-50% + 24px)) scale(.9);
   }
 
+  html[dir="rtl"] .lp-sectorsSection2.is-reveal-init .lp-sectorsSection2__trackDot.lp-s2Reveal--dot,
+  html[dir="rtl"] .lp-sectorsSection2.is-reveal-init .lp-sectorsSection2__subTrackDot.lp-s2Reveal--dot{
+    transform: translate(50%, -50%) scale(.55);
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2.is-reveal-init .lp-sectorsSection2__trackDot.lp-s2Reveal--dot,
+  html[dir="ltr"] .lp-sectorsSection2.is-reveal-init .lp-sectorsSection2__subTrackDot.lp-s2Reveal--dot{
+    transform: translate(-50%, -50%) scale(.55);
+  }
+
   .lp-sectorsSection2.is-reveal-init .lp-s2Reveal--line{
     transform: scaleX(0);
   }
@@ -243,6 +254,16 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
     transform: translateY(-50%) scale(1);
   }
 
+  html[dir="rtl"] .lp-sectorsSection2.is-reveal-init .lp-sectorsSection2__trackDot.lp-s2Reveal--dot.is-visible,
+  html[dir="rtl"] .lp-sectorsSection2.is-reveal-init .lp-sectorsSection2__subTrackDot.lp-s2Reveal--dot.is-visible{
+    transform: translate(50%, -50%) scale(1);
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2.is-reveal-init .lp-sectorsSection2__trackDot.lp-s2Reveal--dot.is-visible,
+  html[dir="ltr"] .lp-sectorsSection2.is-reveal-init .lp-sectorsSection2__subTrackDot.lp-s2Reveal--dot.is-visible{
+    transform: translate(-50%, -50%) scale(1);
+  }
+
   .lp-sectorsSection2.is-reveal-init .lp-s2Reveal--line.is-visible{
     transform: scaleX(1);
   }
@@ -273,6 +294,16 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
 
   .lp-sectorsSection2 .lp-s2Reveal--logo{
     transform: translateY(-50%) scale(1) !important;
+  }
+
+  html[dir="rtl"] .lp-sectorsSection2 .lp-sectorsSection2__trackDot.lp-s2Reveal--dot,
+  html[dir="rtl"] .lp-sectorsSection2 .lp-sectorsSection2__subTrackDot.lp-s2Reveal--dot{
+    transform: translate(50%, -50%) scale(1) !important;
+  }
+
+  html[dir="ltr"] .lp-sectorsSection2 .lp-sectorsSection2__trackDot.lp-s2Reveal--dot,
+  html[dir="ltr"] .lp-sectorsSection2 .lp-sectorsSection2__subTrackDot.lp-s2Reveal--dot{
+    transform: translate(-50%, -50%) scale(1) !important;
   }
 
   .lp-sectorsSection2 .lp-s2Reveal--line{
@@ -329,41 +360,36 @@ html[dir="ltr"] .lp-sectorsSection2__halfCircle{
 }
 
 /* دوائر أطراف الخطوط من جهة الدائرة الكبيرة */
-.lp-sectorsSection2__track::before,
-.lp-sectorsSection2__track::after{
-  content: "";
+.lp-sectorsSection2__trackDot{
   position: absolute;
   inset-inline-start: calc(
     (var(--lp-s2-dot-x) * -1) + var(--lp-s2-primary-dot-fine-x, 0px)
   );
-  border-radius: 999px;
-  pointer-events: none;
-}
-
-.lp-sectorsSection2__track::before{
   top: calc(50% + var(--lp-s2-dot-y) + var(--lp-s2-primary-dot-fine-y, 0px));
   width: 22px;
   height: 22px;
+  border-radius: 999px;
   background: #ffffff;
   border: 2px solid var(--lp-about-title);
+  pointer-events: none;
   z-index: 4;
 }
 
-.lp-sectorsSection2__track::after{
-  top: calc(50% + var(--lp-s2-dot-y) + var(--lp-s2-primary-dot-fine-y, 0px));
+.lp-sectorsSection2__trackDotInner{
+  position: absolute;
+  inset: 50% auto auto 50%;
   width: 16px;
   height: 16px;
+  border-radius: 999px;
   background: var(--lp-accent);
-  z-index: 5;
+  transform: translate(-50%, -50%);
 }
 
-html[dir="rtl"] .lp-sectorsSection2__track::before,
-html[dir="rtl"] .lp-sectorsSection2__track::after{
+html[dir="rtl"] .lp-sectorsSection2__trackDot{
   transform: translate(50%, -50%);
 }
 
-html[dir="ltr"] .lp-sectorsSection2__track::before,
-html[dir="ltr"] .lp-sectorsSection2__track::after{
+html[dir="ltr"] .lp-sectorsSection2__trackDot{
   transform: translate(-50%, -50%);
 }
 
@@ -525,8 +551,8 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub::after{
 }
 
 .lp-sectorsSection2__sectorIcon{
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   display: block;
   object-fit: contain;
 }
@@ -587,38 +613,34 @@ html[dir="ltr"] .lp-sectorsSection2__sectorCard--sub::after{
   padding-inline-start: 12px;
 }
 
-.lp-sectorsSection2__subTrack::before,
-.lp-sectorsSection2__subTrack::after{
-  content: "";
+.lp-sectorsSection2__subTrackDot{
   position: absolute;
   inset-inline-start: 5px;
   top: 50%;
-  border-radius: 999px;
-  pointer-events: none;
-}
-
-.lp-sectorsSection2__subTrack::before{
   width: 18px;
   height: 18px;
+  border-radius: 999px;
   background: #ffffff;
   border: 2px solid var(--lp-about-title);
+  pointer-events: none;
   z-index: 4;
 }
 
-.lp-sectorsSection2__subTrack::after{
+.lp-sectorsSection2__subTrackDotInner{
+  position: absolute;
+  inset: 50% auto auto 50%;
   width: 12px;
   height: 12px;
+  border-radius: 999px;
   background: var(--lp-accent);
-  z-index: 5;
+  transform: translate(-50%, -50%);
 }
 
-html[dir="rtl"] .lp-sectorsSection2__subTrack::before,
-html[dir="rtl"] .lp-sectorsSection2__subTrack::after{
+html[dir="rtl"] .lp-sectorsSection2__subTrackDot{
   transform: translate(50%, -50%);
 }
 
-html[dir="ltr"] .lp-sectorsSection2__subTrack::before,
-html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
+html[dir="ltr"] .lp-sectorsSection2__subTrackDot{
   transform: translate(-50%, -50%);
 }
 
@@ -656,12 +678,12 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
     gap: 20px;
   }
 
-  .lp-sectorsSection2__track::before{
+  .lp-sectorsSection2__trackDot{
     width: 20px;
     height: 20px;
   }
 
-  .lp-sectorsSection2__track::after{
+  .lp-sectorsSection2__trackDotInner{
     width: 14px;
     height: 14px;
   }
@@ -741,8 +763,8 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
   }
 
   .lp-sectorsSection2__sectorIcon{
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .lp-sectorsSection2__sectorText{
@@ -765,17 +787,13 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
     padding-inline-start: 10px;
   }
 
-  .lp-sectorsSection2__subTrack::before,
-  .lp-sectorsSection2__subTrack::after{
+  .lp-sectorsSection2__subTrackDot{
     inset-inline-start: 4px;
-  }
-
-  .lp-sectorsSection2__subTrack::before{
     width: 16px;
     height: 16px;
   }
 
-  .lp-sectorsSection2__subTrack::after{
+  .lp-sectorsSection2__subTrackDotInner{
     width: 10px;
     height: 10px;
   }
@@ -808,12 +826,12 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
     gap: 18px;
   }
 
-  .lp-sectorsSection2__track::before{
+  .lp-sectorsSection2__trackDot{
     width: 18px;
     height: 18px;
   }
 
-  .lp-sectorsSection2__track::after{
+  .lp-sectorsSection2__trackDotInner{
     width: 12px;
     height: 12px;
   }
@@ -896,8 +914,8 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
   }
 
   .lp-sectorsSection2__sectorIcon{
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 
   .lp-sectorsSection2__sectorText{
@@ -922,17 +940,13 @@ html[dir="ltr"] .lp-sectorsSection2__subTrack::after{
     padding-inline-start: 8px;
   }
 
-  .lp-sectorsSection2__subTrack::before,
-  .lp-sectorsSection2__subTrack::after{
+  .lp-sectorsSection2__subTrackDot{
     inset-inline-start: 3px;
-  }
-
-  .lp-sectorsSection2__subTrack::before{
     width: 14px;
     height: 14px;
   }
 
-  .lp-sectorsSection2__subTrack::after{
+  .lp-sectorsSection2__subTrackDotInner{
     width: 9px;
     height: 9px;
   }

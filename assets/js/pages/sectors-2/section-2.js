@@ -1,3 +1,4 @@
+/* assets\js\pages\sectors-2\section-2.js */
 (function () {
   function initSector2Reveal(context) {
     var root = context || document;
