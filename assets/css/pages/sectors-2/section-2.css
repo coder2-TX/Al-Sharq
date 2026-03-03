@@ -365,7 +365,7 @@ html[dir="ltr"] .lp-sectorsSection2__track::after{
    المجموعة 1 = الفقرة 1 القديمة
    المجموعة 2 = الفقرة 3 القديمة */
 .lp-sectorsSection2__trackGroup:nth-child(1){
-  --lp-s2-track-anchor: 126px;
+  --lp-s2-track-anchor: 186px;
   --lp-s2-dot-x: -8px;
   --lp-s2-dot-y: 0px;
 }
