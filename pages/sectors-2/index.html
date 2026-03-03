@@ -21,6 +21,9 @@
   <script src="../../assets/js/header.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="../../assets/js/hero.js" defer></script>
+
+  <!-- مهم: ملف الحركة الجديد قبل app.js -->
+  <script src="../../assets/js/pages/sectors-2/section-2.js" defer></script>
   <script src="../../assets/js/app.js" defer></script>
 </head>
 
@@ -34,7 +37,7 @@
 
   <main id="sectors2-page">
     <div id="sectors2-s1-slot" data-partial="partials/section-1.html"></div>
-    <div id="sectors2-s2-slot" data-partial="partials/section-2.html"></div>
+    <div id="sectors2-s2-slot" data-partial="partials/section-2.html" data-after="initSector2Reveal"></div>
   </main>
 
   <div id="footer-slot" data-partial="../../partials/footer.html" data-after="lpInitHeroLines"></div>
