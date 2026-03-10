@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Landing</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <link rel="stylesheet" href="../assets/css/header.css" />
+  <link rel="stylesheet" href="../assets/css/about.css" />
+  <link rel="stylesheet" href="../assets/css/iso.css" />
+  <link rel="stylesheet" href="../assets/css/sectors.css" />
+  <link rel="stylesheet" href="../assets/css/numbers.css" />
+  <link rel="stylesheet" href="../assets/css/partners.css" />
+  <link rel="stylesheet" href="../assets/css/footer.css" />
+  <link rel="stylesheet" href="../assets/css/hero.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+
+  <script src="../assets/js/header.js" defer></script>
+  <script src="../assets/js/hero.js" defer></script>
+  <script src="../assets/js/sectors.js" defer></script>
+  <script src="../assets/js/numbers.js" defer></script>
+  <script src="../assets/js/partners.js" defer></script>
+  <script src="../assets/js/app.js" defer></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js" defer></script>
+</head>
+
+<body>
+  <div
+    id="header-slot"
+    data-partial="partials/header.html"
+    data-after="lpInitHeader"
+    data-show-brand="false"
+  ></div>
+
+  <main id="home">
+    <section class="lp-hero" aria-label="Hero">
+      <div class="lp-hero__graphics" aria-hidden="true">
+        <svg class="lp-lines lp-lines--topStart" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
+          <line class="lp-line lp-line--w10" x1="620" y1="44" x2="200" y2="44"></line>
+          <line class="lp-line lp-line--w4" x1="620" y1="72" x2="230" y2="72"></line>
+          <line class="lp-line lp-line--w1" x1="620" y1="100" x2="300" y2="100"></line>
+        </svg>
+
+        <svg class="lp-lines lp-lines--bottomEnd" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
+          <line class="lp-line lp-line--w10" x1="0" y1="100" x2="420" y2="100"></line>
+          <line class="lp-line lp-line--w4" x1="0" y1="72" x2="410" y2="72"></line>
+          <line class="lp-line lp-line--w1" x1="0" y1="44" x2="340" y2="44"></line>
+        </svg>
+      </div>
+
+      <div class="lp-hero__content">
+        <div class="lp-hero__contentRow">
+          <div class="lp-hero__text">
+            <h1 class="lp-hero__title">
+              <span class="lp-hero__titleLine">Al <span class="lp-hero__accentWord">Sharq</span></span>
+              <span class="lp-hero__titleLine">Trading & Agencies Company</span>
+            </h1>
+
+            <p class="lp-hero__subtitle">
+              One of the leading companies in import, marketing, and distribution in the Republic of Yemen, representing a large number of international agencies.
+            </p>
+          </div>
+
+          <a class="lp-hero__logo" href="#home" aria-label="Back to home">
+            <img src="../assets/images/header/logo.png" alt="Al Sharq logo" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div id="about-slot" data-partial="partials/about.html"></div>
+    <div id="iso-slot" data-partial="partials/iso.html"></div>
+    <div id="sectors-slot" data-partial="partials/sectors.html" data-after="lpInitSectors"></div>
+    <div id="numbers-slot" data-partial="partials/numbers.html" data-after="lpInitNumbers"></div>
+    <div id="partners-slot" data-partial="partials/partners.html" data-after="lpInitPartners"></div>
+  </main>
+
+  <div id="footer-slot" data-partial="partials/footer.html" data-after="lpInitHeroLines"></div>
+</body>
+</html>
