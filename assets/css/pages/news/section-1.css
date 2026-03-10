@@ -174,7 +174,7 @@
   transform: translateY(-1px);
 }
 
-/* ✅ الزر المفعل */
+/*  الزر المفعل */
 .lp-pageBtn[aria-current="page"]{
   background: var(--lp-about-title);
   border-color: var(--lp-about-title);
@@ -182,7 +182,7 @@
   transform: none;
 }
 
-/* ✅ Hover/Focus: يصير نفس لون المفعل (أزرق) */
+/*  Hover/Focus: يصير نفس لون المفعل (أزرق) */
 .lp-pageBtn:not([aria-disabled="true"]):not([aria-current="page"]):hover,
 .lp-pageBtn:not([aria-disabled="true"]):not([aria-current="page"]):focus-visible{
   background: var(--lp-about-title);

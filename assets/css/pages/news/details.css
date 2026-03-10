@@ -22,7 +22,7 @@
   margin: 0;
 }
 
-/* ✅ عنوان الخبر (نفس حجم عنوان الكارد تقريبًا لكن بدون قص) */
+/*  عنوان الخبر (نفس حجم عنوان الكارد تقريبًا لكن بدون قص) */
 .lp-newsDetails__headline{
   margin: 14px 0 10px;
   color: #111;
@@ -30,7 +30,7 @@
   line-height: 1.85;
   font-weight: 800;
 
-  /* ✅ ياخذ العرض كامل داخل الكونتينر (بدون max-width إضافي) */
+  /*  ياخذ العرض كامل داخل الكونتينر (بدون max-width إضافي) */
   width: 100%;
 }
 
@@ -93,7 +93,7 @@
 .lp-newsDetails__img{
   display: block;
   width: 100%;
-  height: auto;      /* ✅ بدون قص */
+  height: auto;      /*  بدون قص */
   object-fit: contain;
 }
 
@@ -105,7 +105,7 @@
   color: #111;
   font-size: var(--lp-subtitle-size);
   line-height: 2.0;
-  font-weight: 400; /* ✅ غير عريض */
+  font-weight: 400; /*  غير عريض */
 }
 
 .lp-newsDetails__content p{

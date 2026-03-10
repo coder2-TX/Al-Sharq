@@ -91,7 +91,7 @@ html[dir="ltr"] .lp-hero::before{
   text-align: start;
 }
 
-/* ✅ صف: النص مقابل اللوجو */
+/*  صف: النص مقابل اللوجو */
 .lp-hero__contentRow{
   width: 100%;
   display: flex;
@@ -100,7 +100,7 @@ html[dir="ltr"] .lp-hero::before{
   gap: clamp(18px, 3vw, 42px);
 }
 
-/* ✅ عمود النص (يحافظ على نفس الفراغ بين العنوان والوصف) */
+/*  عمود النص (يحافظ على نفس الفراغ بين العنوان والوصف) */
 .lp-hero__text{
   flex: 1 1 auto;
   min-width: 0;
@@ -110,7 +110,7 @@ html[dir="ltr"] .lp-hero::before{
   gap: 14px;
 }
 
-/* ✅ اللوجو مقابل النص */
+/*  اللوجو مقابل النص */
 .lp-hero__logo{
   flex: 0 0 auto;
   display: inline-flex;
@@ -212,7 +212,7 @@ html[dir="ltr"] .lp-hero::before{
   }
 }
 
-/* ✅ موبايل صغير جداً: نخليهم تحت بعض عشان ما ينضغطوا */
+/*  موبايل صغير جداً: نخليهم تحت بعض عشان ما ينضغطوا */
 @media (max-width: 650px){
   .lp-hero__contentRow{
     flex-direction: column;

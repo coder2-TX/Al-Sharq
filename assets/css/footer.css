@@ -1,16 +1,16 @@
 /* assets/css/footer.css */
 
 .lp-footer{
-  /* ✅ خلفية الفوتر المطلوبة */
+  /*  خلفية الفوتر المطلوبة */
   --lp-footer-bg: #e5e5e5;
 
-  /* ✅ خلي الخلفية على العنصر نفسه عشان ما يظهر الأسود */
+  /*  خلي الخلفية على العنصر نفسه عشان ما يظهر الأسود */
   background: transparent;
 
-  /* ✅ لون النصوص */
+  /*  لون النصوص */
   color: var(--lp-about-title);
 
-  /* ✅ انحناء كبير وواضح (زي فكرة kiwi) */
+  /*  انحناء كبير وواضح (زي فكرة kiwi) */
   --lp-footer-radius: clamp(140px, 18vw, 240px);
 
   border-top-right-radius: 0;
@@ -20,13 +20,13 @@
 
   position: relative;
 
-  /* ✅ إعدادات الستروك (نفس فكرة kiwi) */
+  /*  إعدادات الستروك (نفس فكرة kiwi) */
   --lp-footer-stroke-show: 220px;      /* مقدار الجزء الظاهر من الستروك */
   --lp-footer-stroke-thickness: 2px;   /* سماكة الستروك (بارز) */
   --lp-footer-stroke-y: -12px;         /* رفع الستروك لفوق عشان يبان */
   --lp-footer-stroke-x: 0px;
 
-  /* ✅ لازم يكون visible عشان الستروك يطلع لفوق */
+  /*  لازم يكون visible عشان الستروك يطلع لفوق */
   overflow-y: visible;
   overflow-x: hidden; /* fallback */
   overflow-x: clip;   /* أفضل لو مدعوم */
@@ -35,7 +35,7 @@
   padding-bottom: 0;
 }
 
-/* ✅ الستروك الخارجي */
+/*  الستروك الخارجي */
 .lp-footer::before{
   content: "";
   position: absolute;
@@ -43,7 +43,7 @@
 
   transform: translate3d(-18px, -18px, 0);
 
-  /* ✅ كل الستروك صار --lp-about-title */
+  /*  كل الستروك صار --lp-about-title */
   border: var(--lp-footer-stroke-thickness) solid var(--lp-about-title);
 
   border-top-right-radius: 0;
@@ -51,7 +51,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 
-  /* ✅ نعرض فقط جزء من الستروك من الأعلى */
+  /*  نعرض فقط جزء من الستروك من الأعلى */
   clip-path: inset(0 0 calc(100% - var(--lp-footer-stroke-show)) 0);
 
   pointer-events: none;
@@ -76,7 +76,7 @@
 }
 
 /* =========================
-   ✅ Footer moving lines (copied from hero)
+    Footer moving lines (copied from hero)
    اللون صار --lp-about-title + شفافية
 ========================= */
 
@@ -125,7 +125,7 @@
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
 
-  /* ✅ نخلي المحتوى فوق الخطوط */
+  /*  نخلي المحتوى فوق الخطوط */
   position: relative;
   z-index: 3;
 }
@@ -175,7 +175,7 @@ html[dir="rtl"] .lp-footer__col--brand{
   width: auto;
   display: block;
 
-  /* ✅ لا نخلي اللوجو أبيض */
+  /*  لا نخلي اللوجو أبيض */
   filter: none;
 }
 
@@ -205,7 +205,7 @@ html[dir="rtl"] .lp-footer__social--compact{
   line-height: 1.2;
 }
 
-/* ✅ ستروك حاويات السوشيال صار --lp-about-title */
+/*  ستروك حاويات السوشيال صار --lp-about-title */
 .lp-footer .lp-socialIcon__stroke{
   border-color: var(--lp-about-title);
 }
@@ -306,18 +306,18 @@ html[dir="rtl"] .lp-footer__linksRow{
   font-size: 14px;
   line-height: 1.95;
 
-  /* ✅ خلي النص يمتد بعرض العمود كامل */
+  /*  خلي النص يمتد بعرض العمود كامل */
   max-width: none;
   width: 100%;
 
-  /* ✅ يخلي السطور تنتهي مع بعض */
+  /*  يخلي السطور تنتهي مع بعض */
   text-align: justify;
   text-justify: inter-word;
 
-  /* ✅ يساعد العربي يضبط نهاية السطور (زي “تطويل” خفيف بالكلمات) */
+  /*  يساعد العربي يضبط نهاية السطور (زي “تطويل” خفيف بالكلمات) */
   word-spacing: .06em;
 
-  /* ✅ آخر سطر يرجع طبيعي (مهم مع justify) */
+  /*  آخر سطر يرجع طبيعي (مهم مع justify) */
   text-align-last: start;
 
   opacity: .92;
@@ -384,7 +384,7 @@ html[dir="rtl"] .lp-footer__brandDesc{
   margin-top: clamp(22px, 3vw, 32px);
   padding-block: 16px;
 
-  /* ✅ خط الفصل صار --lp-about-title */
+  /*  خط الفصل صار --lp-about-title */
   border-top: 1px solid var(--lp-about-title);
 
   color: var(--lp-about-title);
@@ -416,7 +416,7 @@ html[dir="rtl"] .lp-footer__brandDesc{
   }
 
   .lp-footer__brandDesc{
-    /* ✅ خليها 100% حتى بالموبايل */
+    /*  خليها 100% حتى بالموبايل */
     max-width: none;
     width: 100%;
   }

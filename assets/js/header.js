@@ -4,13 +4,13 @@
 
   let inited = false;
 
-  // ✅ Retry if header partial isn't in DOM yet
+  //  Retry if header partial isn't in DOM yet
   let retryCount = 0;
-  const MAX_RETRIES = 30;   // 30 * 50ms = 1.5s max
+  const MAX_RETRIES = 30; // 30 * 50ms = 1.5s max
   const RETRY_DELAY = 50;
 
   window.lpInitHeader = function lpInitHeader() {
-    // ✅ Don't lock init until header exists
+    //  Don't lock init until header exists
     if (inited) return;
 
     const drawer = document.getElementById("lpDrawer");
@@ -25,14 +25,14 @@
       return;
     }
 
-    // ✅ Now it's safe to lock init
+    //  Now it's safe to lock init
     inited = true;
 
     const panel = drawer.querySelector(".lp-drawer__panel");
     const icon = menuBtn.querySelector("i");
     if (!panel) return;
 
-    // ✅ Optional Brand Mark (per-page)
+    //  Optional Brand Mark (per-page)
     const brand = document.getElementById("lpHeaderBrand");
     const brandImg = document.getElementById("lpHeaderBrandImg");
     const headerSlot = document.getElementById("header-slot");
@@ -43,12 +43,20 @@
       return s === "" || s === "1" || s === "true" || s === "yes" || s === "on";
     };
 
-    const normalizePath = (p) => String(p || "").trim().replace(/\\/g, "/");
+    const normalizePath = (p) =>
+      String(p || "")
+        .trim()
+        .replace(/\\/g, "/");
 
     const resolveUrl = (p) => {
       const s = normalizePath(p);
       if (!s) return "";
-      if (/^(https?:)?\/\//i.test(s) || s.startsWith("data:") || s.startsWith("blob:")) return s;
+      if (
+        /^(https?:)?\/\//i.test(s) ||
+        s.startsWith("data:") ||
+        s.startsWith("blob:")
+      )
+        return s;
       try {
         return new URL(s, window.location.href).href;
       } catch {
@@ -56,11 +64,16 @@
       }
     };
 
-    const hasAttr = (el, attr) => !!(el && el.hasAttribute && el.hasAttribute(attr));
-    const getSlotData = (key) => (headerSlot && headerSlot.dataset ? headerSlot.dataset[key] : undefined);
-    const getBodyData = (key) => (document.body && document.body.dataset ? document.body.dataset[key] : undefined);
+    const hasAttr = (el, attr) =>
+      !!(el && el.hasAttribute && el.hasAttribute(attr));
+    const getSlotData = (key) =>
+      headerSlot && headerSlot.dataset ? headerSlot.dataset[key] : undefined;
+    const getBodyData = (key) =>
+      document.body && document.body.dataset
+        ? document.body.dataset[key]
+        : undefined;
 
-    // ✅ showBrand: page decision first
+    //  showBrand: page decision first
     let showBrand = false;
 
     if (hasAttr(headerSlot, "data-show-brand")) {
@@ -74,16 +87,24 @@
     }
 
     const brandHref =
-      (hasAttr(headerSlot, "data-brand-href") ? getSlotData("brandHref") : undefined) ||
-      (hasAttr(document.body, "data-brand-href") ? getBodyData("brandHref") : undefined) ||
+      (hasAttr(headerSlot, "data-brand-href")
+        ? getSlotData("brandHref")
+        : undefined) ||
+      (hasAttr(document.body, "data-brand-href")
+        ? getBodyData("brandHref")
+        : undefined) ||
       "#home";
 
     const providedBrandSrc =
-      (hasAttr(headerSlot, "data-brand-src") ? getSlotData("brandSrc") : undefined) ||
-      (hasAttr(document.body, "data-brand-src") ? getBodyData("brandSrc") : undefined) ||
+      (hasAttr(headerSlot, "data-brand-src")
+        ? getSlotData("brandSrc")
+        : undefined) ||
+      (hasAttr(document.body, "data-brand-src")
+        ? getBodyData("brandSrc")
+        : undefined) ||
       "";
 
-    // ✅ Prepare brand once (even pages that don't show it at top will need it on scroll)
+    //  Prepare brand once (even pages that don't show it at top will need it on scroll)
     let brandPrepared = false;
 
     const prepareBrand = () => {
@@ -114,7 +135,7 @@
       }
     };
 
-    // ✅ Header shadow + Brand visibility on scroll
+    //  Header shadow + Brand visibility on scroll
     const headerEl = document.getElementById("lpHeader");
 
     const updateHeaderOnScroll = () => {
@@ -124,7 +145,7 @@
       // class controls shadow + white header in CSS (now for all pages)
       document.body.classList.toggle("lp-header-scrolled", scrolled);
 
-      // ✅ brand is visible if (page wants it) OR (scrolled)
+      //  brand is visible if (page wants it) OR (scrolled)
       const shouldShowBrand = !!showBrand || scrolled;
 
       if (brand) {
@@ -140,7 +161,8 @@
     updateHeaderOnScroll();
     window.addEventListener("scroll", updateHeaderOnScroll, { passive: true });
 
-    const focusableSel = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusableSel =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
     const getFocusable = () => Array.from(panel.querySelectorAll(focusableSel));
     const isOpen = () => drawer.classList.contains("is-open");
 
@@ -149,7 +171,10 @@
 
     const setBtnState = (open, animateIcon = true) => {
       menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      menuBtn.setAttribute("aria-label", open ? "إغلاق القائمة" : "فتح القائمة");
+      menuBtn.setAttribute(
+        "aria-label",
+        open ? "إغلاق القائمة" : "فتح القائمة",
+      );
       menuBtn.dataset.state = open ? "open" : "closed";
 
       if (!icon) return;

@@ -28,10 +28,10 @@
 
     const animateLineGroup = (
       els,
-      { stagger = 0.22, duration = 1.2, segRatio = 0.32, dir = -1 } = {}
+      { stagger = 0.22, duration = 1.2, segRatio = 0.32, dir = -1 } = {},
     ) => {
       els.forEach((el, i) => {
-        // ✅ لا نعيد تهيئة نفس الخط مرتين
+        //  لا نعيد تهيئة نفس الخط مرتين
         if (animated.has(el)) return;
         animated.add(el);
 
@@ -41,10 +41,10 @@
         const { len } = pack;
         const travel = len * getTravelFactor(el);
 
-        let start = (len * (0.17 + (i * 0.23))) % len;
+        let start = (len * (0.17 + i * 0.23)) % len;
 
         const setNewStart = () => {
-          start = (start + (len * 0.41)) % len;
+          start = (start + len * 0.41) % len;
           gsap.set(el, { strokeDashoffset: start, opacity: 0 });
         };
 
@@ -60,24 +60,48 @@
         tl.to(el, { opacity: 1, duration: duration * 0.18, ease: "none" }, 0);
 
         if (dir === 1) {
-          tl.to(el, { strokeDashoffset: `+=${travel}`, duration, ease: "none" }, 0);
+          tl.to(
+            el,
+            { strokeDashoffset: `+=${travel}`, duration, ease: "none" },
+            0,
+          );
         } else {
-          tl.to(el, { strokeDashoffset: `-=${travel}`, duration, ease: "none" }, 0);
+          tl.to(
+            el,
+            { strokeDashoffset: `-=${travel}`, duration, ease: "none" },
+            0,
+          );
         }
 
-        tl.to(el, { opacity: 0, duration: duration * 0.22, ease: "none" }, duration * 0.78);
+        tl.to(
+          el,
+          { opacity: 0, duration: duration * 0.22, ease: "none" },
+          duration * 0.78,
+        );
       });
     };
 
     // تهيئة جميع الخطوط داخل الحاوية المحددة
     container.querySelectorAll(".lp-lines--topStart").forEach((svg) => {
       const lines = Array.from(svg.querySelectorAll(".lp-line"));
-      if (lines.length) animateLineGroup(lines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: 1 });
+      if (lines.length)
+        animateLineGroup(lines, {
+          stagger: 0.22,
+          duration: 1.2,
+          segRatio: 0.32,
+          dir: 1,
+        });
     });
 
     container.querySelectorAll(".lp-lines--bottomEnd").forEach((svg) => {
       const lines = Array.from(svg.querySelectorAll(".lp-line"));
-      if (lines.length) animateLineGroup(lines, { stagger: 0.22, duration: 1.2, segRatio: 0.32, dir: -1 });
+      if (lines.length)
+        animateLineGroup(lines, {
+          stagger: 0.22,
+          duration: 1.2,
+          segRatio: 0.32,
+          dir: -1,
+        });
     });
   };
 

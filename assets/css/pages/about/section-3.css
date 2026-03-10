@@ -18,7 +18,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(18px, 3.5vw, 60px);
-  align-items: stretch; /* ✅ يخلي عمودين نفس الارتفاع */
+  align-items: stretch; /*  يخلي عمودين نفس الارتفاع */
   position: relative;
 }
 
@@ -39,7 +39,7 @@
 }
 
 /* =========================
-   ✅ Card (white) + shadow uses --lp-about-title
+    Card (white) + shadow uses --lp-about-title
    ========================= */
 .lp-vmv__card{
   background: #fff;
@@ -65,13 +65,13 @@
   padding: clamp(18px, 2.2vw, 28px) clamp(18px, 2.4vw, 30px);
   text-align: center;
 
-  /* ✅ يخلي الكارد يملأ ارتفاع الخلية في grid */
+  /*  يخلي الكارد يملأ ارتفاع الخلية في grid */
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-/* ✅ يخلي الفقرة "تتمدد" لو الكارد الثاني أطول، وبالتالي الفراغ يكون تحت */
+/*  يخلي الفقرة "تتمدد" لو الكارد الثاني أطول، وبالتالي الفراغ يكون تحت */
 .lp-vmv__card--top .lp-vmv__text{
   flex: 1 1 auto;
 }
@@ -135,7 +135,7 @@
 .lp-vmv__valuesBody{
   margin-top: 18px;
   display: grid;
-  gap: 0; /* ✅ لأننا بنعمل فواصل */
+  gap: 0; /*  لأننا بنعمل فواصل */
 }
 
 /* Value row (not a card anymore) */

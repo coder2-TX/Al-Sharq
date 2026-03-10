@@ -1,6 +1,6 @@
 /* assets/css/pages/about/section-4.css */
 /* ABOUT - Section 4 (Leadership cards) - like sectors + overlay panels */
-/* ✅ المطلوب: الكاردين نفس الارتفاع بحسب أكبر صورة + بدون قص للصورة */
+/*  المطلوب: الكاردين نفس الارتفاع بحسب أكبر صورة + بدون قص للصورة */
 
 .lp-aboutLeaders{
   background: #ffffff;
@@ -19,7 +19,7 @@
   position: relative; /* مهم للـ overlay */
 }
 
-/* ✅ Stage holds cards + overlay */
+/*  Stage holds cards + overlay */
 .lp-aboutLeaders__stage{
   position: relative;
 }
@@ -35,24 +35,24 @@
 
   overflow: visible;
 
-  /* ✅ مهم: يخلي الكاردين نفس الارتفاع (ارتفاع أكبر كارد) */
+  /*  مهم: يخلي الكاردين نفس الارتفاع (ارتفاع أكبر كارد) */
   align-items: stretch;
 }
 
 /*
-  ✅ الكارد: بدون height ثابت
+   الكارد: بدون height ثابت
   - ارتفاعه يعتمد على ارتفاع الصورة (auto)
   - والكارد الثاني يتمدد تلقائياً لنفس ارتفاع الأكبر بسبب align-items: stretch
 */
 .lp-aboutLeaders__grid .lp-sectorCard{
   flex: 0 0 calc((100% - (var(--gap) * (var(--per-view) - 1))) / var(--per-view));
-  height: auto; /* ✅ بدل height: var(--card-h) */
+  height: auto; /*  بدل height: var(--card-h) */
 }
 
-/* ✅ الصورة: لا قص نهائياً */
+/*  الصورة: لا قص نهائياً */
 .lp-aboutLeaders__card > img{
   width: 100%;
-  height: auto;          /* ✅ أهم سطر: يعرض الصورة كاملة */
+  height: auto;          /*  أهم سطر: يعرض الصورة كاملة */
   display: block;
   object-fit: contain;   /* احتياط لو في ستايل عام */
 }

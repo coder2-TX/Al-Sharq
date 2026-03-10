@@ -19,12 +19,12 @@
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
 
-  /* ✅ نفس القديم تماماً، بس عرفناه بمتغير عشان نضاعف السفلي بالموبايل فقط */
+  /*  نفس القديم تماماً، بس عرفناه بمتغير عشان نضاعف السفلي بالموبايل فقط */
   --s6-pad: clamp(54px, 7vw, 110px);
   padding-block: var(--s6-pad);
 }
 
-/* ✅ Mobile title (hidden by default) */
+/*  Mobile title (hidden by default) */
 .lp-aboutS6__mobileHead{
   display: none;
   margin-bottom: 12px;
@@ -140,21 +140,21 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
   display: block;
 }
 
-/* ✅✅ Breakpoint مضمون لحل تداخل 911 + ترتيب الموبايل */
+/*  Breakpoint مضمون لحل تداخل 911 + ترتيب الموبايل */
 @media (max-width: 920px){
 
-  /* ✅ ضاعف فقط padding السفلي للسكشن (بدون لمس العلوي) */
+  /*  ضاعف فقط padding السفلي للسكشن (بدون لمس العلوي) */
   .lp-aboutS6__inner{
     padding-top: var(--s6-pad);
-    padding-bottom: calc(var(--s6-pad) + var(--s6-pad)); /* ✅ ضعف */
+    padding-bottom: calc(var(--s6-pad) + var(--s6-pad)); /*  ضعف */
   }
 
-  /* ✅ بالموبايل/آيباد: الخلفية العامة أبيض (بدون نسب تتسبب بتداخل) */
+  /*  بالموبايل/آيباد: الخلفية العامة أبيض (بدون نسب تتسبب بتداخل) */
   .lp-aboutS6::before{
     background: #fff;
   }
 
-  /* ✅ عنوان ملوّن مستقل أعلى السكشن */
+  /*  عنوان ملوّن مستقل أعلى السكشن */
   .lp-aboutS6__mobileHead{
     display: block;
     background: var(--lp-about-title);
@@ -163,12 +163,12 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
     margin-bottom: clamp(14px, 3.5vw, 22px);
   }
 
-  /* ✅ نخفي عنوان الديسكتوب داخل الجريد */
+  /*  نخفي عنوان الديسكتوب داخل الجريد */
   .lp-aboutS6__deskHead{
     display: none;
   }
 
-  /* ✅ عمود واحد: أولاً النص (content) ثم الصورة (media) */
+  /*  عمود واحد: أولاً النص (content) ثم الصورة (media) */
   .lp-aboutS6__grid{
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -180,18 +180,18 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
     justify-content: flex-start;
   }
 
-  /* ✅ لأن العنوان اختفى داخل content: نخلي النص يبدأ بشكل طبيعي */
+  /*  لأن العنوان اختفى داخل content: نخلي النص يبدأ بشكل طبيعي */
   .lp-aboutS6__text{
     margin-top: 12px;
   }
 
-  /* ✅ مسافة بين النص والصورة */
+  /*  مسافة بين النص والصورة */
   .lp-aboutS6__media{
     margin-top: clamp(14px, 3.5vw, 22px);
     display: block !important; /* يمنع أي CSS آخر يخفيها */
   }
 
-  /* ✅✅ حل مضمون لعدم اختفاء الصورة:
+  /*  حل مضمون لعدم اختفاء الصورة:
      نعطي parent ارتفاع ثابت عبر aspect-ratio */
   .lp-aboutS6Media{
     height: auto;
@@ -209,7 +209,7 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
   }
 }
 
-/* ✅ موبايل صغير جداً: نخلي الصورة أطول شوي */
+/*  موبايل صغير جداً: نخلي الصورة أطول شوي */
 @media (max-width: 420px){
   .lp-aboutS6Media{
     aspect-ratio: 4 / 3;
