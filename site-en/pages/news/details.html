@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>News Details | Al Sharq Company</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../../assets/css/header.css" />
+    <link rel="stylesheet" href="../../../assets/css/sectors.css" />
+    <link rel="stylesheet" href="../../../assets/css/footer.css" />
+    <link rel="stylesheet" href="../../../assets/css/pages/news/details.css" />
+
+    <script src="../../../assets/js/header.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+      defer
+    ></script>
+    <script src="../../../assets/js/hero.js" defer></script>
+    <script src="../../../assets/js/pages/news/details.js" defer></script>
+    <script src="../../../assets/js/app.js" defer></script>
+  </head>
+
+  <body
+    data-show-brand="true"
+    data-brand-src="../../../assets/images/header/Brand_Mark.png"
+    data-brand-href="../../index.html#home"
+  >
+    <div
+      id="header-slot"
+      data-partial="../../partials/header.html"
+      data-after="lpInitHeader"
+    ></div>
+
+    <main id="news-details-page">
+      <div
+        id="news-details-slot"
+        data-partial="partials/details-section.html"
+        data-after="lpInitNewsDetails"
+      ></div>
+    </main>
+
+    <div
+      id="footer-slot"
+      data-partial="../../partials/footer.html"
+      data-after="lpInitHeroLines"
+    ></div>
+  </body>
+</html>
