@@ -2,13 +2,36 @@
   position: relative;
   background: #fff;
   color: #111;
+  overflow: hidden;
+
+  --s6-pad: clamp(54px, 7vw, 110px);
+  --s6-split: clamp(130px, 14vw, 180px);
+  --s6-head-pad-top: clamp(8px, 1vw, 12px);
+  --s6-head-pad-bottom: clamp(14px, 1.6vw, 20px);
+}
+
+/* فصل مستقل لكل لغة لكن بدون تضخيم الفراغ */
+.lp-aboutS6--ar{
+  --s6-split: clamp(142px, 15vw, 196px);
+  --s6-head-pad-top: clamp(10px, 1vw, 14px);
+  --s6-head-pad-bottom: clamp(18px, 1.8vw, 24px);
+}
+
+.lp-aboutS6--en{
+  --s6-split: clamp(142px, 15vw, 196px);
+  --s6-head-pad-top: clamp(10px, 1vw, 14px);
+  --s6-head-pad-bottom: clamp(18px, 1.8vw, 24px);
 }
 
 .lp-aboutS6::before{
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, var(--lp-about-title) 0 52%, #fff 52% 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--lp-about-title) 0 var(--s6-split),
+    #fff var(--s6-split) 100%
+  );
   z-index: 0;
 }
 
@@ -18,13 +41,10 @@
   max-width: var(--lp-container);
   margin-inline: auto;
   padding-inline: var(--lp-page-pad);
-
-  /*  نفس القديم تماماً، بس عرفناه بمتغير عشان نضاعف السفلي بالموبايل فقط */
-  --s6-pad: clamp(54px, 7vw, 110px);
   padding-block: var(--s6-pad);
 }
 
-/*  Mobile title (hidden by default) */
+/* Mobile title (hidden by default) */
 .lp-aboutS6__mobileHead{
   display: none;
   margin-bottom: 12px;
@@ -45,21 +65,35 @@ html[dir="rtl"] .lp-aboutS6__grid{
   grid-template-areas: "media content";
 }
 
-.lp-aboutS6__media{ grid-area: media; }
+.lp-aboutS6__media{
+  grid-area: media;
+}
 
 .lp-aboutS6__content{
   grid-area: content;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  min-width: 0;
 }
 
 .lp-aboutS6__head{
-  margin-bottom: 12px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  padding-top: var(--s6-head-pad-top);
+  padding-bottom: var(--s6-head-pad-bottom);
 }
 
-html[dir="rtl"] .lp-aboutS6__head{ text-align: right; }
-html[dir="ltr"] .lp-aboutS6__head{ text-align: left; }
+html[dir="rtl"] .lp-aboutS6__head{
+  text-align: right;
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .lp-aboutS6__head{
+  text-align: left;
+  justify-content: flex-start;
+}
 
 .lp-aboutS6__title{
   margin: 0;
@@ -76,18 +110,18 @@ html[dir="ltr"] .lp-aboutS6__head{ text-align: left; }
 }
 
 .lp-aboutS6__text{
-  margin: 18px 0 0;
+  margin: 0;
   width: 100%;
   max-width: none;
   color: #000;
   font-size: clamp(15px, 1.35vw, 18px);
   line-height: 2;
   font-weight: 300;
+  padding-top: clamp(8px, .8vw, 12px);
 
   text-align: justify;
   text-justify: inter-word;
   word-spacing: .06em;
-
   text-align-last: start;
 }
 
@@ -140,21 +174,18 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
   display: block;
 }
 
-/*  Breakpoint مضمون لحل تداخل 911 + ترتيب الموبايل */
+/* Breakpoint مضمون لحل تداخل 911 + ترتيب الموبايل */
 @media (max-width: 920px){
 
-  /*  ضاعف فقط padding السفلي للسكشن (بدون لمس العلوي) */
   .lp-aboutS6__inner{
     padding-top: var(--s6-pad);
-    padding-bottom: calc(var(--s6-pad) + var(--s6-pad)); /*  ضعف */
+    padding-bottom: calc(var(--s6-pad) + var(--s6-pad));
   }
 
-  /*  بالموبايل/آيباد: الخلفية العامة أبيض (بدون نسب تتسبب بتداخل) */
   .lp-aboutS6::before{
     background: #fff;
   }
 
-  /*  عنوان ملوّن مستقل أعلى السكشن */
   .lp-aboutS6__mobileHead{
     display: block;
     background: var(--lp-about-title);
@@ -163,12 +194,10 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
     margin-bottom: clamp(14px, 3.5vw, 22px);
   }
 
-  /*  نخفي عنوان الديسكتوب داخل الجريد */
   .lp-aboutS6__deskHead{
     display: none;
   }
 
-  /*  عمود واحد: أولاً النص (content) ثم الصورة (media) */
   .lp-aboutS6__grid{
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -177,30 +206,28 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
   }
 
   .lp-aboutS6__content{
+    display: block;
     justify-content: flex-start;
   }
 
-  /*  لأن العنوان اختفى داخل content: نخلي النص يبدأ بشكل طبيعي */
   .lp-aboutS6__text{
     margin-top: 12px;
+    padding-top: 0;
   }
 
-  /*  مسافة بين النص والصورة */
   .lp-aboutS6__media{
     margin-top: clamp(14px, 3.5vw, 22px);
-    display: block !important; /* يمنع أي CSS آخر يخفيها */
+    display: block !important;
   }
 
-  /*  حل مضمون لعدم اختفاء الصورة:
-     نعطي parent ارتفاع ثابت عبر aspect-ratio */
   .lp-aboutS6Media{
     height: auto;
-    padding-bottom: 0;      /* يمنع فراغ تحت */
-    aspect-ratio: 16 / 9;   /* يضمن ارتفاع ثابت */
+    padding-bottom: 0;
+    aspect-ratio: 16 / 9;
   }
 
   .lp-aboutS6Media__layer{
-    height: 100% !important;     /* الآن 100% له معنى */
+    height: 100% !important;
     transform: translate(0, 0) !important;
   }
 
@@ -209,7 +236,7 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
   }
 }
 
-/*  موبايل صغير جداً: نخلي الصورة أطول شوي */
+/* موبايل صغير جداً: نخلي الصورة أطول شوي */
 @media (max-width: 420px){
   .lp-aboutS6Media{
     aspect-ratio: 4 / 3;
