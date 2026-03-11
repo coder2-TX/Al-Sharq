@@ -205,6 +205,13 @@ html[dir="rtl"] .lp-aboutS6Media__layer{
       "media";
   }
 
+  /* 🌟 التعديل الذي تم إضافته هنا 🌟 */
+  html[dir="rtl"] .lp-aboutS6__grid {
+    grid-template-areas:
+      "content"
+      "media";
+  }
+
   .lp-aboutS6__content{
     display: block;
     justify-content: flex-start;

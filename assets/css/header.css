@@ -154,6 +154,7 @@ body.lp-header-scrolled .lp-header{
   opacity: 0;
   transform: scale(.85) rotate(-10deg);
 }
+
 .lp-menuBtn[data-icon-anim="in"] .lp-menuBtn__layer i{
   opacity: 1;
   transform: scale(1) rotate(0deg);
@@ -166,6 +167,7 @@ body.lp-drawer-open .lp-menuBtn__stroke{
 }
 
 .lp-menuBtn:focus-visible{ outline: none; }
+
 .lp-menuBtn:focus-visible .lp-menuBtn__layer{
   box-shadow: 0 0 0 2px rgba(255,255,255,.35);
 }
@@ -209,6 +211,14 @@ body.lp-drawer-open{ overflow: hidden; }
   box-shadow: 0 18px 60px rgba(0,0,0,.22);
   padding: 18px 18px 22px;
   outline: none;
+}
+
+/* مهم:
+   عندما يكون الهيدر الأبيض ظاهرًا (صفحات اللوجو أو عند السكرول)
+   نضيف مسافة علوية داخل القائمة حتى لا يختفي أول رابط خلف الهيدر */
+body[data-show-brand="true"] .lp-drawer__panel,
+body.lp-header-scrolled .lp-drawer__panel{
+  padding-top: calc(var(--lp-header-white-h) + 18px);
 }
 
 .lp-drawer.is-open .lp-drawer__panel{
