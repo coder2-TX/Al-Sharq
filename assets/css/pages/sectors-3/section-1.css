@@ -1,16 +1,16 @@
-.lp-page--sectors2{
+.lp-page--sectors3{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: #fff;
 }
 
-#sectors2-page{
+#sectors3-page{
   flex: 1 0 auto;
 }
 
 /* نفس فكرة صفحة التواصل: هيدر أبيض */
-.lp-page--sectors2 .lp-header{
+.lp-page--sectors3 .lp-header{
   background: rgba(255,255,255,.96);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -22,7 +22,6 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
-
   background-color: #f7f7f7;
   background-image: url("../../../images/sector/hero/1.png");
   background-size: cover;
@@ -30,12 +29,23 @@
   background-repeat: no-repeat;
 }
 
+.lp-sectorsHero2__video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
 /* طبقة خفيفة فقط لتحافظ على وضوح الخطوط */
 .lp-sectorsHero2::before{
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
   background: linear-gradient(
     to left,
@@ -58,7 +68,7 @@ html[dir="ltr"] .lp-sectorsHero2::before{
 .lp-sectorsHero2__graphics{
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   color: var(--lp-accent);
 }
@@ -94,7 +104,7 @@ html[dir="ltr"] .lp-sectorsHero2::before{
 /* طبقة داخلية فقط لحجز نفس ارتفاع الهيرو */
 .lp-sectorsHero2__inner{
   position: relative;
-  z-index: 2;
+  z-index: 3;
 
   max-width: var(--lp-container);
   margin-inline: auto;
@@ -120,10 +130,15 @@ html[dir="ltr"] .lp-sectorsHero2::before{
   .lp-sectorsHero2{
     background-position: center center;
   }
+
+  .lp-sectorsHero2__video{
+    object-position: center center;
+  }
 }
+
 body.lp-page--sectors3 #sectors-hero-2 .lp-sectorsHero2__inner{
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   min-height: inherit;
   display: flex;
