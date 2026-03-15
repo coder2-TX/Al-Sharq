@@ -1,0 +1,173 @@
+.lp-page--medicalPharmacovigilance{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+#medical-pharmacovigilance-page{
+  flex: 1 0 auto;
+}
+
+.lp-page--medicalPharmacovigilance .lp-header{
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 rgba(0,0,0,.05);
+}
+
+.lp-medicalPharmaS1{
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #fff;
+}
+
+.lp-medicalPharmaS1::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--lp-header-h, 0px);
+  bottom: 0;
+  background-image: url("../../../../../../images/sector/medical/hero.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.lp-medicalPharmaS1::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--lp-header-h, 0px);
+  bottom: 0;
+  background: var(--lp-about-title, #111);
+  opacity: 0.40;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.lp-medicalPharmaS1__graphics{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  color: var(--lp-accent);
+}
+
+.lp-medicalPharmaS1 .lp-lines{
+  position: absolute;
+  width: min(760px, calc(92vw - (var(--lp-lines-edge-pad) * 2)));
+  height: auto;
+  opacity: .95;
+}
+
+.lp-medicalPharmaS1 .lp-lines--topStart{
+  top: calc(var(--lp-header-h) + 26px);
+  inset-inline-start: var(--lp-lines-edge-pad);
+}
+
+.lp-medicalPharmaS1 .lp-lines--bottomEnd{
+  bottom: 26px;
+  inset-inline-end: var(--lp-lines-edge-pad);
+}
+
+.lp-medicalPharmaS1 .lp-lines .lp-line{
+  stroke: currentColor;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  will-change: stroke-dashoffset, opacity;
+}
+
+.lp-medicalPharmaS1 .lp-lines .lp-line--w10{ stroke-width: 6; }
+.lp-medicalPharmaS1 .lp-lines .lp-line--w4 { stroke-width: 4; }
+.lp-medicalPharmaS1 .lp-lines .lp-line--w1 { stroke-width: 1; }
+
+.lp-medicalPharmaS1__content{
+  position: relative;
+  z-index: 3;
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  --lp-medicalPharmaS1-pad-top: clamp(52px, 7vw, 110px);
+  --lp-medicalPharmaS1-pad-bottom: clamp(72px, 9vw, 140px);
+  padding-top: calc(var(--lp-header-h, 0px) + var(--lp-medicalPharmaS1-pad-top));
+  padding-bottom: var(--lp-medicalPharmaS1-pad-bottom);
+  min-height: calc(var(--lp-header-h, 0px) + clamp(300px, 34vw, 430px));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: start;
+}
+
+.lp-medicalPharmaS1__contentRow{
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.lp-medicalPharmaS1__text{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lp-medicalPharmaS1__title{
+  margin: 0;
+  line-height: 1.08;
+  font-weight: 700;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.lp-medicalPharmaS1__titleLine{
+  display: block;
+}
+
+.lp-medicalPharmaS1__accentWord{
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  padding-inline: .10em;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.lp-medicalPharmaS1__accentWord::before{
+  content: "";
+  position: absolute;
+  inset-inline: -0.06em;
+  height: .34em;
+  bottom: .06em;
+  background: var(--lp-accent);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+@media (max-width: 900px){
+  .lp-medicalPharmaS1 .lp-lines{
+    width: min(640px, calc(96vw - (var(--lp-lines-edge-pad) * 2)));
+    opacity: .9;
+  }
+
+  .lp-medicalPharmaS1 .lp-lines--topStart{
+    top: calc(var(--lp-header-h) + 18px);
+  }
+
+  .lp-medicalPharmaS1__content{
+    min-height: calc(var(--lp-header-h, 0px) + clamp(260px, 42vw, 360px));
+  }
+}
+
+@media (max-width: 650px){
+  .lp-medicalPharmaS1::before{
+    background-position: center center;
+  }
+}
