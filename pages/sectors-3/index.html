@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>القطاعات | شركة الشرق</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Base -->
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <!-- Shared -->
+  <link rel="stylesheet" href="../../assets/css/header.css" />
+  <link rel="stylesheet" href="../../assets/css/footer.css" />
+
+  <!-- Sections -->
+  <link rel="stylesheet" href="../../assets/css/pages/sectors-3/section-1.css" />
+  <link rel="stylesheet" href="../../assets/css/sectors.css" />
+  <link rel="stylesheet" href="../../assets/css/pages/sectors-3/section-2.css" />
+
+  <script src="../../assets/js/header.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="../../assets/js/hero.js" defer></script>
+  <script src="../../assets/js/sectors.js" defer></script>
+  <script src="../../assets/js/app.js" defer></script>
+</head>
+
+<body
+  class="lp-page--sectors3"
+  data-show-brand="true"
+  data-brand-src="../../assets/images/header/Brand_Mark.png"
+  data-brand-href="../../index.html#home"
+>
+  <div
+    id="header-slot"
+    data-partial="../../partials/header.html"
+    data-after="lpInitHeader"
+  ></div>
+
+  <main id="sectors3-page">
+    <section class="lp-section lp-sectorsHero2" id="sectors-hero-2" aria-label="الصورة الرئيسية للقطاعات">
+      <div class="lp-sectorsHero2__graphics" aria-hidden="true">
+        <svg class="lp-lines lp-lines--topStart" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
+          <line class="lp-line lp-line--w10" x1="620" y1="44"  x2="200" y2="44"></line>
+          <line class="lp-line lp-line--w4"  x1="620" y1="72"  x2="230" y2="72"></line>
+          <line class="lp-line lp-line--w1"  x1="620" y1="100" x2="300" y2="100"></line>
+        </svg>
+
+        <svg class="lp-lines lp-lines--bottomEnd" viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
+          <line class="lp-line lp-line--w10" x1="0" y1="100" x2="420" y2="100"></line>
+          <line class="lp-line lp-line--w4"  x1="0" y1="72"  x2="410" y2="72"></line>
+          <line class="lp-line lp-line--w1"  x1="0" y1="44"  x2="340" y2="44"></line>
+        </svg>
+      </div>
+
+      <div class="lp-sectorsHero2__inner">
+        <header class="lp-sectorsHero2__head">
+          <h2 class="lp-sectorsHero2__title">
+            قطاعات <span class="lp-sectorsHero2__titleAccent">الشركة</span>
+          </h2>
+        </header>
+      </div>
+    </section>
+
+    <div id="sectors3-s2-slot" data-partial="partials/section-2.html" data-after="lpInitSectors"></div>
+  </main>
+
+  <div
+    id="footer-slot"
+    data-partial="../../partials/footer.html"
+    data-after="lpInitHeroLines"
+  ></div>
+</body>
+</html>

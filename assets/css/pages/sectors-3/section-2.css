@@ -1,0 +1,68 @@
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__inner{
+  padding-top: clamp(42px, 4.4vw, 72px);
+  padding-bottom: clamp(46px, 6vw, 92px);
+}
+
+/* نلغي الخطوط القديمة من اللفافة */
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__sliderWrap{
+  position: relative;
+  margin-top: 0;
+  padding-inline: 0;
+}
+
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__sliderWrap::before,
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__sliderWrap::after{
+  content: none;
+}
+
+/* نخلي التراك بحجم الكاردات نفسها */
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track{
+  position: relative;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 10px 0;
+}
+
+/* الخطين بجانب الكاردات مباشرة */
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::before,
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: clamp(150px, 18vw, 220px);
+  background: var(--lp-accent);
+  border-radius: 999px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::before{
+  inset-inline-start: -40px;
+}
+
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::after{
+  inset-inline-end: -40px;
+}
+
+body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__slider{
+  position: relative;
+  z-index: 2;
+}
+
+/* شاشات اللابتوب: نقلل طول الخطوط */
+@media (max-width: 1366px){
+  body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::before,
+  body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::after{
+    height: 150px;
+  }
+}
+
+/* الآيباد والهاتف: نخفي الخطوط */
+@media (max-width: 1024px){
+  body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::before,
+  body.lp-page--sectors3 #sectors-3-section-2 .lp-sectors__track::after{
+    content: none;
+  }
+}
