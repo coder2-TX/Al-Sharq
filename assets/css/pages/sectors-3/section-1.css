@@ -153,9 +153,9 @@ body.lp-page--sectors3 #sectors-hero-2 .lp-sectorsHero2__head{
 body.lp-page--sectors3 #sectors-hero-2 .lp-sectorsHero2__title{
   margin: 0;
   color: #fff;
-  font-size: clamp(34px, 4.4vw, 60px);
-  line-height: 1.12;
-  font-weight: 800;
+  font-size: clamp(36px, 4.8vw, 70px);
+  line-height: 1.08;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
