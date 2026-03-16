@@ -1,0 +1,62 @@
+/* assets/css/pages/sectors-3/sector-pages/advertising/section-2.css */
+
+.lp-medicalS2{
+  background: #ffffff;
+  color: #111;
+}
+
+.lp-medicalS2__inner{
+  max-width: var(--lp-container);
+  margin-inline: auto;
+  padding-inline: var(--lp-page-pad);
+  padding-block: clamp(54px, 7vw, 110px);
+  text-align: center;
+}
+
+.lp-medicalS2__title{
+  margin: 0 0 14px;
+  color: var(--lp-about-title);
+  font-weight: 700;
+  line-height: 1.15;
+  font-size: clamp(22px, 2.6vw, 34px);
+}
+
+.lp-medicalS2__text{
+  margin: 18px 0 0;
+  width: 100%;
+  max-width: none;
+  color: #111;
+  font-size: var(--lp-subtitle-size);
+  line-height: 2;
+  text-align: justify;
+  text-justify: inter-word;
+  word-spacing: .06em;
+  text-align-last: start;
+}
+
+html[dir="rtl"] .lp-medicalS2__text{
+  text-align-last: right;
+}
+
+.lp-medicalS2__list{
+  margin: 14px 0 0;
+  width: 100%;
+  max-width: none;
+  display: block;
+  padding: 0;
+  padding-inline-start: 1.2em;
+  color: #111;
+  font-size: var(--lp-subtitle-size);
+  line-height: 2;
+  text-align: start;
+}
+
+.lp-medicalS2__list li{
+  margin: 0;
+}
+
+@media (max-width: 640px){
+  .lp-medicalS2__inner{
+    padding-block: clamp(42px, 8vw, 72px);
+  }
+}

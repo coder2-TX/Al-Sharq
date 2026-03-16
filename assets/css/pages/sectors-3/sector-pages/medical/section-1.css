@@ -44,6 +44,18 @@
   pointer-events: none;
 }
 
+body.lp-page--milkFoodSector #milk-food-hero::before{
+  background-image: url("../../../../../images/sectors/sector-details/medical/3.jpeg");
+}
+
+body.lp-page--advertisingSector #advertising-hero::before{
+  background-image: url("../../../../../images/sectors/sector-details/commercial/5.jpeg");
+}
+
+body.lp-page--communicationsSector #communications-hero::before{
+  background-image: url("../../../../../images/sectors/sector-details/commercial/6.jpeg");
+}
+
 /* الطبقة الشفافة */
 .lp-medicalS1::after{
   content: "";

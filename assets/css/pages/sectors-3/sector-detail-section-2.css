@@ -112,13 +112,25 @@ body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--three{
 body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--three > .lp-sectorCard:nth-child(3){
   grid-column: 1 / -1;
   justify-self: center;
-  width: minmax(280px, 420px);
+  width: min(100%, 420px);
   max-width: 420px;
 }
 
 body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--four{
   grid-template-columns: repeat(2, minmax(280px, 420px));
   justify-content: center;
+}
+
+body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--five{
+  grid-template-columns: repeat(2, minmax(280px, 420px));
+  justify-content: center;
+}
+
+body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--five > .lp-sectorCard:nth-child(5){
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 420px);
+  max-width: 420px;
 }
 
 @media (max-width: 1366px){
@@ -145,11 +157,24 @@ body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--four{
     grid-column: 1 / -1;
     justify-self: center;
     width: min(100%, 420px);
+    max-width: 420px;
   }
 
   body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--four{
     grid-template-columns: repeat(2, minmax(240px, 1fr));
     width: min(100%, 860px);
+  }
+
+  body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--five{
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    width: min(100%, 860px);
+  }
+
+  body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--five > .lp-sectorCard:nth-child(5){
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 420px);
+    max-width: 420px;
   }
 }
 
@@ -160,13 +185,15 @@ body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--four{
 
   body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--single,
   body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--three,
-  body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--four{
+  body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--four,
+  body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--five{
     grid-template-columns: minmax(260px, 420px);
     justify-content: center;
     width: 100%;
   }
 
-  body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--three > .lp-sectorCard:nth-child(3){
+  body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--three > .lp-sectorCard:nth-child(3),
+  body.lp-page--sectors3-detail .lp-sectorsDetailCards .lp-sectors__track--five > .lp-sectorCard:nth-child(5){
     grid-column: auto;
     justify-self: stretch;
     width: 100%;
